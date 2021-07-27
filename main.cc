@@ -10,13 +10,9 @@ int main(int argc, char** argv) {
 
     while (true) {
         string cmd;
-        int times = 1;
+        int times;
         cin >> cmd;
         if (cin.eof()) break;
-        if (cmd[0] == '0') {
-            cout << "invalid input" << endl;
-            continue;
-        }
         if (cmd[0] >= '1' && cmd[0] <= '9') {
             string num;
             int count = 0;
