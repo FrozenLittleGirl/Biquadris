@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
             s4.find(cmd) == string::npos && s5.find(cmd) == string::npos && s6.find(cmd) == string::npos &&
             s7.find(cmd) == string::npos && s8.find(cmd) == string::npos && s9.find(cmd) == string::npos &&
             s10.find(cmd) == string::npos && s11.find(cmd) == string::npos && s12.find(cmd) == string::npos) {
-            cout << "Unrecognized command " << cmd << "!" << endl; << endl;
+            cout << "Unrecognized command " << cmd << "!" << endl;
             continue;
         }
         if (cmd[0] == 'l') {
@@ -109,7 +109,7 @@ int main(int argc, char** argv) {
 
         if (cmd != "I" && cmd != "J" && cmd != "L" && cmd != "O" &&
             cmd != "S" && cmd != "Z" && cmd != "T" && cmd.size() == 1) {
-            cout << "Unrecognized command " << cmd << "!" << endl; << endl;
+            cout << "Unrecognized command " << cmd << "!" << endl;
             continue;
         }
 
