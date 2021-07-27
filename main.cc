@@ -4,10 +4,6 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    if (argc < 3) {
-        std::cerr << "need more sequence.txt" << std::endl;
-        return 1;
-    }
 
     string s1 = "left", s2 = "right", s3 = "down", s4 = "clockwise", s5 = "counterclockwise", s6 = "drop",
         s7 = "levelup", s8 = "leveldown", s9 = "norandom", s10 = "random", s11 = "sequence", s12 = "restart";
@@ -115,11 +111,6 @@ int main(int argc, char** argv) {
             cmd != "S" && cmd != "Z" && cmd != "T" && cmd.size() == 1) {
             cout << "Unrecognized command " << cmd << "!" << endl; << endl;
             continue;
-        }
-
-        // multipliers don't apply to these commands
-        if (cmd == "restart" || cmd == "norandom" || cmd == "random") {
-            times = 1;
         }
 
         // input is truely applied starting here
