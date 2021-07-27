@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
     if (argc < 3) {
-        std::cerr << "need more sequence.txt" << std::endl;
+        cerr << "need more sequence.txt" << endl;
         return 1;
     }
 
