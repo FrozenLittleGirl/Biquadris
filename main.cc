@@ -10,16 +10,16 @@ int main(int argc, char** argv) {
 
     while (true) {
         string cmd;
-        int times;
+        int times = 1;
         cin >> cmd;
         if (cin.eof()) break;
-        if (cmd[0] >= '1' && cmd[0] <= '9') {
+        if (cmd[0] >= '0' && cmd[0] <= '9') {
             string num;
             int count = 0;
             int len = cmd.size();
             for (int i = 0; i < len; ++i) {
                 num += cmd[i];
-                if (cmd[i] > '9' || cmd[i] < '1') {
+                if (cmd[i] > '9' || cmd[i] < '0') {
                     break;
                 }
                 ++count;
