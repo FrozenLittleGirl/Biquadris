@@ -9,14 +9,13 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    string cmd;
-    int times = 1;
     string s1 = "left", s2 = "right", s3 = "down", s4 = "clockwise", s5 = "counterclockwise", s6 = "drop",
         s7 = "levelup", s8 = "leveldown", s9 = "norandom", s10 = "random", s11 = "sequence", s12 = "restart";
 
-
     // Have to guarentee that the macro languages are different
     while (true) {
+        string cmd;
+        int times = 1;
         cin >> cmd;
         if (cin.eof()) break;
         if (cmd[0] == '0') {
