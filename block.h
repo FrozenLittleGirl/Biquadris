@@ -27,7 +27,7 @@ class Block {
     void setXcoord();
     void setYcoord();
     void setAngle();
-    void setHeavy(size_t heavyLevel);
+    void setHeavy(size_t dropNumber);
     
 };
 
