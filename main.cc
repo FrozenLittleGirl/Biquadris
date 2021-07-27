@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
             s4.find(cmd) == string::npos && s5.find(cmd) == string::npos && s6.find(cmd) == string::npos &&
             s7.find(cmd) == string::npos && s8.find(cmd) == string::npos && s9.find(cmd) == string::npos &&
             s10.find(cmd) == string::npos && s11.find(cmd) == string::npos && s12.find(cmd) == string::npos) {
-            cout << "invalid input" << endl;
+            cout << "Unrecognized command " << cmd << "!" << endl; << endl;
             continue;
         }
         if (cmd[0] == 'l') {
@@ -124,48 +124,48 @@ int main(int argc, char** argv) {
         }
 
         // input is truely applied starting here
-        if (cmd == s1) {
+        if (cmd == s1) {  //left
 
         }
-        else if (cmd == s2) {
+        else if (cmd == s2) {  //right
 
         }
-        else if (cmd == s3) {
+        else if (cmd == s3) {  //down
             
         }
-        else if (cmd == s4) {
+        else if (cmd == s4) {  //clockwise
 
         }
-        else if (cmd == s5) {
+        else if (cmd == s5) {  //counterclockwise
 
         }
-        else if (cmd == s6) {
+        else if (cmd == s6) {  //drop
 
         }
-        else if (cmd == s7) {
+        else if (cmd == s7) {  //levelup
 
         }
-        else if (cmd == s8) {
+        else if (cmd == s8) {  //leveldown
 
         }
-        else if (cmd == s9) {
+        else if (cmd == s9) {  //norandom
 
         }
-        else if (cmd == s10) {
+        else if (cmd == s10) {  //random
 
         }
         else if (cmd == "I" || cmd == "J" || cmd == "L" || cmd == "O" || 
                  cmd == "S" || cmd == "Z" || cmd == "T") {
 
         }
-        else if (cmd == s11) {
+        else if (cmd == s11) {  //sequence
 
         }
-        else if (cmd == s12) {
+        else if (cmd == s12) {  //restart
 
         }
         else {
-            cerr << "Unrecognized command " << cmd << "!" << endl;
+            cout << "Unrecognized command " << cmd << "!" << endl;
             continue;
         }
     }
