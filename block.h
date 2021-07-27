@@ -12,10 +12,10 @@ class Block {
     unsigned int yCoord;
     unsigned int rotateAngle;
     bool heavy;
-    unsigned int heavyLevel;
+    unsigned int dropNumber;
     
     public:
-    Block(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyLevel);
+    Block(size_t x, size_t y, size_t angle, bool isHeavy, size_t dropNumber);
     ~Block();
     
     size_t getXcoord();
