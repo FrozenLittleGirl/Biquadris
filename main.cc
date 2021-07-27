@@ -114,7 +114,7 @@ int main(int argc, char** argv) {
 
         if (cmd != "I" && cmd != "J" && cmd != "L" && cmd != "O" &&
             cmd != "S" && cmd != "Z" && cmd != "T" && cmd.size() == 1) {
-            cout << "invalid input" << endl;
+            cout << "Unrecognized command " << cmd << "!" << endl; << endl;
             continue;
         }
 
