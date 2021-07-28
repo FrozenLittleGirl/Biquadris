@@ -3,9 +3,8 @@
 #include <string>
 #include "block.h"
 
-Block::Block(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount):
-xCoord{x}, yCoord{y}, rotateAngle{angle}, heavy{isHeavy}, howHeavy{heavyCount} {}
-
+Block::Block(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount, char name):
+xCoord{x}, yCoord{y}, rotateAngle{angle}, heavy{isHeavy}, howHeavy{heavyCount}, name{name} {}
 
 
 
@@ -39,6 +38,10 @@ size_t Block::getHowHeavy() {
     return howHeavy;
 }
 
+
+char Block::getName() {
+    return name;
+}
 
 
 void Block::setXcoord(size_t x) {
