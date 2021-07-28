@@ -4,6 +4,43 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+    if (argc > 10) {
+        cout << "too many arguments" << endl;
+        return 1;
+    }
+    bool textOnly = false;
+    string seed;
+    string file1 = "sequence1.txt";
+    string file2 = "sequence2.txt";
+    int level = 0;
+    for (int i = 1; i < argc; ++i) {
+        string commandLine = string(argv[i]);
+        if (commandLine == "-scriptfile1") {
+            file1 = string(argv[i + 1]);
+            ++i;
+        }
+        else if (commandLine == "-scriptfile2") {
+            file2 = string(argv[i + 1]);
+            ++i;
+        }
+        else if (commandLine == "-text") {
+            textOnly = true;
+        }
+        else if (commandLine == "-seed") {
+            seed = string(argv[i + 1]);
+            ++i;
+        }
+        else if (commandLine == "-startlevel") {
+            level = stoi(string(argv[i + 1]));
+            ++i;
+        }
+        else {
+            cout << "invalid argument" << endl;
+            return 1;
+        }
+    }
+    // set up boards
+
 
     string s1 = "left", s2 = "right", s3 = "down", s4 = "clockwise", s5 = "counterclockwise", s6 = "drop",
         s7 = "levelup", s8 = "leveldown", s9 = "norandom", s10 = "random", s11 = "sequence", s12 = "restart";
@@ -116,7 +153,7 @@ int main(int argc, char** argv) {
 
         }
         else if (cmd == s3) {  //down
-            
+
         }
         else if (cmd == s4) {  //clockwise
 
@@ -139,8 +176,8 @@ int main(int argc, char** argv) {
         else if (cmd == s10) {  //random
 
         }
-        else if (cmd == "I" || cmd == "J" || cmd == "L" || cmd == "O" || 
-                 cmd == "S" || cmd == "Z" || cmd == "T") {
+        else if (cmd == "I" || cmd == "J" || cmd == "L" || cmd == "O" ||
+            cmd == "S" || cmd == "Z" || cmd == "T") {
 
         }
         else if (cmd == s11) {  //sequence
