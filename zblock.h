@@ -1,3 +1,6 @@
+#ifndef _ZBLOCK_H
+#define _ZBLOCK_H
+
 #include "block.h"
 #include <iostream>
 #include <vector>
@@ -19,3 +22,6 @@ class Zblock: public Block {
     virtual std::vector<std::string> getRotate270() override;
     
 };
+
+
+#endif
