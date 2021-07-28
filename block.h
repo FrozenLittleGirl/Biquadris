@@ -6,7 +6,6 @@
 #include <vector>
 #include <string>
 
-
 class Block {
     protected:
     size_t xCoord;         // x coordinate of the top left piece of the block
@@ -22,10 +21,10 @@ class Block {
     Block(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount); // constructor
     ~Block();          // destructor
     
-    virtual std::vector<std::vector<string>> rotationDefault = 0;
-    virtual std::vector<std::vector<string>> rotation90 = 0;
-    virtual std::vector<std::vector<string>> rotation180 = 0;
-    virtual std::vector<std::vector<string>> rotation270 = 0;
+    virtual std::vector<std::vector<std::string>> getRotateDefault() = 0;
+    virtual std::vector<std::vector<std::string>> getRotate90() = 0;
+    virtual std::vector<std::vector<std::string>> getRotate180() = 0;
+    virtual std::vector<std::vector<std::string>> getRotate270() = 0;
     // return the string representation of rotation of the block in 0, 90, 180, 270 degrees
     size_t getXcoord();            // returns the x coordinate
     size_t getYcoord();            // returns the y coordinate
@@ -38,6 +37,7 @@ class Block {
     void setHeavy(bool isHeavy);   // sets if the current block is heavy or not
     void setHowHeavy(size_t heavyCount);        // sets how heavy the block is
 };
+
 
 
 
