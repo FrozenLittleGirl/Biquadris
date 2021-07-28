@@ -19,7 +19,7 @@ class Block {
     
     public:
     Block(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount); // constructor
-    ~Block();          // destructor
+    virtual ~Block() = default;          // destructor
     
     virtual std::vector<std::vector<std::string>> getRotateDefault() = 0;
     virtual std::vector<std::vector<std::string>> getRotate90() = 0;
