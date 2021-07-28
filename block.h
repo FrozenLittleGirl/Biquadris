@@ -18,18 +18,20 @@ class Block {
     char name;             // name of the current block, (ex. 'S', 'T', 'O', and so on)
     
     public:
-    Block(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount); // constructor
+    Block(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount, char name);
+    // constructor
     virtual ~Block() = default;          // destructor
     
-    virtual std::vector<std::vector<std::string>> getRotateDefault() = 0;
-    virtual std::vector<std::vector<std::string>> getRotate90() = 0;
-    virtual std::vector<std::vector<std::string>> getRotate180() = 0;
-    virtual std::vector<std::vector<std::string>> getRotate270() = 0;
+    virtual std::vector<std::string> getRotateDefault() = 0;
+    virtual std::vector<std::string> getRotate90() = 0;
+    virtual std::vector<std::string> getRotate180() = 0;
+    virtual std::vector<std::string> getRotate270() = 0;
     // return the string representation of rotation of the block in 0, 90, 180, 270 degrees
     size_t getXcoord();            // returns the x coordinate
     size_t getYcoord();            // returns the y coordinate
     size_t getAngle();             // returns the current angle rotated
     bool isHeavy();                // returns if the block is affected by the "Heavy" effect
+    char getName();                // returns the name(type) of the block
     size_t getHowHeavy();          // returns how heavy the block is
     void setXcoord(size_t x);      // sets the x coordinate
     void setYcoord(size_t y);      // sets the y coordinate
@@ -37,7 +39,6 @@ class Block {
     void setHeavy(bool isHeavy);   // sets if the current block is heavy or not
     void setHowHeavy(size_t heavyCount);        // sets how heavy the block is
 };
-
 
 
 
