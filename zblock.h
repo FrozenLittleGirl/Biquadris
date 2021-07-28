@@ -9,10 +9,6 @@
 
 
 class Zblock: public Block {
-    std::vector<std::string> RotateDefault;
-    std::vector<std::string> Rotate90;
-    std::vector<std::string> Rotate180;
-    std::vector<std::string> Rotate270;
     
     public:
     Zblock(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount, char name);
