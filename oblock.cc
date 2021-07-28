@@ -1,7 +1,9 @@
 #include "oblock.h"
+#include "block.h"
 #include <iostream>
 #include <vector>
 #include <string>
+using namespace std;
 
 
 Oblock::Oblock(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount, char name): 
