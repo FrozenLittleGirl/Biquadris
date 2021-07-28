@@ -22,10 +22,10 @@ class Block {
     Block(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount); // constructor
     ~Block();          // destructor
     
-    virtual std::vector<std::vector<string>> DefaultRotation;
-    virtual std::vector<std::vector<string>> 90Rotation;
-    virtual std::vector<std::vector<string>> 180Rotation;
-    virtual std::vector<std::vector<string>> 270Rotation;
+    virtual std::vector<std::vector<string>> rotationDefault = 0;
+    virtual std::vector<std::vector<string>> rotation90 = 0;
+    virtual std::vector<std::vector<string>> rotation180 = 0;
+    virtual std::vector<std::vector<string>> rotation270 = 0;
     // return the string representation of rotation of the block in 0, 90, 180, 270 degrees
     size_t getXcoord();            // returns the x coordinate
     size_t getYcoord();            // returns the y coordinate
