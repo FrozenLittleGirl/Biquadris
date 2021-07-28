@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+using namespace std;
 
 
 Lblock::Lblock(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount, char name): 
