@@ -17,9 +17,9 @@ class Board {
     SpecialAction* acton = nullptr;
     NextBlock* level = nullptr;
     shared_ptr<Block> block;
-    int score;
     
     protected:
+    int score;
     void restore();
     void addAction(Board* opponent, string s);
 
