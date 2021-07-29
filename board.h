@@ -7,8 +7,11 @@
 class Board {
     vector<vector<shared_ptr<Cell>>> theBoard;
     bool won;
+    Board* opponent;
     TextDisplay *td;
-    int level;
+    SpecialAction* acton = nullptr;
+    NextBlock* level = nullptr;
+    shared_ptr<Block> block;
     int score;
     
     public: 
