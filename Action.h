@@ -17,8 +17,9 @@ public:
 };
 
 class Heavy : public SpecialActions {
-	shared_ptr b;
+	Block* block;
 public:
+	Heavy(Block* block);
 	void applyAction() override;
 };
 
