@@ -9,11 +9,12 @@ class Block;
 
 class levelZero : public NextBlock {
 	vector<char> sequence;
-	int size;
-	int current;
+	int size = 0;
+	int current = 0;
 public:
 	levelZero(string file, int sd, bool set_sd);
 	shared_ptr<Block> generateBlock() override;
+	void changeState(bool set, string s) override;
 };
 
 class levelOne : public NextBlock {
@@ -22,6 +23,7 @@ class levelOne : public NextBlock {
 public:
 	levelOne(int sd, bool set_sd);
 	shared_ptr<Block> generateBlock() override;
+	void changeState(bool set, string s) override;
 };
 
 class levelTwo : public NextBlock {
@@ -29,14 +31,20 @@ class levelTwo : public NextBlock {
 public:
 	levelTwo(int sd, bool set_sd);
 	shared_ptr<Block> generateBlock() override;
+	void changeState(bool set, string s) override;
 };
 
 class levelThree : public NextBlock {
 	double probSZ = 2;
 	double probOther = 1;
+	bool random = true;
+	vector<char> sequence;
+	int size = 0;
+	int current = 0;
 public:
 	levelThree(int sd, bool set_sd);
 	shared_ptr<Block> generateBlock() override;
+	void changeState(bool set, string s) override;
 };
 
 class levelFour : public NextBlock {
@@ -44,9 +52,14 @@ class levelFour : public NextBlock {
 	double probOther = 1;
 	int count = 0;
 	bool clear = false;
+	bool random = true;
+	vector<char> sequence;
+	int size = 0;
+	int current = 0;
 public:
 	levelFour(int sd, bool set_sd);
 	shared_ptr<Block> generateBlock() override;
+	void changeState(bool set, string s) override;
 
 	// set field clear true or false
 	// This decides whether there is at least one row been cleared after every 5 blocks created
