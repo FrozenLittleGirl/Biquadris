@@ -21,6 +21,8 @@ void Blind::restore() {
 }
 
 // Heavy
+void Heavy::Heavy(Block* block) : block{ block } {}
+
 void Heavy::applyAction() {
 	b->moveDown();
 	b->moveDown();
