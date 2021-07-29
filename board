@@ -1,33 +1,93 @@
 
-addLevel(int n, int seed, bool set_seed, string file);
-NextBlock* Board::addLevel(int n, int seed, bool set_seed, string file) {
+// ??????
+void drop();
+void Board::drop() {
+	block->drop();
+	block = nextBlock;
+	nextBlock = level->generateBlock();
+	*turn += 1;
+}
+
+void left();
+void Board::left() {
+	block->left();
+}
+
+void right();
+void Board::right() {
+	block->right();
+}
+
+void clockwise();
+void Board::clockwise() {
+	block->clockwise();
+}
+
+
+void counterclockwise();
+void Board::counterclockwise() {
+	block->counterclockwise();
+}
+
+
+bool determineLose();
+bool Board::determineLose() {
+	return lose;
+}
+
+int determineScore();
+int Board::determineScore() {
+	return score;
+}
+
+
+// destructor
+~Board();
+Board::~Board() {
 	delete level;
-	NextBlock* b;
+	delete action;
+}
+
+void attach(Board* opponent, int* n);
+void Board::attach(Board* opponent, int* n) {
+	this->opponent = opponent;
+	turn = n;
+}
+
+
+setRandom(bool set, string s);
+Board::setRandom(bool set, string s) {
+	level->changeState(set, s);
+}
+
+
+void addLevel(int n, int seed, bool set_seed, string file);
+void Board::addLevel(int n, int seed, bool set_seed, string file) {
+	delete level;
 	if (n == 0) {
-		b = new LevelZero{ file, seed, set_seed };
+		level = new LevelZero{ file, seed, set_seed };
 	}
 	else if (n == 1) {
-		b = new LevelOne{ seed, set_seed };
+		level = new LevelOne{ seed, set_seed };
 	}
 	else if (n == 2) {
-		b = new LevelTwo{ seed, set_seed };
+		level = new LevelTwo{ seed, set_seed };
 	}
 	else if (n == 3) {
-		b = new LevelThree{ seed, set_seed };
+		level = new LevelThree{ seed, set_seed };
 	}
 	else {
-		b = new LevelFour{ seed, set_seed };
+		level = new LevelFour{ seed, set_seed };
 	}
-	return b;
 }
 
 void newBlock(char c = 'n');
 void Board::newBlock(char c) {
 	if (c == 'n') {
-		this->b = level->generateBlock();
+		this->block = level->generateBlock();
 	}
 	else {
-		this->b = make_shared<Block>(c);
+		this->block = make_shared<Block>(c);
 	}
 }
 
@@ -42,7 +102,7 @@ void Board::addAction(Board* opponent, string s) {
 		opponent->action = new Blind{ disp, this };
 	}
 	else if (s == "heavy") {
-		opponent->action = new Heavy{ b };
+		opponent->action = new Heavy{ block.get() };
 	}
 	else {
 		opponent->action = new Force{ disp, this };
