@@ -11,6 +11,7 @@ public:
 	NextBlock(int sd, bool set_sd);
 	// generate a new block
 	virtual shared_ptr<Block> generateBlock() = 0;
+	virtual void changeState(bool set, string s) = 0;
 	~NextBlock();
 };
 
