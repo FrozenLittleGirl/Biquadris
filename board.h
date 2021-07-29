@@ -3,10 +3,15 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+#include "Block.h"
+
+class TextDisplay;
+class SpecialAction;
+class NextBlock;
 
 class Board {
     vector<vector<shared_ptr<Cell>>> theBoard;
-    bool won;
+    bool lose = false;
     Board* opponent;
     TextDisplay *td;
     SpecialAction* acton = nullptr;
@@ -14,10 +19,29 @@ class Board {
     shared_ptr<Block> block;
     int score;
     
+    protected:
+    void restore();
+    void addAction(Board* opponent, string s);
+
     public: 
         friend &ostream operator<<(std::ostream &out, Board &b);
         void init();
         void clearBoard();
+
+        void drop();
+        void left();
+        void right();
+        void clockwise();
+        void counterclockwise();
+        bool determineLose();
+        int determineScore();
+        void attach(Board* opponent, int* n);
+        void setRandom(bool set, string s);
+        void addLevel(int n, int seed, bool set_seed, string file);
+        void newBlock(char c = 'n');
+        
+
+        ~Board();
 };
 
 
