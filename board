@@ -1,0 +1,95 @@
+
+addLevel(int n, int seed, bool set_seed, string file);
+NextBlock* Board::addLevel(int n, int seed, bool set_seed, string file) {
+	delete level;
+	NextBlock* b;
+	if (n == 0) {
+		b = new LevelZero{ file, seed, set_seed };
+	}
+	else if (n == 1) {
+		b = new LevelOne{ seed, set_seed };
+	}
+	else if (n == 2) {
+		b = new LevelTwo{ seed, set_seed };
+	}
+	else if (n == 3) {
+		b = new LevelThree{ seed, set_seed };
+	}
+	else {
+		b = new LevelFour{ seed, set_seed };
+	}
+	return b;
+}
+
+void newBlock(char c = 'n');
+void Board::newBlock(char c) {
+	if (c == 'n') {
+		this->b = level->generateBlock();
+	}
+	else {
+		this->b = make_shared<Block>(c);
+	}
+}
+
+// Don't forget to delete this pointer after the block drops
+// this is in private
+void addAction(Board* opponent, string s);
+void Board::addAction(Board* opponent, string s) {
+	cout << "choose an action" << endl;
+	string s;
+	cin >> s;
+	if (s == "blind") {
+		opponent->action = new Blind{ disp, this };
+	}
+	else if (s == "heavy") {
+		opponent->action = new Heavy{ b };
+	}
+	else {
+		opponent->action = new Force{ disp, this };
+	}
+}
+
+// .........
+Blind* blind = dynamic_cast<Blind*>(action);
+if (blind != nullptr) {
+	restore();
+}
+// .........
+
+void Board::restore() {
+	int countRow = 1;
+	int countCol = 1;
+	for (auto cell : theBoard) {
+		if (countRow >= 3) {
+			for (auto c : cell) {
+				if (countCol >= 3) {
+					disp->notifyCell(c);   // there might be a problem
+				}
+				if (countCol == 9) break;
+				++countCol;
+			}
+		}
+		if (countRow == 12) break;
+		++countRow;
+	}
+}
+
+void notifyBlind();
+void TextDisplay::notifyBlind() {
+	int countRow = 1;
+	int countCol = 1;
+	for (auto ch = game.begin(); ch != game.end(); ++ch) {
+		if (countRow >= 3) {
+			for (auto c = ch.begin(); c != ch.end(); ++c) {     // there might be a problem
+				if (countCol >= 3) {
+					*c = '?';
+				}
+				if (countCol == 9) break;
+				++countCol;
+			}
+		}
+		if (countRow == 12) break;
+		++countRow;
+	}
+}
+
