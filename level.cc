@@ -21,8 +21,14 @@ levelZero::levelZero(string file, int sd, bool set_sd) : NextBlock{ sd, set_sd }
 shared_ptr<Block> levelZero::generateBlock() {
     char c = sequence[current];
     auto p = make_shared<Block>(c);
+    ++current;
+    if (current == size) {
+        current = 0;
+    }
     return p;
 }
+
+void levelZero::changeState(bool set, string s) {}
 
 // Level1
 levelOne::levelOne(int sd, bool set_sd) : NextBlock{sd, set_sd} {}
@@ -42,27 +48,85 @@ shared_ptr<Block> levelTwo::generateBlock() {
     return p;
 }
 
+void levelTwo::changeState(bool set, string s) {}
+
 // Level3
 levelThree::levelThree(int sd, bool set_sd) : NextBlock{ sd, set_sd } {}
 
 shared_ptr<Block> levelThree::generateBlock() {
-    char c = setChar(probSZ, probOther, sd, set_sd);
-    auto p = make_shared<Block>(c);
+    shared_ptr<Block> p;
+    if (random == true) {
+        char c = setChar(probSZ, probOther, sd, set_sd);
+        p = make_shared<Block>(c);
+    }
+    else {
+        char c2 = sequence[current];
+        p = make_shared<Block>(c2);
+        ++current;
+        if (current == size) {
+            current = 0;
+        }
+    }
     return p;
 }
 
+void levelThree::changeState(bool set, string s) {
+    random = set;
+    if (random == false) {
+        sequence.clear();
+        size = 0;
+        current = 0;
+        ifstream infile{ s };
+        char c;
+        while (true) {
+            infile >> c;
+            if (infile.fail()) break;
+            sequence.emplace_back(c);
+            ++size;
+        }
+    }
+}
+
 // Level4
-levelFour::levelFour(int sd, bool set_sd): NextBlock{ sd, set_sd } {}
+levelFour::levelFour(int sd, bool set_sd) : NextBlock{ sd, set_sd } {}
 
 shared_ptr<Block> levelFour::generateBlock() {
     ++count;
-    char c = setChar(probSZ, probOther, sd, set_sd);
-    auto p = make_shared<Block>(c);
+    shared_ptr<Block> p;
+    if (random == true) {
+        char c = setChar(probSZ, probOther, sd, set_sd);
+        p = make_shared<Block>(c);
+    }
+    else {
+        char c2 = sequence[current];
+        p = make_shared<Block>(c2);
+        ++current;
+        if (current == size) {
+            current = 0;
+        }
+    }
     if (count % 5 == 0 && clear == false) {
         auto dot = make_shared<Block>('*');
         dot->drop();
     }
     return p;
+}
+
+void levelFour::changeState(bool set, string s) {
+    random = set;
+    if (random == false) {
+        sequence.clear();
+        size = 0;
+        current = 0;
+        ifstream infile{ s };
+        char c;
+        while (true) {
+            infile >> c;
+            if (infile.fail()) break;
+            sequence.emplace_back(c);
+            ++size;
+        }
+    }
 }
 
 void levelFour::setclear(bool clear) {
