@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <fstream>
+#include "Board.h"
 
 using namespace std;
 
@@ -9,7 +11,8 @@ int main(int argc, char** argv) {
         return 1;
     }
     bool textOnly = false;
-    string seed;
+    bool set_seed = false;
+    int seed;
     string file1 = "sequence1.txt";
     string file2 = "sequence2.txt";
     int level = 0;
@@ -27,7 +30,8 @@ int main(int argc, char** argv) {
             textOnly = true;
         }
         else if (commandLine == "-seed") {
-            seed = string(argv[i + 1]);
+            seed = stoi(string(argv[i + 1]));
+            set_seed = true;
             ++i;
         }
         else if (commandLine == "-startlevel") {
@@ -40,16 +44,44 @@ int main(int argc, char** argv) {
         }
     }
     // set up boards
+    Board player1;
+    Board player2;
+    player1.addLevel(level, seed, set_seed, file1);
+    player2.addLevel(level, seed, set_seed, file2);
 
+    int turn = 0;
 
     string s1 = "left", s2 = "right", s3 = "down", s4 = "clockwise", s5 = "counterclockwise", s6 = "drop",
         s7 = "levelup", s8 = "leveldown", s9 = "norandom", s10 = "random", s11 = "sequence", s12 = "restart";
 
+    bool read_sequence = false;
+    string sequence;
+    int tmp_times = 0;
+    ifstream f;
+
     while (true) {
         string cmd;
         int times = 1;
-        cin >> cmd;
-        if (cin.eof()) break;
+        if (read_sequence == true) {
+            f >> cmd;
+            if (f.fail()) {
+                --tmp_times;
+                if (tmp_times > 0) {
+                    f = ifstream{ sequence };
+                    f >> cmd;
+                    if (f.fail()) cmd = "abcd";
+                }
+                else {
+                    read_sequence = false;
+                    cin >> cmd;
+                    if (cin.fail()) break;
+                }
+            }
+        }
+        else {
+            cin >> cmd;
+            if (cin.fail()) break;
+        }
         if (cmd[0] >= '0' && cmd[0] <= '9') {
             string num;
             int count = 0;
@@ -165,23 +197,54 @@ int main(int argc, char** argv) {
 
         }
         else if (cmd == s7) {  //levelup
-
+            if (level + times <= 4) {
+                level += times;
+                if (turn % 2 == 0) {
+                    player1.addLevel(level, seed, set_seed, file1);
+                }
+                else {
+                    player2.addLevel(level, seed, set_seed, file2);
+                }
+            }
         }
         else if (cmd == s8) {  //leveldown
-
+            if (level - times >= 0) {
+                level -= times;
+                if (turn % 2 == 0) {
+                    player1.addLevel(level, seed, set_seed, file1);
+                }
+                else {
+                    player2.addLevel(level, seed, set_seed, file2);
+                }
+            }
         }
         else if (cmd == s9) {  //norandom
-
+            if (turn % 2 == 0) {
+                player1.setRandom(false, file1);
+            }
+            else {
+                player2.setRandom(false, file2);
+            }
         }
         else if (cmd == s10) {  //random
-
+            string newFile;
+            cin >> newFile;
+            if (turn % 2 == 0) {
+                player1.setRandom(true, newFile);
+            }
+            else {
+                player2.setRandom(true, newFile);
+            }
         }
         else if (cmd == "I" || cmd == "J" || cmd == "L" || cmd == "O" ||
             cmd == "S" || cmd == "Z" || cmd == "T") {
 
         }
         else if (cmd == s11) {  //sequence
-
+            read_sequence = true;
+            cin >> sequence;
+            f = ifstream{ sequence };
+            tmp_times = times;
         }
         else if (cmd == s12) {  //restart
 
@@ -190,6 +253,7 @@ int main(int argc, char** argv) {
             cout << "Unrecognized command " << cmd << "!" << endl;
             continue;
         }
+        ++turn;
     }
 
     return 0;
