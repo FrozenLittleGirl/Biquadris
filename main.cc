@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <algorithm>
 #include "Board.h"
 
 using namespace std;
@@ -44,12 +45,13 @@ int main(int argc, char** argv) {
         }
     }
     // set up boards
+    int turn = 0;
     Board player1;
     Board player2;
+    player1.attach(&player2, &turn);
+    player2.attach(&player1, &turn);
     player1.addLevel(level, seed, set_seed, file1);
     player2.addLevel(level, seed, set_seed, file2);
-
-    int turn = 0;
 
     string s1 = "left", s2 = "right", s3 = "down", s4 = "clockwise", s5 = "counterclockwise", s6 = "drop",
         s7 = "levelup", s8 = "leveldown", s9 = "norandom", s10 = "random", s11 = "sequence", s12 = "restart";
@@ -179,31 +181,59 @@ int main(int argc, char** argv) {
 
         // input is truely applied starting here
         if (cmd == s1) {  //left
-
+            for (int i = 0; i < times; ++i) {
+                if (turn % 2 == 0) {
+                    player1.left();
+                }
+                else {
+                    player2.left();
+                }
+            }
         }
         else if (cmd == s2) {  //right
-
+            for (int i = 0; i < times; ++i) {
+                if (turn % 2 == 0) {
+                    player1.right();
+                }
+                else {
+                    player2.right();
+                }
+            }
         }
         else if (cmd == s3) {  //down
 
         }
         else if (cmd == s4) {  //clockwise
-
+            for (int i = 0; i < times; ++i) {
+                if (turn % 2 == 0) {
+                    player1.clockwise();
+                }
+                else {
+                    player2.clockwise();
+                }
+            }
         }
         else if (cmd == s5) {  //counterclockwise
-
+            for (int i = 0; i < times; ++i) {
+                if (turn % 2 == 0) {
+                    player1.counterclockwise();
+                }
+                else {
+                    player2.counterclockwise();
+                }
+            }
         }
         else if (cmd == s6) {  //drop
-
+            
         }
         else if (cmd == s7) {  //levelup
             if (level + times <= 4) {
                 level += times;
                 if (turn % 2 == 0) {
-                    player1.addLevel(level, seed, set_seed, file1);
+                    player1.addLevel(level, seed, false, file1);
                 }
                 else {
-                    player2.addLevel(level, seed, set_seed, file2);
+                    player2.addLevel(level, seed, false, file2);
                 }
             }
         }
@@ -211,10 +241,10 @@ int main(int argc, char** argv) {
             if (level - times >= 0) {
                 level -= times;
                 if (turn % 2 == 0) {
-                    player1.addLevel(level, seed, set_seed, file1);
+                    player1.addLevel(level, seed, false, file1);
                 }
                 else {
-                    player2.addLevel(level, seed, set_seed, file2);
+                    player2.addLevel(level, seed, false, file2);
                 }
             }
         }
@@ -253,7 +283,20 @@ int main(int argc, char** argv) {
             cout << "Unrecognized command " << cmd << "!" << endl;
             continue;
         }
-        ++turn;
+
+        if (player1.determineLose() == true || player2.determineLose() == true) {
+            if (player1.determineLose()) {
+                cout << "player2 wins" << endl;
+            }
+            else {
+                cout << "player1 wins" << endl;
+            }
+            int score1 = play1.determineScore();
+            int score2 = play2.determineScore();
+            cout << "the highest score is " << max(score1, score2) << endl;
+            cout << "Game is Over" << endl;
+            break;
+        }
     }
 
     return 0;
