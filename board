@@ -1,3 +1,7 @@
+void attachOpponent(TextDisplay* td);
+void TextDisplay::attachOpponent(TextDisplay* td) {
+	opponent = td;
+}
 
 // ??????
 void drop();
@@ -6,6 +10,14 @@ void Board::drop() {
 	block = nextBlock;
 	nextBlock = level->generateBlock();
 	*turn += 1;
+	if (action != nullptr) {
+		Blind* blind = dynamic_cast<Blind*>(action);
+		if (blind != nullptr) {
+			restore();
+		}
+	}
+	delete action;
+	action = nullptr;
 }
 
 void left();
@@ -52,11 +64,12 @@ void attach(Board* opponent, int* n);
 void Board::attach(Board* opponent, int* n) {
 	this->opponent = opponent;
 	turn = n;
+	disp->attachOpponent(opponent->disp);
 }
 
 
 setRandom(bool set, string s);
-Board::setRandom(bool set, string s) {
+void Board::setRandom(bool set, string s) {
 	level->changeState(set, s);
 }
 
@@ -99,23 +112,18 @@ void Board::addAction(Board* opponent, string s) {
 	string s;
 	cin >> s;
 	if (s == "blind") {
-		opponent->action = new Blind{ disp, this };
+		opponent->action = new Blind{ opponent->disp, opponent };
 	}
 	else if (s == "heavy") {
-		opponent->action = new Heavy{ block.get() };
+		opponent->action = new Heavy{ opponent->block.get() };
 	}
 	else {
-		opponent->action = new Force{ disp, this };
+		opponent->action = new Force{ opponent->disp, opponent };
 	}
 }
 
-// .........
-Blind* blind = dynamic_cast<Blind*>(action);
-if (blind != nullptr) {
-	restore();
-}
-// .........
 
+void restore();
 void Board::restore() {
 	int countRow = 1;
 	int countCol = 1;
