@@ -21,6 +21,7 @@ class Board {
     TextDisplay *td;
     SpecialAction* acton = nullptr;
     NextBlock* level = nullptr;
+    size_t level_n;
     shared_ptr<Block> block;
     
     protected:
