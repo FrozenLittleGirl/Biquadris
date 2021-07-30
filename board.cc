@@ -2,7 +2,6 @@
 
 
 
-
 bool Board::isShiftValid(size_t angle, size_t x, size_t y) {
     bool is_valid = true;
     int rotateAngle = currentBlock->getAngle() + angle;
@@ -67,17 +66,16 @@ bool Board::isShiftValid(size_t angle, size_t x, size_t y) {
 
 
 void Board::move(size_t angle, size_t x, size_t y) {
-    char currentChar = ' ';
     size_t currentAngle = currentBlock->getAngle();
     vector<string> currentRotation;
     if (currentAngle == 0) {
         currentRotation = currentBlock->getRotateDefault();
     } else if (currentAngle == 90) {
-        currentChar = currentBlock->getRotate90();
+        currentRotation = currentBlock->getRotate90();
     } else if (currentAngle == 180) {
-        currentChar = currentBlock->getRotate180();
+        currentRotation = currentBlock->getRotate180();
     } else if (currentAngle == 270) {
-        currentChar = currentBlock->getRotate270();
+        currentRotation = currentBlock->getRotate270();
     }
     size_t currentX = currentBlock->getXcoord();
     size_t currentY = currentBlock->getYcoord();
@@ -94,11 +92,24 @@ void Board::move(size_t angle, size_t x, size_t y) {
     if (rotateAngle < 0) {
         rotateAngle += 360; 
     }
-    
+    vector<string> rotation;
+    if (rotateAngle == 0) {
+        rotation = currentBlock->getRotateDefault();
+    } else if (rotateAngle == 90) {
+        rotation = currentBlock->getRotate90();
+    } else if (rotateAngle == 180) {
+        rotation = currentBlock->getRotate180();
+    } else if (rotateAngle == 270) {
+        rotation = currentBlock->getRotate270();
+    }
+    currentBlock->setXcoord(currentX + x);
+    currentBlock->setYcoord(currentY + y);
+    currentBlock->setAngle(rotateAngle);
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            
+            if (rotation[i][j] != ' ') {
+                theBoard[currentY + y + i][currentX + x + j].setName(rotation[i][j]);
+            }
         }
     }
-    
 }
