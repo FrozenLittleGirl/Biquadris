@@ -3,19 +3,22 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+#include "subject.cc"
 #include "Block.h"
 
 class TextDisplay;
 class SpecialAction;
 class NextBlock;
 
-class Board {
+class Board, public Subject {
+    const int NUM_COLS = 11;
+    const int NUM_ROWS = 18;
     size_t score;
     size_t highScore;
     size_t currentLevel;
     Block *currentBlock;
     Block *nextBlock;
-    vector<vector<shared_ptr<Cell>>> theBoard;
+    vector<vector<Cell>> theBoard;
     bool lose = false;
     Board* opponent;
     TextDisplay *td;
@@ -30,7 +33,7 @@ class Board {
     void addAction(Board* opponent, string s);
 
     public: 
-        friend &ostream operator<<(std::ostream &out, Board &b);
+        friend std::ostream &operator<<(std::ostream &out, const Board &b);
         void init();
         void clearBoard();
 
@@ -50,7 +53,5 @@ class Board {
 
         ~Board();
 };
-
-
 
 #endif
