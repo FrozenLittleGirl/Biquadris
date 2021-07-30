@@ -16,7 +16,6 @@ class Board {
     Block *currentBlock;
     Block *nextBlock;
     vector<vector<shared_ptr<Cell>>> theBoard;
-    bool lose = false;
     Board* opponent;
     TextDisplay *td;
     SpecialAction* acton = nullptr;
@@ -26,6 +25,7 @@ class Board {
     
     protected:
     int score;
+    bool lose = false;
     void restore();
     void addAction(Board* opponent, string s);
 
