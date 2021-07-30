@@ -10,6 +10,11 @@ class SpecialAction;
 class NextBlock;
 
 class Board {
+    size_t score;
+    size_t highScore;
+    size_t currentLevel;
+    Block *currentBlock;
+    Block *nextBlock;
     vector<vector<shared_ptr<Cell>>> theBoard;
     bool lose = false;
     Board* opponent;
