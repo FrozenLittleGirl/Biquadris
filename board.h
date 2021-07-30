@@ -39,6 +39,7 @@ class Board {
         void clockwise();
         void counterclockwise();
         bool determineLose();
+        bool setLoseOrWin(bool);
         int determineScore();
         void attach(Board* opponent, int* n);
         void setRandom(bool set, string s);
