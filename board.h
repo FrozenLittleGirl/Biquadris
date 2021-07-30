@@ -29,6 +29,7 @@ class Board, public Subject {
     
     protected:
     int score;
+    bool lose = false;
     void restore();
     void addAction(Board* opponent, string s);
 
