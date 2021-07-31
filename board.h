@@ -22,7 +22,7 @@ class Board {
     SpecialAction* acton = nullptr;
     NextBlock* level = nullptr;
     int level_n;
-    shared_ptr<Block> block;
+    shared_ptr<Block> currentBlock;
     shared_ptr<Block> nextBlock;
     
     protected:
