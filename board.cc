@@ -2,7 +2,7 @@
 
 
 
-bool Board::isShiftValid(size_t angle, size_t x, size_t y) {
+bool Board::isShiftValid(int angle, int x, int y) {
     bool is_valid = true;
     int rotateAngle = currentBlock->getAngle() + angle;
         rotateAngle = rotateAngle % 360;
@@ -24,11 +24,11 @@ bool Board::isShiftValid(size_t angle, size_t x, size_t y) {
             }
             
             if (currentChar != ' ') {
-                size_t currentAngle = currentBlock->getAngle();
-                size_t blockX = currentBlock->getXcoord();
-                size_t blockY = currentBlock->getYcoord();
-                size_t currentX = currentBlock->getXcoord() + x;
-                size_t currentY = currentBlock->getYcoord() + y;
+                int currentAngle = currentBlock->getAngle();
+                int blockX = currentBlock->getXcoord();
+                int blockY = currentBlock->getYcoord();
+                int currentX = currentBlock->getXcoord() + x;
+                int currentY = currentBlock->getYcoord() + y;
                 if (currentX + j < 0 || currentY + i < 0 || currentX + j > 19 || currentY + i > 19) {
                     is_valid = false;
                 }
@@ -56,7 +56,6 @@ bool Board::isShiftValid(size_t angle, size_t x, size_t y) {
                     }
                 }
                 
-                
             }
             
         }
@@ -65,8 +64,8 @@ bool Board::isShiftValid(size_t angle, size_t x, size_t y) {
 }
 
 
-void Board::move(size_t angle, size_t x, size_t y) {
-    size_t currentAngle = currentBlock->getAngle();
+void Board::move(int angle, int x, int y) {
+    int currentAngle = currentBlock->getAngle();
     vector<string> currentRotation;
     if (currentAngle == 0) {
         currentRotation = currentBlock->getRotateDefault();
@@ -77,8 +76,8 @@ void Board::move(size_t angle, size_t x, size_t y) {
     } else if (currentAngle == 270) {
         currentRotation = currentBlock->getRotate270();
     }
-    size_t currentX = currentBlock->getXcoord();
-    size_t currentY = currentBlock->getYcoord();
+    int currentX = currentBlock->getXcoord();
+    int currentY = currentBlock->getYcoord();
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
             if (currentRotation[i][j] != ' ') {
@@ -87,7 +86,7 @@ void Board::move(size_t angle, size_t x, size_t y) {
             
         }
     }
-    size_t rotateAngle = currentAngle + angle;
+    int rotateAngle = currentAngle + angle;
     rotateAngle = rotateAngle % 360;
     if (rotateAngle < 0) {
         rotateAngle += 360; 
@@ -112,4 +111,63 @@ void Board::move(size_t angle, size_t x, size_t y) {
             }
         }
     }
+    
 }
+
+
+void Board::left(int steps) {
+    for (int i = 0; i < steps; i++) {
+        if (isShiftValid(0, -1, 0) == false) {
+            break;
+        } else {
+            move(0, -1, 0);
+        }
+    }
+}
+
+
+
+void Board::right(int steps) {
+    for (int i = 0; i < steps; i++) {
+        if (isShiftValid(0, 1, 0) == false) {
+            break;
+        } else {
+            move(0, 1, 0);
+        }
+    }
+}
+
+
+
+void Board::down(int steps) {
+    for (int i = 0; i < steps; i++) {
+        if (isShiftValid(0, 0, 1) == false) {
+            break;
+        } else {
+            move(0, 0, 1);
+        }
+    }
+}
+
+
+void Board::drop() {
+    while (isShiftValid(0, 0, 1) == true) {
+        move(0, 0, 1);
+    }
+}
+
+void Board::clockwise(int angle) {
+    if (isShiftValid(angle, 0, 0) == true) {
+        move(angle, 0, 0);
+    }
+}
+
+
+void Board::counterclockwise(int angle) {
+    if (isShiftValid(-1 * angle, 0, 0) == true) {
+        move(-1 * angle, 0, 0);
+    }
+}
+
+
+
