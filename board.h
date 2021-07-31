@@ -15,7 +15,7 @@ class Board {
     vector<vector<Cell>> theBoard;   // Shirley: My implementation used vector<vector<Cell>> instead, is it okay that
                                          // we change it back? Since all the methods such as drop, left, right and so on used 
                                            // vector<vector<Cell>>
-                                     // Nate: changed
+                                     // Nata: changed
     Board* opponent;
     TextDisplay *td;
     SpecialAction* acton = nullptr;
@@ -35,18 +35,19 @@ class Board {
         void clearBoard();
 
         void drop();
-        void left();
-        void right();
-        void clockwise();
-        void counterclockwise();
+        void left(int steps);
+        void right(int steps);
+        void clockwise(int angle);
+        void counterclockwise(int angle);
         bool determineLose();
-        void setLoseOrWin(bool);
-        int determineScore();
+        //void setLoseOrWin(bool);  // Nata: I have a determineLose above
+        int determineScore();    
         void attach(Board* opponent, int* n);
         void setRandom(bool set, string s);
         void addLevel(int n, int seed, bool set_seed, string file);
         void newBlock(char c = 'n');
         
+        void print();   // Nata: this is for temporarily testing
 
         ~Board();
 };
