@@ -275,6 +275,18 @@ void Board::attach(Board* opponent, int* n) {
 	disp->attachOpponent(opponent->disp);
 }
 
+void Board::setRandom(bool set, string s) {
+	level->changeState(set, s);
+}
+
+bool Board::determineLose() {
+	return lose;
+}
+
+int Board::determineScore() {
+	return score;
+}
+
 // Destructor
 Board::~Board() {
     delete level;
