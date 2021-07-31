@@ -25,7 +25,10 @@ class Board, public Subject {
     shared_ptr<Block> nextBlock;
     
     protected:
-    int score;
+    int score = 0;
+    int tmp_score = 0;          // Nata: since there are restart, we need a temporarily score to hold current game's score
+    int block_created = 0;
+    bool clear = false;
     bool lose = false;
     //void restore();
     //void addAction(Board* opponent, string s);
