@@ -266,7 +266,7 @@ void Board::newBlock(char c) {
 	else {
 		this->currentBlock = make_shared<Block>(0, 0, 0, false, 0, c);
 	}
-    nextBlock = level->generateBlock();
+	nextBlock = level->generateBlock();
 }
 
 
