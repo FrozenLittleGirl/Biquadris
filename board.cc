@@ -1,6 +1,7 @@
 #include "SpecialActions.h"
 #include "NextBlock.h"
 #include <vector>
+#include <string>
 #include <iostream>   // Nata: don't forget to delete this once finished
 
 using namespace std;
@@ -181,7 +182,9 @@ void Board::left(int steps) {
             move(0, -1, 0);
         }
     }
-
+    if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
+        move(0, 0, 1);
+    }
     print();
 }
 
@@ -195,6 +198,9 @@ void Board::right(int steps) {
             move(0, 1, 0);
         }
     }
+    if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
+        move(0, 0, 1);
+    }
     print();
 }
 
@@ -207,6 +213,9 @@ void Board::down(int steps) {
         } else {
             move(0, 0, 1);
         }
+    }
+    if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
+        move(0, 0, 1);
     }
     print();
 }
@@ -224,6 +233,9 @@ void Board::clockwise(int angle) {
     if (isShiftValid(angle, 0, 0) == true) {
         move(angle, 0, 0);
     }
+    if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
+        move(0, 0, 1);
+    }
     print();
 }
 
@@ -232,36 +244,39 @@ void Board::counterclockwise(int angle) {
     if (isShiftValid(-1 * angle, 0, 0) == true) {
         move(-1 * angle, 0, 0);
     }
+    if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
+        move(0, 0, 1);
+    }
     print();
 }
 
 // for level
 void Board::addLevel(int n, int seed, bool set_seed, string file) {
 	delete level;
+    level_n = n;
 	if (n == 0) {
 		level = new LevelZero{ file, seed, set_seed };
-        level_n = 0;
 	}
 	else if (n == 1) {
 		level = new LevelOne{ seed, set_seed };
-        level_n = 1;
 	}
 	else if (n == 2) {
 		level = new LevelTwo{ seed, set_seed };
-        level_n = 2;
 	}
 	else if (n == 3) {
 		level = new LevelThree{ seed, set_seed };
-        level_n = 3;
 	}
 	else {
 		level = new LevelFour{ seed, set_seed };
-        level_n = 4;
 	}
 }
 
 // for block
 void Board::newBlock(char c) {
+    ++block_created;
+    if (block_created % 5 == 1) {
+        block_clear = false;
+    }
 	if (c == 'n') {
 		this->currentBlock = level->generateBlock();
 	}
