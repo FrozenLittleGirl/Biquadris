@@ -268,7 +268,12 @@ int main(int argc, char** argv) {
         }
         else if (cmd == "I" || cmd == "J" || cmd == "L" || cmd == "O" ||
             cmd == "S" || cmd == "Z" || cmd == "T") {
-
+            if (turn % 2 == 0) {
+                player1.newBlock(cmd);
+            }
+            else {
+                player2.newBlock(cmd);
+            }
         }
         else if (cmd == s11) {  //sequence
             read_sequence = true;
