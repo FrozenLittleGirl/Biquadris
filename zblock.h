@@ -11,7 +11,7 @@
 class Zblock: public Block {
     
     public:
-    Zblock(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount, char name);
+    Zblock(int x, int y, int angle, bool isHeavy, int heavyCount, char name);
     virtual std::vector<std::string> getRotateDefault() override;
     virtual std::vector<std::string> getRotate90() override;
     virtual std::vector<std::string> getRotate180() override;
