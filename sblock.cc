@@ -7,7 +7,7 @@ using namespace std;
 
 
 
-Sblock::Sblock(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount, char name): 
+Sblock::Sblock(int x, int y, int angle, bool isHeavy, int heavyCount, char name): 
 Block(0, 0, 0, isHeavy, heavyCount, 'S') {};
 
 
