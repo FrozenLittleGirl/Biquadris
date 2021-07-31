@@ -1,6 +1,7 @@
 #include "SpecialActions.h"
 #include "NextBlock.h"
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -21,14 +22,13 @@ Board::Board() {
 }
 
 void Board::print() {
-    for (int i = 17; i >= 0; --i) {
-        for (int j = 10; j >= 0; --j) {
-            
+    for (int i = 0; i < 18; ++i) {
+        for (int j = 0; j < 11; ++j) {
+            cout << theBoard[i][j].getName();
         }
+        cout << endl;
     }
 }
-
-
 
 // ...............................
 
