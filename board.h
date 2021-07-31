@@ -41,11 +41,11 @@ class Board {
         void right(int steps);
         void clockwise(int angle);
         void counterclockwise(int angle);
-        //bool determineLose();
+        bool determineLose();
         //void setLoseOrWin(bool);  // Nata: I have a determineLose above
-        //int determineScore();    
+        int determineScore();    
         void attach(Board* opponent, int* n);
-        //void setRandom(bool set, string s);
+        void setRandom(bool set, string s);
         void addLevel(int n, int seed, bool set_seed, string file);
         void newBlock(char c = 'n');
         
