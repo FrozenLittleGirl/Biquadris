@@ -1,7 +1,7 @@
 #include <fstream>
 #include <memory>
 #include "level.h"
-#include "Block.h"
+#include "Board.h"
 #include "random.h"
 
 using namespace std;
