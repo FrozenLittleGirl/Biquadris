@@ -52,6 +52,8 @@ int main(int argc, char** argv) {
     player2.attach(&player1, &turn);
     player1.addLevel(level, seed, set_seed, file1);
     player2.addLevel(level, seed, set_seed, file2);
+    player1.newBlock();
+    player2.newBlock();
 
     string s1 = "left", s2 = "right", s3 = "down", s4 = "clockwise", s5 = "counterclockwise", s6 = "drop",
         s7 = "levelup", s8 = "leveldown", s9 = "norandom", s10 = "random", s11 = "sequence", s12 = "restart";
