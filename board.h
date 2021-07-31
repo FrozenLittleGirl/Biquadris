@@ -12,7 +12,9 @@ class NextBlock;
 class Board {
     Block *currentBlock;
     Block *nextBlock;
-    vector<vector<shared_ptr<Cell>>> theBoard;
+    vector<vector<shared_ptr<Cell>>> theBoard;   // Shirley: My implementation used vector<vector<Cell>> instead, is it okay that
+                                                // we change it back? Since all the methods such as drop, left, right and so on used 
+                                                // vector<vector<Cell>>
     Board* opponent;
     TextDisplay *td;
     SpecialAction* acton = nullptr;
