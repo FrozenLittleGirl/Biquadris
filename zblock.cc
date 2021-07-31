@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-Zblock::Zblock(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount, char name): 
+Zblock::Zblock(int x, int y, int angle, bool isHeavy, int heavyCount, char name): 
 Block(0, 0, 0, isHeavy, heavyCount, 'Z') {};
 
 
