@@ -183,20 +183,20 @@ int main(int argc, char** argv) {
         if (cmd == s1) {  //left
             for (int i = 0; i < times; ++i) {
                 if (turn % 2 == 0) {
-                    player1.left();
+                    player1.left(1);
                 }
                 else {
-                    player2.left();
+                    player2.left(1);
                 }
             }
         }
         else if (cmd == s2) {  //right
             for (int i = 0; i < times; ++i) {
                 if (turn % 2 == 0) {
-                    player1.right();
+                    player1.right(1);
                 }
                 else {
-                    player2.right();
+                    player2.right(1);
                 }
             }
         }
@@ -206,20 +206,20 @@ int main(int argc, char** argv) {
         else if (cmd == s4) {  //clockwise
             for (int i = 0; i < times; ++i) {
                 if (turn % 2 == 0) {
-                    player1.clockwise();
+                    player1.clockwise(90);
                 }
                 else {
-                    player2.clockwise();
+                    player2.clockwise(90);
                 }
             }
         }
         else if (cmd == s5) {  //counterclockwise
             for (int i = 0; i < times; ++i) {
                 if (turn % 2 == 0) {
-                    player1.counterclockwise();
+                    player1.counterclockwise(90);
                 }
                 else {
-                    player2.counterclockwise();
+                    player2.counterclockwise(90);
                 }
             }
         }
