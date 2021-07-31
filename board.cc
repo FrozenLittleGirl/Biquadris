@@ -1,14 +1,32 @@
 #include "SpecialActions.h"
 #include "NextBlock.h"
+#include <vector>
 
 using namespace std;
 
 
 // for test
 // .................................
+Board::Board() {
+    for (int i = 0; i < 18; ++i) {
+        vector<Cell> v;
+        theBoard.emplace_back(v);
+    }
+    for (int i = 0; i < 18; ++i) {
+        for (int j = 0; j < 11; ++j) {
+            Cell c{i, j, false, ' '};
+            theBoard[i].emplace_back(c);
+        }
+    }
+}
 
-
-
+void Board::print() {
+    for (int i = 17; i >= 0; --i) {
+        for (int j = 10; j >= 0; --j) {
+            
+        }
+    }
+}
 
 
 
@@ -249,6 +267,13 @@ void Board::newBlock(char c) {
     nextBlock = level->generateBlock();
 }
 
+
+// opponent
+void Board::attach(Board* opponent, int* n) {
+	this->opponent = opponent;
+	turn = n;
+	disp->attachOpponent(opponent->disp);
+}
 
 // Destructor
 Board::~Board() {
