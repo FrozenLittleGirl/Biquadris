@@ -30,6 +30,7 @@ void Board::print() {
     }
 }
 
+// ........................
 
 void Board::clearBoard() {
     score = 0;
