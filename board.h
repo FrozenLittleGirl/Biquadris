@@ -12,14 +12,15 @@ class NextBlock;
 class Board {
     Block *currentBlock;
     Block *nextBlock;
-    vector<vector<shared_ptr<Cell>>> theBoard;   // Shirley: My implementation used vector<vector<Cell>> instead, is it okay that
-                                                // we change it back? Since all the methods such as drop, left, right and so on used 
-                                                // vector<vector<Cell>>
+    vector<vector<Cell>> theBoard;   // Shirley: My implementation used vector<vector<Cell>> instead, is it okay that
+                                         // we change it back? Since all the methods such as drop, left, right and so on used 
+                                           // vector<vector<Cell>>
+                                     // Nate: changed
     Board* opponent;
     TextDisplay *td;
     SpecialAction* acton = nullptr;
     NextBlock* level = nullptr;
-    size_t level_n;
+    int level_n;
     shared_ptr<Block> block;
     
     protected:
