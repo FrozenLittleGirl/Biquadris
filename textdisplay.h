@@ -7,18 +7,18 @@ class Board;
 
 class TextDisplay, public Observer {
     const int NUM_COLS = 11;
-    size_t level;
-    size_t score;
+    const int NUM_ROWS = 18;
     Board *opponent;
-
+    Board *board;
+    notifyNextBlock(*block next);
     std::vector<std::vector<char>> theGame;
-    char nextBlock;
-
+    *Block nextBlock;
     void attachOpponent(TextDisplay* td);
     
     public:
         TextDisplay();
-        void notify(Cell &whoNotified) override;
-        friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
+        // void notify(Cell &whoNotified) override;
+        // friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
+        void printBoards();
         ~TextDisplay();
 };

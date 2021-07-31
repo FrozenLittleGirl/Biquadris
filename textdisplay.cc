@@ -1,34 +1,32 @@
 #include "textdisplay.h"
 using namespace std;
 
-TextDisplay::TextDisplay() {
-    // initialize level and score headers
-    for (int i = 0; i < NUM_COLS; i++) {
-        std::vector<char> tmp;
-        for (int j = 0; j < 2; j++) {
+TextDisplay::TextDisplay() {}
 
+void TextDisplay::attachBoard(Board* board) {
+    this->board = board;
+}
+void TextDisplay::attachOpponent(Board* opponent) {
+    this->opponent = opponent;
+}
+
+void printBoards() {
+    cout << "Level:    " << board->level << "      " << "Level:    " << opponent->level << endl;
+    cout << "Score:    " << board->score << "      " << "Score:    " << opponent->score << endl;
+    cout << "-----------" << "      " << "-----------" << endl;
+    for (int i = 0; i < NUM_ROWS; i++) {
+        for (int j = 0; j < NUM_COLS; j++) {
+            cout << board->getBoard[i][j].getName();  
         }
+        cout << "      ";
+        for (int j = 0; j < NUM_COLS; j++) {
+            cout << opponent->getBoard[i][j].getName();
+        }
+        cout << endl;
     }
-}
-
-void printNextBlock() {
-    if (nextBlock == 'I') {
-        cout << "          " <<
-        cout << "IIII      " <<
+    cout << "-----------" << "      " << "-----------" << endl;
+    cout << "Next:      " << "      " << "Next:      " << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << nextBlock->getRotateDefault()[i] << "            " << opponent->nextBlock->getRotateDefault()[i]; << endl;
     }
-}
-
-ostream &operator<<(ostream &out, const TextDisplay &td) {
-    cout << "Level:    " << td.level << "      " << "Level:    " << opponent->score << endl;
-    cout << "Score:    " << td.level << "      " << "Score:    " << opponent->score << endl;
-    cout << "-----------" << "      " << "-----------" << endl;
-
-    //
-    //
-    //
-    //
-
-    cout << "-----------" << "      " << "-----------" << endl;
-    cout << "Next: "
-    return out;
 }
