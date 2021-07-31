@@ -1,4 +1,12 @@
+// for test
+// .................................
 
+
+
+
+
+
+// ...............................
 
 
 
@@ -123,6 +131,7 @@ void Board::left(int steps) {
             move(0, -1, 0);
         }
     }
+    print();
 }
 
 
@@ -135,6 +144,7 @@ void Board::right(int steps) {
             move(0, 1, 0);
         }
     }
+    print();
 }
 
 
@@ -147,6 +157,7 @@ void Board::down(int steps) {
             move(0, 0, 1);
         }
     }
+    print();
 }
 
 
@@ -154,12 +165,15 @@ void Board::drop() {
     while (isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
+    newBlock();
+    print();
 }
 
 void Board::clockwise(int angle) {
     if (isShiftValid(angle, 0, 0) == true) {
         move(angle, 0, 0);
     }
+    print();
 }
 
 
@@ -167,6 +181,45 @@ void Board::counterclockwise(int angle) {
     if (isShiftValid(-1 * angle, 0, 0) == true) {
         move(-1 * angle, 0, 0);
     }
+    print();
+}
+
+// for level
+void Board::addLevel(int n, int seed, bool set_seed, string file) {
+	delete level;
+	if (n == 0) {
+		level = new LevelZero{ file, seed, set_seed };
+	}
+	else if (n == 1) {
+		level = new LevelOne{ seed, set_seed };
+	}
+	else if (n == 2) {
+		level = new LevelTwo{ seed, set_seed };
+	}
+	else if (n == 3) {
+		level = new LevelThree{ seed, set_seed };
+	}
+	else {
+		level = new LevelFour{ seed, set_seed };
+	}
+}
+
+// for block
+void Board::newBlock(char c) {
+	if (c == 'n') {
+		this->block = level->generateBlock();
+	}
+	else {
+		this->block = make_shared<Block>(c);
+	}
+    nextBlock = level->generateBlock();
+}
+
+
+// Destructor
+Board::~Board() {
+    delete level;
+    delete action;
 }
 
 
