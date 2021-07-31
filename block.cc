@@ -3,25 +3,25 @@
 #include <string>
 #include "block.h"
 
-Block::Block(size_t x, size_t y, size_t angle, bool isHeavy, size_t heavyCount, char name):
+Block::Block(int x, int y, int angle, bool isHeavy, int heavyCount, char name):
 xCoord{x}, yCoord{y}, rotateAngle{angle}, heavy{isHeavy}, howHeavy{heavyCount}, name{name} {}
 
 
 
-size_t Block::getXcoord() {
+int Block::getXcoord() {
     return xCoord;
 }
 
 
 
 
-size_t Block::getYcoord() {
+int Block::getYcoord() {
     return yCoord;
 }
 
 
 
-size_t Block::getAngle() {
+int Block::getAngle() {
     return rotateAngle;
 }
 
@@ -34,7 +34,7 @@ bool Block::isHeavy() {
 
 
 
-size_t Block::getHowHeavy() {
+int Block::getHowHeavy() {
     return howHeavy;
 }
 
@@ -44,19 +44,19 @@ char Block::getName() {
 }
 
 
-void Block::setXcoord(size_t x) {
+void Block::setXcoord(int x) {
     this->xCoord = x;
 }
 
 
 
-void Block::setYcoord(size_t y) {
+void Block::setYcoord(int y) {
     this->yCoord = y;
 }
 
 
 
-void Block::setAngle(size_t angle) {
+void Block::setAngle(int angle) {
     this->rotateAngle = angle;
 }
 
@@ -68,6 +68,6 @@ void Block::setHeavy(bool isHeavy) {
 
 
 
-void Block::setHowHeavy(size_t heavyCount) {
+void Block::setHowHeavy(int heavyCount) {
     this->howHeavy = heavyCount;
 }
