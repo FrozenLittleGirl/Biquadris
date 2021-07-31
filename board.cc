@@ -289,7 +289,7 @@ vector<vector<Cell>> Board::getBoard() {
 }
 
 ostream &operator<<(ostream &out, const Board &b) {
-    cout << g.td->printBoards() << endl;
+    cout << b.td->printBoards() << endl;
     return out;
 }
 
