@@ -259,12 +259,12 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
 // for block
 void Board::newBlock(char c) {
 	if (c == 'n') {
-		this->block = level->generateBlock();
+		this->currentBlock = level->generateBlock();
 	}
 	else {
-		this->block = make_shared<Block>(0, 0, 0, false, 0, c);
+		this->currentBlock = make_shared<Block>(0, 0, 0, false, 0, c);
 	}
-    nextBlock = level->generateBlock();
+	nextBlock = level->generateBlock();
 }
 
 
