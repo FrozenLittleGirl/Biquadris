@@ -181,6 +181,7 @@ void Board::left(int steps) {
             move(0, -1, 0);
         }
     }
+
     print();
 }
 
@@ -239,18 +240,23 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
 	delete level;
 	if (n == 0) {
 		level = new LevelZero{ file, seed, set_seed };
+        level_n = 0;
 	}
 	else if (n == 1) {
 		level = new LevelOne{ seed, set_seed };
+        level_n = 1;
 	}
 	else if (n == 2) {
 		level = new LevelTwo{ seed, set_seed };
+        level_n = 2;
 	}
 	else if (n == 3) {
 		level = new LevelThree{ seed, set_seed };
+        level_n = 3;
 	}
 	else {
 		level = new LevelFour{ seed, set_seed };
+        level_n = 4;
 	}
 }
 
