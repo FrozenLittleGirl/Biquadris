@@ -21,19 +21,13 @@ void Blind::restore() {
 }
 
 // Heavy
-void Heavy::Heavy(Block* block) : block{ block } {}
+void Heavy::Heavy(Board* b) : b{ b } {}
 
 void Heavy::applyAction() {
-	b->moveDown();
-	b->moveDown();
+	b->down(2);
 }
 
 // Force
-Force::Force(TextDisplay* td, Board* b) : td{ td }, b{ b } { cin >> type; }
 
-void Force::applyAction() {
-	if (applied == false) {
-
-	}
-	applied = true;
-}
+// don't forget notify
+void Force::applyAction() {}
