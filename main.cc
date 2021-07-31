@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     }
     bool textOnly = false;
     bool set_seed = false;
-    int seed;
+    int seed = -1;
     string file1 = "sequence1.txt";
     string file2 = "sequence2.txt";
     int level = 0;
