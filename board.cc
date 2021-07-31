@@ -9,6 +9,34 @@
 // ...............................
 
 
+void Board::init() {
+    theBoard.clear();
+    
+    for (int i = 0; i < 18; i++) {
+        vector<Cell> vec;
+        for (int j = 0; j < 11; j++) {
+            vec.emplace_back(Cell(i, j, false, ' '));
+        }
+        theBoard.emplace_back(vec);
+    }
+}
+
+
+
+void Board::clearBoard() {
+    score = 0;
+    delete currentBlock;
+    delete nextBlock;
+    block.clear();
+    lose = false;
+    for (int i = 0; i < 18; i++) {
+        for (int j = 0; j < 11; j++) {
+            theBoard[i][j].clearCell();
+        }
+    }
+}
+
+
 
 bool Board::isShiftValid(int angle, int x, int y) {
     bool is_valid = true;
