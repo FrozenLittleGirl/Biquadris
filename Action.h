@@ -13,23 +13,18 @@ class Blind : public SpecialActions {
 public:
 	Blind(TextDisplay* td, Board* b);
 	void applyAction() override;
-	void recover(bool restore) override;
+	void restore();
 };
 
 class Heavy : public SpecialActions {
-	Block* block;
+	Board* b;
 public:
-	Heavy(Block* block);
+	Heavy(Board* b);
 	void applyAction() override;
 };
 
 class Force : public SpecialActions {
-	bool applied = false;
-	char type;
-	TextDisplay* td;
-	Board* b;
 public:
-	Force(TextDisplay* td, Board* b);
 	void applyAction() override;
 };
 
