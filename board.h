@@ -44,7 +44,7 @@ class Board {
         //bool determineLose();
         //void setLoseOrWin(bool);  // Nata: I have a determineLose above
         //int determineScore();    
-        //void attach(Board* opponent, int* n);
+        void attach(Board* opponent, int* n);
         //void setRandom(bool set, string s);
         void addLevel(int n, int seed, bool set_seed, string file);
         void newBlock(char c = 'n');
