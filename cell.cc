@@ -5,25 +5,25 @@
 using namespace std;
 
 
-Cell::Cell(size_t x, size_t y, bool occupied, char c): 
+Cell::Cell(int x, int y, bool occupied, char c): 
 x{x}, y{y}, occupied{occupied}, name {c} {}
 
 
-size_t Cell::getX() {
+int Cell::getX() {
     return this->x; 
 }
 
 
-size_t Cell::getY() {
+int Cell::getY() {
     return this->y; 
 }
 
 
-void Cell::setX(size_t x) {
+void Cell::setX(int x) {
     this->x = x;
 }
 
-void Cell::setY(size_t y) {
+void Cell::setY(int y) {
     this->y = y;
 }
 
