@@ -1,18 +1,20 @@
 #ifndef _TEXTDISPLAY_H_
 #define _TEXTDISPLAY_H_
 #include "observer.h"
+#include "Nec"
 
-class Cell;
+class Board;
 
 class TextDisplay, public Observer {
     const int NUM_COLS = 11;
     size_t level;
     size_t score;
+    Board *opponent;
 
     std::vector<std::vector<char>> theGame;
-    std::vector<std::vector<char>> curLevel;
-    std::vector<std::vector<char>> curScore;
-    std::vector<std::vector<char>> nextBlock;
+    char nextBlock;
+
+    void attachOpponent(TextDisplay* td);
     
     public:
         TextDisplay();

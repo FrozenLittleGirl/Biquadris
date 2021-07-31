@@ -20,7 +20,7 @@ class Board, public Subject {
     Block *nextBlock;
     vector<vector<Cell>> theBoard;
     bool lose = false;
-    Board* opponent;
+    Board *opponent;
     TextDisplay *td;
     SpecialAction* acton = nullptr;
     NextBlock* level = nullptr;
