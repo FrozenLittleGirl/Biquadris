@@ -50,20 +50,15 @@ public:
 class levelFour : public NextBlock {
 	double probSZ = 2;
 	double probOther = 1;
-	int count = 0;
-	bool clear = false;
 	bool random = true;
 	vector<char> sequence;
 	int size = 0;
 	int current = 0;
+	Board* b;
 public:
-	levelFour(int sd, bool set_sd);
+	levelFour(int sd, bool set_sd, Board* b);
 	shared_ptr<Block> generateBlock() override;
 	void changeState(bool set, string s) override;
-
-	// set field clear true or false
-	// This decides whether there is at least one row been cleared after every 5 blocks created
-	void setclear(bool clear);
 };
 
 #endif
