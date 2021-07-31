@@ -1,3 +1,9 @@
+#include "SpecialActions.h"
+#include "NextBlock.h"
+
+using namespace std;
+
+
 // for test
 // .................................
 
@@ -238,7 +244,7 @@ void Board::newBlock(char c) {
 		this->block = level->generateBlock();
 	}
 	else {
-		this->block = make_shared<Block>(c);
+		this->block = make_shared<Block>(0, 0, 0, false, 0, c);
 	}
     nextBlock = level->generateBlock();
 }
