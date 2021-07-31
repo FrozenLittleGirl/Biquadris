@@ -56,11 +56,6 @@ void Board::init() {
         // push back each row
         theBoard.push_back(tmp);
     }
-    for (int i = 0; i < NUM_ROWS; i++) {
-        for (int j = 0; j < NUM_COLS; j++) {
-            theBoard[i][j].attach(td.get());
-        }
-    }
     td->attachBoard(this);
 }
 
@@ -294,7 +289,7 @@ vector<vector<Cell>> Board::getBoard() {
 }
 
 ostream &operator<<(ostream &out, const Board &b) {
-    cout << td->printBoards() << endl;
+    cout << g.td->printBoards() << endl;
     return out;
 }
 
