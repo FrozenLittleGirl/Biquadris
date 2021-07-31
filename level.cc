@@ -88,7 +88,7 @@ void levelThree::changeState(bool set, string s) {
 }
 
 // Level4
-levelFour::levelFour(int sd, bool set_sd) : NextBlock{ sd, set_sd } {}
+levelFour::levelFour(int sd, bool set_sd, Board* b) : NextBlock{ sd, set_sd }, b{ b } {}
 
 shared_ptr<Block> levelFour::generateBlock() {
     ++count;
@@ -105,12 +105,9 @@ shared_ptr<Block> levelFour::generateBlock() {
             current = 0;
         }
     }
-    if (count % 5 == 0 && clear == false) {
+    if (b->block_created % 5 == 0 && b->clearRow == false) {
         auto dot = make_shared<Block>(0, 0, 0, false, 0, '*');
         dot->drop();
-    }
-    else if (count % 5 == 0 && clear == true) {
-        clear = false;
     }
     return p;
 }
@@ -130,8 +127,4 @@ void levelFour::changeState(bool set, string s) {
             ++size;
         }
     }
-}
-
-void levelFour::setclear() {
-    this->clear = true;
 }
