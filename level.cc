@@ -20,7 +20,7 @@ levelZero::levelZero(string file, int sd, bool set_sd) : NextBlock{ sd, set_sd }
 
 shared_ptr<Block> levelZero::generateBlock() {
     char c = sequence[current];
-    auto p = make_shared<Block>(c);
+    auto p = make_shared<Block>(0, 0, 0, false, 0, c);
     ++current;
     if (current == size) {
         current = 0;
@@ -35,7 +35,7 @@ levelOne::levelOne(int sd, bool set_sd) : NextBlock{sd, set_sd} {}
 
 shared_ptr<Block> levelOne::generateBlock() {
     char c = setChar(probSZ, probOther, sd, set_sd);
-    auto p = make_shared<Block>(c);
+    auto p = make_shared<Block>(0, 0, 0, false, 0, c);
     return p;
 }
 
@@ -44,7 +44,7 @@ levelTwo::levelTwo(int sd, bool set_sd) : NextBlock{ sd, set_sd } {}
 
 shared_ptr<Block> levelTwo::generateBlock() {
     char c = setChar(prob, prob, sd, set_sd);
-    auto p = make_shared<Block>(c);
+    auto p = make_shared<Block>(0, 0, 0, false, 0, c);
     return p;
 }
 
@@ -57,11 +57,11 @@ shared_ptr<Block> levelThree::generateBlock() {
     shared_ptr<Block> p;
     if (random == true) {
         char c = setChar(probSZ, probOther, sd, set_sd);
-        p = make_shared<Block>(c);
+        p = make_shared<Block>(0, 0, 0, false, 0, c);
     }
     else {
         char c2 = sequence[current];
-        p = make_shared<Block>(c2);
+        p = make_shared<Block>(0, 0, 0, false, 0, c2);
         ++current;
         if (current == size) {
             current = 0;
@@ -95,19 +95,22 @@ shared_ptr<Block> levelFour::generateBlock() {
     shared_ptr<Block> p;
     if (random == true) {
         char c = setChar(probSZ, probOther, sd, set_sd);
-        p = make_shared<Block>(c);
+        p = make_shared<Block>(0, 0, 0, false, 0, c);
     }
     else {
         char c2 = sequence[current];
-        p = make_shared<Block>(c2);
+        p = make_shared<Block>(0, 0, 0, false, 0, c2);
         ++current;
         if (current == size) {
             current = 0;
         }
     }
     if (count % 5 == 0 && clear == false) {
-        auto dot = make_shared<Block>('*');
+        auto dot = make_shared<Block>(0, 0, 0, false, 0, '*');
         dot->drop();
+    }
+    else if (count % 5 == 0 && clear == true) {
+        clear = false;
     }
     return p;
 }
@@ -129,6 +132,6 @@ void levelFour::changeState(bool set, string s) {
     }
 }
 
-void levelFour::setclear(bool clear) {
-    this->clear = clear;
+void levelFour::setclear() {
+    this->clear = true;
 }
