@@ -105,8 +105,7 @@ shared_ptr<Block> levelFour::generateBlock() {
         }
     }
     if (b->block_created % 5 == 0 && b->clearRow == false) {
-        auto dot = make_shared<Block>(0, 0, 0, false, 0, '*');
-        dot->drop();
+        b->dropStar();
     }
     return p;
 }
