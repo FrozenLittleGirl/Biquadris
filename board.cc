@@ -329,6 +329,7 @@ void Board::attach(Board* opponent, int* n) {
 }
 
 void Board::addAction(Board* opponent, string s) {
+    delete opponent->action;
 	cout << "choose an action" << endl;
 	string s;
 	cin >> s;
@@ -337,7 +338,7 @@ void Board::addAction(Board* opponent, string s) {
 		opponent->action->applyAction();
 	}
 	else if (s == "heavy") {
-		opponent->action = new Heavy{ opponent->currentBlock.get() };
+		opponent->action = new Heavy;
 	}
 	else {
 		char c;
