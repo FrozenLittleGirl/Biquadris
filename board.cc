@@ -366,6 +366,15 @@ void Board::addAction(Board* opponent, string s) {
 	}
 }
 
+void Board::dropStar() {
+    shared_ptr<Block> tmp = currentBlock;
+    currentBlock = make_shared<Block>(0, 5, 0, false, 0, '*');
+    while (isShiftValid(0, 0, 1) == true) {
+        move(0, 0, 1);
+    }
+    currentBlock = tmp;
+}
+
 void Board::setRandom(bool set, string s) {
 	level->changeState(set, s);
 }
