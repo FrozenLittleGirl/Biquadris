@@ -30,6 +30,11 @@ void Board::print() {
         }
         cout << endl;
     }
+    cout << "............." << endl;
+    vector<string> v = nextBlock->getRotateDefault();
+    cout << v[0] << endl;
+    cout << v[1] << endl;
+    cout << v[2] << endl;
 }
 
 // ........................
@@ -321,6 +326,7 @@ void Board::newBlock(char c) {
         clearRow = false;
     }
 	nextBlock = level->generateBlock();
+    print();
 }
 
 
