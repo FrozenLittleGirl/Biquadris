@@ -291,10 +291,10 @@ int main(int argc, char** argv) {
         }
         else if (cmd == s12) {  //restart
             if (turn % 2 == 0) {
-                player1.clear(90);
+                player1.clearBoard();
             }
             else {
-                player2.clear(90);
+                player2.clearBoard();
             }
         }
         else {
