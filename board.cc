@@ -311,7 +311,11 @@ void Board::newBlock(char c) {
 		this->currentBlock = level->generateBlock();
 	}
 	else {
-		this->currentBlock = make_shared<Block>(0, 0, 0, false, 0, c);
+        // Nata: careful! new block should always fit the current position
+        --block_created;
+        int x = currentBlock->getXcoord();
+        int y = currentBlock->getYcoord();
+		this->currentBlock = make_shared<Block>(x, y, 0, false, 0, c);
 	}
     if (block_created % 5 == 0) {
         clearRow = false;
