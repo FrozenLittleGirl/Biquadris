@@ -24,13 +24,14 @@ Board::Board() {
 }
 
 void Board::print() {
+    cout << "....................." << endl;
     for (int i = 0; i < 18; ++i) {
         for (int j = 0; j < 11; ++j) {
             cout << theBoard[i][j].getName();
         }
         cout << endl;
     }
-    cout << "............." << endl;
+    cout << "....................." << endl;
     vector<string> v = nextBlock->getRotateDefault();
     cout << v[0] << endl;
     cout << v[1] << endl;
@@ -214,6 +215,7 @@ void Board::left(int steps) {
             }
         }
     }
+    print();
 }
 
 
@@ -242,6 +244,7 @@ void Board::right(int steps) {
             }
         }
     }
+    print();
 }
 
 
@@ -256,6 +259,7 @@ void Board::down(int steps) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
+    print();
 }
 
 
@@ -267,6 +271,7 @@ void Board::drop() {
     delete action;
     action = nullptr;
     *turn += 1;
+    print();
 }
 
 void Board::clockwise(int angle) {
@@ -276,6 +281,7 @@ void Board::clockwise(int angle) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
+    print();
 }
 
 
@@ -286,6 +292,7 @@ void Board::counterclockwise(int angle) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
+    print();
 }
 
 // for level
