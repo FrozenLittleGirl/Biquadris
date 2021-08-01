@@ -12,7 +12,7 @@ class TextDisplay, public Observer {
     Board *board;
     notifyNextBlock(*block next);
     std::vector<std::vector<char>> theGame;
-    *Block nextBlock;
+    shared_ptr<Block> nextBlock;    // Nata: changed this from raw pointer to shared pointer
     void attachOpponent(TextDisplay* td);
     
     public:
