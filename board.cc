@@ -341,7 +341,7 @@ void Board::newBlock(char c) {
 void Board::attach(Board* opponent, int* n) {
 	this->opponent = opponent;
 	turn = n;
-	//td->attachOpponent(opponent);
+	td->attachOpponent(opponent);
 }
 
 void Board::addAction(Board* opponent, string s) {
