@@ -32,6 +32,7 @@ class Board, public Subject {
     bool lose = false;
     //void restore();
     void addAction(Board* opponent, string s);
+    void dropStar();
 
     public: 
         friend ostream &operator<<(ostream &out, const Board &b);
