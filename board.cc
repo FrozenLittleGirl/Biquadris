@@ -54,7 +54,7 @@ void Board::clearBoard() {
             theBoard[i][j].clearCell();
         }
     } */ //  Kenisha: I don't think we need this loop, we can just call theBoard.clear()
-    //theBoard.clear();     // Nata: what is this for?
+    theBoard.clear();
 }
 
 void Board::init() {
