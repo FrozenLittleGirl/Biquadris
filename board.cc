@@ -1,6 +1,7 @@
 #include "SpecialActions.h"
 #include "NextBlock.h"
 #include "Action.h"
+#include "TextDisplay.h"
 #include <vector>
 #include <string>
 #include <iostream>   // Nata: don't forget to delete this once finished
