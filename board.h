@@ -31,7 +31,7 @@ class Board, public Subject {
     bool clearRow = false;
     bool lose = false;
     //void restore();
-    //void addAction(Board* opponent, string s);
+    void addAction(Board* opponent, string s);
 
     public: 
         friend ostream &operator<<(ostream &out, const Board &b);

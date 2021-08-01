@@ -259,14 +259,8 @@ void Board::drop() {
         move(0, 0, 1);
     }
     newBlock();
-    if (action != nullptr) {
-        Blind * blind = dynamic_cast<Blind *>(level);
-        if (blind != nullptr) {
-            restore();
-        }
-        delete action;
-        action = nullptr;
-    }
+    delete action;
+    action = nullptr;
     *turn += 1;
 }
 
@@ -357,24 +351,6 @@ void Board::addAction(Board* opponent, string s) {
 
 void Board::setRandom(bool set, string s) {
 	level->changeState(set, s);
-}
-
-void Board::restore() {
-	int countRow = 1;
-	int countCol = 1;
-	for (auto cell : theBoard) {
-		if (countRow >= 3) {
-			for (auto c : cell) {
-				if (countCol >= 3) {
-					disp->notifyCell(c);   // there might be a problem
-				}
-				if (countCol == 9) break;
-				++countCol;
-			}
-		}
-		if (countRow == 12) break;
-		++countRow;
-	}
 }
 
 bool Board::determineLose() {
