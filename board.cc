@@ -1,5 +1,6 @@
 #include "SpecialActions.h"
 #include "NextBlock.h"
+#include "Action.h"
 #include <vector>
 #include <string>
 #include <iostream>   // Nata: don't forget to delete this once finished
@@ -35,8 +36,13 @@ void Board::print() {
 
 void Board::clearBoard() {
     score = 0;
-    delete currentBlock;
-    delete nextBlock;
+    //delete currentBlock;   // Nata: detach is enough
+    //delete nextBlock;
+    delete action;
+    action = nullptr;
+    block_created = 0;
+    clearRow = false;
+    generateBlock();
     lose = false;
     /*for (int i = 0; i < 18; i++) {
         for (int j = 0; j < 11; j++) {
@@ -185,7 +191,19 @@ void Board::left(int steps) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    print();
+    if (action != nullptr) {
+        Heavy * h = dynamic_cast<Heavy *>(action);
+        if (h != nullptr) {
+            for (int i = 0; i < 2; ++i) {
+                if (isShiftValid(0, 0, 1) == false) {
+                   drop(); 
+                   break;
+                } else {
+                   move(0, 0, 1);
+                }
+            }
+        }
+    }
 }
 
 
@@ -201,9 +219,20 @@ void Board::right(int steps) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    print();
+    if (action != nullptr) {
+        Heavy * h = dynamic_cast<Heavy *>(action);
+        if (h != nullptr) {
+            for (int i = 0; i < 2; ++i) {
+                if (isShiftValid(0, 0, 1) == false) {
+                   drop(); 
+                   break;
+                } else {
+                   move(0, 0, 1);
+                }
+            }
+        }
+    }
 }
-
 
 
 void Board::down(int steps) {
@@ -217,7 +246,6 @@ void Board::down(int steps) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    print();
 }
 
 
@@ -226,7 +254,15 @@ void Board::drop() {
         move(0, 0, 1);
     }
     newBlock();
-    print();
+    if (action != nullptr) {
+        Blind * blind = dynamic_cast<Blind *>(level);
+        if (blind != nullptr) {
+            restore();
+        }
+        delete action;
+        action = nullptr;
+    }
+    *turn += 1;
 }
 
 void Board::clockwise(int angle) {
@@ -236,7 +272,6 @@ void Board::clockwise(int angle) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    print();
 }
 
 
@@ -247,7 +282,6 @@ void Board::counterclockwise(int angle) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    print();
 }
 
 // for level
@@ -274,15 +308,15 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
 // for block
 void Board::newBlock(char c) {
     ++block_created;
-    if (block_created % 5 == 1) {
-        block_clear = false;
-    }
 	if (c == 'n') {
 		this->currentBlock = level->generateBlock();
 	}
 	else {
 		this->currentBlock = make_shared<Block>(0, 0, 0, false, 0, c);
 	}
+    if (block_created % 5 == 0) {
+        clearRow = false;
+    }
 	nextBlock = level->generateBlock();
 }
 
@@ -291,11 +325,50 @@ void Board::newBlock(char c) {
 void Board::attach(Board* opponent, int* n) {
 	this->opponent = opponent;
 	turn = n;
-	td->attachOpponent(opponent);
+	//td->attachOpponent(opponent);
+}
+
+void Board::addAction(Board* opponent, string s) {
+	cout << "choose an action" << endl;
+	string s;
+	cin >> s;
+	if (s == "blind") {
+		opponent->action = new Blind{ opponent->disp, opponent };
+		opponent->action->applyAction();
+	}
+	else if (s == "heavy") {
+		opponent->action = new Heavy{ opponent->currentBlock.get() };
+	}
+	else {
+		char c;
+		cin >> c;
+		opponent->action = new Force;
+		opponent->currentBlock = make_shared<Block>(0, 0, 0, false, 0, c);
+		// notify
+
+	}
 }
 
 void Board::setRandom(bool set, string s) {
 	level->changeState(set, s);
+}
+
+void Board::restore() {
+	int countRow = 1;
+	int countCol = 1;
+	for (auto cell : theBoard) {
+		if (countRow >= 3) {
+			for (auto c : cell) {
+				if (countCol >= 3) {
+					disp->notifyCell(c);   // there might be a problem
+				}
+				if (countCol == 9) break;
+				++countCol;
+			}
+		}
+		if (countRow == 12) break;
+		++countRow;
+	}
 }
 
 bool Board::determineLose() {
@@ -314,7 +387,6 @@ ostream &operator<<(ostream &out, const Board &b) {
     cout << b.td->printBoards() << endl;
     return out;
 }
-
 
 // Destructor
 Board::~Board() {
