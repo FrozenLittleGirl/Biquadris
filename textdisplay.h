@@ -10,13 +10,14 @@ class TextDisplay, public Observer {
     const int NUM_ROWS = 18;
     Board *opponent;
     Board *board;
-    notifyNextBlock(*block next);
-    std::vector<std::vector<char>> theGame;
-    *Block nextBlock;
-    void attachOpponent(TextDisplay* td);
+    //notifyNextBlock(*block next);
+    //std::vector<std::vector<char>> theGame;
+    //*Block nextBlock;
     
     public:
         TextDisplay();
+        void attachBoard(Board* board);
+        void attachOpponent(Board* opponent);
         // void notify(Cell &whoNotified) override;
         // friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
         void printBoards();
