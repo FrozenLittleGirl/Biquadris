@@ -34,6 +34,11 @@ void Board::print() {
 
 // ........................
 
+// a helper to restore the type of cell to ' '
+static void restoreType(shared_ptr<Block> block) {
+    
+}
+
 void Board::clearBoard() {
     score = 0;
     //delete currentBlock;   // Nata: detach is enough
