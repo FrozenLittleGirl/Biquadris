@@ -2,6 +2,7 @@
 #define _LEVEL_H_
 #include "NextBlock.h"
 #include "Block.h"
+#include <memory>
 #include <vector>
 
 using namespace std;
