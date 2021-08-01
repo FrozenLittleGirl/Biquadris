@@ -183,27 +183,28 @@ int main(int argc, char** argv) {
 
         // input is truely applied starting here
         if (cmd == s1) {  //left
-            for (int i = 0; i < times; ++i) {
-                if (turn % 2 == 0) {
-                    player1.left(1);
-                }
-                else {
-                    player2.left(1);
-                }
+            if (turn % 2 == 0) {
+                player1.left(times);
+            }
+            else {
+                player2.left(times);
             }
         }
         else if (cmd == s2) {  //right
-            for (int i = 0; i < times; ++i) {
-                if (turn % 2 == 0) {
-                    player1.right(1);
-                }
-                else {
-                    player2.right(1);
-                }
+            if (turn % 2 == 0) {
+                player1.right(times);
+            }
+            else {
+                player2.right(times);
             }
         }
         else if (cmd == s3) {  //down
-
+            if (turn % 2 == 0) {
+                player1.down(times);
+            }
+            else {
+                player2.down(times);
+            }
         }
         else if (cmd == s4) {  //clockwise
             for (int i = 0; i < times; ++i) {
@@ -226,7 +227,12 @@ int main(int argc, char** argv) {
             }
         }
         else if (cmd == s6) {  //drop
-            
+            if (turn % 2 == 0) {
+                player1.drop();
+            }
+            else {
+                player2.drop();
+            }
         }
         else if (cmd == s7) {  //levelup
             if (level + times <= 4) {
@@ -284,7 +290,12 @@ int main(int argc, char** argv) {
             tmp_times = times;
         }
         else if (cmd == s12) {  //restart
-
+            if (turn % 2 == 0) {
+                player1.clear(90);
+            }
+            else {
+                player2.clear(90);
+            }
         }
         else {
             cout << "Unrecognized command " << cmd << "!" << endl;
