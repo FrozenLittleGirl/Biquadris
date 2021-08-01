@@ -24,12 +24,18 @@ Board::Board() {
 }
 
 void Board::print() {
+    cout << "....................." << endl;
     for (int i = 0; i < 18; ++i) {
         for (int j = 0; j < 11; ++j) {
             cout << theBoard[i][j].getName();
         }
         cout << endl;
     }
+    cout << "....................." << endl;
+    vector<string> v = nextBlock->getRotateDefault();
+    cout << v[0] << endl;
+    cout << v[1] << endl;
+    cout << v[2] << endl;
 }
 
 // ........................
@@ -209,6 +215,7 @@ void Board::left(int steps) {
             }
         }
     }
+    print();
 }
 
 
@@ -237,6 +244,7 @@ void Board::right(int steps) {
             }
         }
     }
+    print();
 }
 
 
@@ -251,6 +259,7 @@ void Board::down(int steps) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
+    print();
 }
 
 
@@ -262,6 +271,7 @@ void Board::drop() {
     delete action;
     action = nullptr;
     *turn += 1;
+    print();
 }
 
 void Board::clockwise(int angle) {
@@ -271,6 +281,7 @@ void Board::clockwise(int angle) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
+    print();
 }
 
 
@@ -281,6 +292,7 @@ void Board::counterclockwise(int angle) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
+    print();
 }
 
 // for level
@@ -311,12 +323,17 @@ void Board::newBlock(char c) {
 		this->currentBlock = level->generateBlock();
 	}
 	else {
-		this->currentBlock = make_shared<Block>(0, 0, 0, false, 0, c);
+        // Nata: careful! new block should always fit the current position
+        --block_created;
+        int x = currentBlock->getXcoord();
+        int y = currentBlock->getYcoord();
+		this->currentBlock = make_shared<Block>(x, y, 0, false, 0, c);
 	}
     if (block_created % 5 == 0) {
         clearRow = false;
     }
 	nextBlock = level->generateBlock();
+    print();
 }
 
 
