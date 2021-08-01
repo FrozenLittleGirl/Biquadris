@@ -42,14 +42,14 @@ void Board::clearBoard() {
     action = nullptr;
     block_created = 0;
     clearRow = false;
-    generateBlock();
+    newBlock();
     lose = false;
     /*for (int i = 0; i < 18; i++) {
         for (int j = 0; j < 11; j++) {
             theBoard[i][j].clearCell();
         }
     } */ //  Kenisha: I don't think we need this loop, we can just call theBoard.clear()
-    theBoard.clear();
+    //theBoard.clear();     // Nata: what is this for?
 }
 
 void Board::init() {
