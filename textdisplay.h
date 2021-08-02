@@ -13,7 +13,7 @@ class TextDisplay {
     //notifyNextBlock(*block next);
     //std::vector<std::vector<char>> theGame;
     //*Block nextBlock;
-
+    // comment to check if git push works
     public:
         TextDisplay();
         void attachBoard(Board* board);
