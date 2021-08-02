@@ -139,9 +139,6 @@ Block* levelFour::generateBlock() {
             current = 0;
         }
     }
-    if (b->clearRow == false && b->block_created % 5 == 0) {
-        b->dropStar();
-    }
     return p;
 }
 
