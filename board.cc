@@ -24,16 +24,16 @@ using namespace std;
 Board::Board() {
     currentBlock = nullptr;
     nextBlock = nullptr;
-    for (int i = 0; i < 18; ++i) {
-        vector<Cell> v;
-        theBoard.emplace_back(v);
-    }
-    for (int i = 0; i < 18; ++i) {
-        for (int j = 0; j < 11; ++j) {
-            Cell c{i, j, false, ' '};
-            theBoard[i].emplace_back(c);
-        }
-    }
+    //for (int i = 0; i < 18; ++i) {
+    //    vector<Cell> v;
+     //   theBoard.emplace_back(v);
+    //}
+    //for (int i = 0; i < 18; ++i) {
+     //   for (int j = 0; j < 11; ++j) {
+       //     Cell c{i, j, false, ' '};
+         //   theBoard[i].emplace_back(c);
+        //}
+    //}
 }
 
 void Board::print() {
@@ -60,8 +60,12 @@ void Board::print() {
 
 void Board::clearBoard() {
     score = 0;
-    //delete currentBlock;   // Nata: detach is enough
-    //delete nextBlock;
+    delete td;
+    td = nullptr;
+    delete currentBlock;   // Nata: detach is enough
+    currentBlock = nullptr;
+    delete nextBlock;
+    nextBlock = nullptr;
     delete action;
     action = nullptr;
     block_created = 0;
@@ -321,7 +325,7 @@ void Board::drop() {
     newBlock();
     delete action;
     action = nullptr;
-    *turn += 1;
+    //*turn += 1;
     detectRow();
     print();
 }
@@ -350,7 +354,10 @@ void Board::counterclockwise(int angle) {
 // for level
 void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete level;
+    delete currentBlock;
+    delete nextBlock;
     level_n = n;
+    cout << "error addlevel 1" << endl;
     if (n == 0) {
             level = new levelZero{ file, seed, set_seed };
     }
@@ -366,7 +373,9 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     else {
             level = new levelFour{ seed, set_seed, this };
     }
+    cout << "error addlevel 2" << endl;
     currentBlock = level->generateBlock();
+    cout << "error addlevel 3" << endl;
     nextBlock = level->generateBlock();
 }
 
@@ -540,6 +549,7 @@ Board::~Board() {
     delete action;
     delete currentBlock;
     delete nextBlock;
+    delete td;
 }
 
 
