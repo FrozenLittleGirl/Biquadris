@@ -80,6 +80,7 @@ void Board::init() {
 
 bool Board::isShiftValid(int angle, int x, int y) {
     bool is_valid = true;
+    cout << "error ////////////////////" << endl;
     if (angle != 0 || x != 0 || y != 0) {
         int rotateAngle = currentBlock->getAngle() + angle;
         rotateAngle = rotateAngle % 360;
