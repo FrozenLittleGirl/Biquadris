@@ -320,7 +320,7 @@ void Board::drop() {
     newBlock();
     delete action;
     action = nullptr;
-    *turn += 1;
+    //*turn += 1;
     detectRow();
     print();
 }
