@@ -503,9 +503,22 @@ int Board::determineScore() {
         return score;
 }
 
+int Board::getScore() {
+    return score;
+}
+
 vector<vector<Cell>> Board::getBoard() {
     return theBoard;
 }
+
+Block* Block::getNextBlock() {
+    return nextBlock;
+}
+
+int Board::getLevel() {
+    return level_n;
+}
+
 
 ostream &operator<<(ostream &out, const Board &b) {
     out << *(b.td) << endl;

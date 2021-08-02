@@ -1,6 +1,7 @@
 #ifndef _TEXTDISPLAY_H_
 #define _TEXTDISPLAY_H_
 //#include "observer.h"
+#include <iostream>
 
 class Board;
 
@@ -17,6 +18,8 @@ class TextDisplay {
         TextDisplay();
         void attachBoard(Board* board);
         void attachOpponent(Board* opponent);
+        *Block getBoard();
+        *Block getOpponent();
         // void notify(Cell &whoNotified) override;
          friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
         //void printBoards();
