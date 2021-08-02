@@ -277,10 +277,10 @@ int main(int argc, char** argv) {
         else if (cmd == "I" || cmd == "J" || cmd == "L" || cmd == "O" ||
             cmd == "S" || cmd == "Z" || cmd == "T") {
             if (turn % 2 == 0) {
-                player1.newBlock(cmd);
+                player1.newBlock(cmd[0]);
             }
             else {
-                player2.newBlock(cmd);
+                player2.newBlock(cmd[0]);
             }
         }
         else if (cmd == s11) {  //sequence
@@ -309,8 +309,8 @@ int main(int argc, char** argv) {
             else {
                 cout << "player1 wins" << endl;
             }
-            int score1 = play1.determineScore();
-            int score2 = play2.determineScore();
+            int score1 = player1.determineScore();
+            int score2 = player2.determineScore();
             cout << "the highest score is " << max(score1, score2) << endl;
             cout << "Game is Over" << endl;
             break;
