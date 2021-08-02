@@ -304,11 +304,15 @@ void Board::drop() {
     while (isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
+    cout << "error 1" << endl;
     newBlock();
+
     delete action;
     action = nullptr;
     //*turn += 1;
+    cout << "error 2" << endl;
     detectRow();
+    cout << "error 3" << endl;
     print();
 }
 
