@@ -14,7 +14,7 @@
 #include "starblock.h"
 #include <vector>
 #include <string>
-#include <iostream>   // Nata: don't forget to delete this once finished
+#include <iostream>   // Nata: don't forget to delete this once
 
 using namespace std;
 
@@ -498,7 +498,7 @@ void Board::detectRow() {
     int count = 0;
     for (int row = 17; row >= 3; --row ) {
         for (int col = 0; col < 11; ++col) {
-            cout << "error detect " << theBoard[row][col].getName() << end;
+            cout << "error detect " << theBoard[row][col].getName() << endl;
             if (theBoard[row][col].getName() == ' ') {
                 break;
             }
