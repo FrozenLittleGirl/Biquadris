@@ -5,16 +5,14 @@ using namespace std;
 TextDisplay::TextDisplay() {}
 
 TextDisplay::~TextDisplay() {
-    delete board;
-    delete opponent;
+    //delete board;
+    //delete opponent;
 }
 
 void TextDisplay::attachBoard(Board* board) {
-    this->board = new Board();
     this->board = board;
 }
 void TextDisplay::attachOpponent(Board* opponent) {
-    this->opponent = new Board();
     this->opponent = opponent;
 }
 
