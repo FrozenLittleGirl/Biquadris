@@ -1,4 +1,5 @@
 #include "textdisplay.h"
+#include "board.h"
 using namespace std;
 
 TextDisplay::TextDisplay() {}
@@ -10,23 +11,24 @@ void TextDisplay::attachOpponent(Board* opponent) {
     this->opponent = opponent;
 }
 
-void printBoards() {
-    cout << "Level:    " << board->level << "      " << "Level:    " << opponent->level << endl;
-    cout << "Score:    " << board->score << "      " << "Score:    " << opponent->score << endl;
-    cout << "-----------" << "      " << "-----------" << endl;
+ostream &operator<<(ostream &out, const TextDisplay &td) {
+    out << "Level:    " << td.board->level << "      " << "Level:    " << td.opponent->level << endl;
+    out << "Score:    " << td.board->score << "      " << "Score:    " << td.opponent->score << endl;
+    out << "-----------" << "      " << "-----------" << endl;
     for (int i = 0; i < NUM_ROWS; i++) {
         for (int j = 0; j < NUM_COLS; j++) {
-            cout << board->getBoard[i][j].getName();  
+            out << td.board->getBoard[i][j].getName();
         }
-        cout << "      ";
+        out << "      ";
         for (int j = 0; j < NUM_COLS; j++) {
-            cout << opponent->getBoard[i][j].getName();
+            out << td.opponent->getBoard[i][j].getName();
         }
-        cout << endl;
+        out << endl;
     }
-    cout << "-----------" << "      " << "-----------" << endl;
-    cout << "Next:      " << "      " << "Next:      " << endl;
+    out << "-----------" << "      " << "-----------" << endl;
+    out << "Next:      " << "      " << "Next:      " << endl;
     for (int i = 0; i < 5; i++) {
-        cout << nextBlock->getRotateDefault()[i] << "            " << opponent->nextBlock->getRotateDefault()[i]; << endl;
+        out << td.board->nextBlock->getRotateDefault()[i] << "            " << td.opponent->nextBlock->getRotateDefault()[i]; << endl;
     }
+    return out;
 }
