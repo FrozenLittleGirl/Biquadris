@@ -16,13 +16,13 @@ class Board {
     const int NUM_COLS = 11;
     const int NUM_ROWS = 18;
     vector<vector<Cell>> theBoard;
-    Board* opponent;
-    TextDisplay *td;
+    Board* opponent = nullptr;
+    TextDisplay *td = nullptr;
     SpecialAction* action = nullptr;
     NextBlock* level = nullptr;
     int level_n;
-    Block* currentBlock;  // Nata: change the name from block to currentBlock
-    Block* nextBlock;
+    Block* currentBlock = nullptr;  // Nata: change the name from block to currentBlock
+    Block* nextBlock = nullptr;
     void move(int angle, int x, int y);
     bool isShiftValid(int angle, int x, int y);
     void detectRow();
