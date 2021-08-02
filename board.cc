@@ -354,7 +354,7 @@ Block* helperBlock(int x, int y, char c) {
       block = new Tblock{x, y, 0, false, 0, 'T'};
   }
    else {
-      block = new Starblock{x, y, 0, false, 0, '*'};
+      block = new starblock{x, y, 0, false, 0, '*'};
   }
   return block;
 }
