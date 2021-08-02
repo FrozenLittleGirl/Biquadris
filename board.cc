@@ -81,62 +81,100 @@ void Board::init() {
 
 bool Board::isShiftValid(int angle, int x, int y) {
     bool is_valid = true;
-    int rotateAngle = currentBlock->getAngle() + angle;
+    if (angle != 0 || x != 0 || y != 0) {
+        int rotateAngle = currentBlock->getAngle() + angle;
         rotateAngle = rotateAngle % 360;
-    if (rotateAngle < 0) {
-        rotateAngle += 360; 
-    }
-    
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            char currentChar = ' ';
-            if (rotateAngle == 0) {
-                currentChar = currentBlock->getRotateDefault()[i][j];
-            } else if (rotateAngle == 90) {
-                currentChar = currentBlock->getRotate90()[i][j];
-            } else if (rotateAngle == 180) {
-                currentChar = currentBlock->getRotate180()[i][j];
-            } else if (rotateAngle == 270) {
-                currentChar = currentBlock->getRotate270()[i][j];
-            }
-            
-            if (currentChar != ' ') {
-                int currentAngle = currentBlock->getAngle();
-                int blockX = currentBlock->getXcoord();
-                int blockY = currentBlock->getYcoord();
-                int currentX = currentBlock->getXcoord() + x;
-                int currentY = currentBlock->getYcoord() + y;
-                if (currentX + j < 0 || currentY + i < 0 || currentX + j > 19 || currentY + i > 19) {
-                    is_valid = false;
+        if (rotateAngle < 0) {
+            rotateAngle += 360; 
+        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                char currentChar = ' ';
+                if (rotateAngle == 0) {
+                    currentChar = currentBlock->getRotateDefault()[i][j];
+                } else if (rotateAngle == 90) {
+                    currentChar = currentBlock->getRotate90()[i][j];
+                } else if (rotateAngle == 180) {
+                    currentChar = currentBlock->getRotate180()[i][j];
+                } else if (rotateAngle == 270) {
+                    currentChar = currentBlock->getRotate270()[i][j];
                 }
-                if (theBoard[currentY + i][currentX + j].isOccupied() == true) {
-                    if (currentX + j < blockX || currentY + i < blockY || 
-                    currentX + j > blockX + 3 || currentY + i > blockY + 3) {
+                if (currentChar != ' ') {
+                    int currentAngle = currentBlock->getAngle();
+                    int blockX = currentBlock->getXcoord();
+                    int blockY = currentBlock->getYcoord();
+                    int currentX = currentBlock->getXcoord() + x;
+                    int currentY = currentBlock->getYcoord() + y;
+                    if (currentX + j < 0 || currentY + i < 0 || currentX + j > 19 || currentY + i > 19) {
                         is_valid = false;
                     }
-                    if (currentAngle == 0) {
-                        if (currentBlock->getRotateDefault()[y + i][x + j] == ' ') {
+                    if (theBoard[currentY + i][currentX + j].isOccupied() == true) {
+                        if (currentX + j < blockX || currentY + i < blockY || 
+                        currentX + j > blockX + 3 || currentY + i > blockY + 3) {
                             is_valid = false;
                         }
-                    } else if (currentAngle == 90) {
-                        if (currentBlock->getRotate90()[y + i][x + j] == ' ') {
-                            is_valid = false;
+                        if (currentAngle == 0) {
+                            if (currentBlock->getRotateDefault()[y + i][x + j] == ' ') {
+                                is_valid = false;
+                            }
+                        } else if (currentAngle == 90) {
+                            if (currentBlock->getRotate90()[y + i][x + j] == ' ') {
+                                is_valid = false;
+                                
+                            }
+                            
+                        } else if (currentAngle == 180) {
+                            if (currentBlock->getRotate180()[y + i][x + j] == ' ') {
+                                is_valid = false;
+                                
+                            }
+                            
+                        } else if (currentAngle == 270) {
+                            if (currentBlock->getRotate270()[y + i][x + j] == ' ') {
+                                is_valid = false;
+                                
+                            }
+                            
                         }
-                    } else if (currentAngle == 180) {
-                        if (currentBlock->getRotate180()[y + i][x + j] == ' ') {
-                            is_valid = false;
-                        }
-                    } else if (currentAngle == 270) {
-                        if (currentBlock->getRotate270()[y + i][x + j] == ' ') {
-                            is_valid = false;
-                        }
+                        
                     }
+                    
                 }
                 
             }
-            
+        }
+    } else {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                int currentAngle = currentBlock->getAngle();
+                int blockX = currentBlock->getXcoord();
+                int blockY = currentBlock->getYcoord();
+                char currentChar = ' ';
+                if (currentAngle == 0) {
+                    currentChar = currentBlock->getRotateDefault()[i][j];
+                } else if (currentAngle == 90) {
+                    currentChar = currentBlock->getRotate90()[i][j];
+                } else if (currentAngle == 180) {
+                    currentChar = currentBlock->getRotate180()[i][j];
+                } else if (currentAngle == 270) {
+                    currentChar = currentBlock->getRotate270()[i][j];
+                }
+                if (currentChar != ' ') {
+                    if (theBoard[blockY + i][blockX + j].isOccupied() == true) {
+                        is_valid = false;
+                        this->lose = true;
+                    }
+                    if (blockX + j < 0 || blockY + i < 0 || 
+                    blockX + j > 19 || blockY + i > 19) {
+                        is_valid = false;
+                        this->lose = true;
+                        
+                    }
+                }
+            }
         }
     }
+    
     return is_valid;
 }
 
