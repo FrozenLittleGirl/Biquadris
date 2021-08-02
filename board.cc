@@ -349,6 +349,8 @@ void Board::counterclockwise(int angle) {
 // for level
 void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete level;
+    delete currentBlock;
+    delete nextBlock;
     level_n = n;
     if (n == 0) {
             level = new levelZero{ file, seed, set_seed };
