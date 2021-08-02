@@ -35,6 +35,8 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
             for (int j = 0; j < td.NUM_COLS; j++) {
                 out << td.opponent->getBoard()[i][j].getName();
             }  
+            cout << "-";
+            out << endl;
         }        
     } else if ( dynamic_cast<Blind*>(td.opponent->getAction()) ) {
         for (int i = 0; i < td.NUM_ROWS; i++) {
@@ -50,7 +52,9 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
                 } else {
                     out << td.opponent->getBoard()[i][j].getName();
                 }
-            }
+            }  
+            cout << "-";
+            out << endl;
         }
     } else {
         for (int i = 0; i < td.NUM_ROWS; i++) {
@@ -62,11 +66,11 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
             out << "    -";
             for (int j = 0; j < td.NUM_COLS; j++) {
                 out << td.opponent->getBoard()[i][j].getName();
-            }
+            }  
+            cout << "-";
+            out << endl;
         }
     }
-    cout << "-";
-    out << endl;
     out << "-----------" << "      " << "-----------" << endl;
     out << "Next:      " << "      " << "Next:      " << endl;
     for (int i = 2; i < 4; i++) {
