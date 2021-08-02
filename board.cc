@@ -24,7 +24,6 @@ using namespace std;
 Board::Board() {
     currentBlock = nullptr;
     nextBlock = nullptr;
-    init();
     //for (int i = 0; i < 18; ++i) {
     //    vector<Cell> v;
      //   theBoard.emplace_back(v);
