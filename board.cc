@@ -272,6 +272,7 @@ void Board::drop() {
     delete action;
     action = nullptr;
     *turn += 1;
+    detectRow();
     print();
 }
 
@@ -373,6 +374,7 @@ void Board::dropStar() {
     while (isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
+    detectRow();
     currentBlock = tmp;
 }
 
@@ -380,8 +382,24 @@ void Board::detectRow() {
     int count = 0;
     for (int row = 17; row >= 3; --row ) {
         for (int col = 0; col < 11; ++col) {
-            if (theBoard[row][col].)
+            if (theBoard[row][col].getName() == ' ') {
+                break;
+            }
+            if (col == 10) {
+                for (int i = row + 1; i >= 3; --i) {
+                    for (int j = 0; j < 11; ++j) {
+                        
+                    }
+                }
+                ++count;
+            }
         }
+    }
+    if (count > 0) {
+        clearRow = true;
+    }
+    if (count > 1) {
+        addAction();
     }
 }
 
