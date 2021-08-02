@@ -86,6 +86,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
         if (rotateAngle < 0) {
             rotateAngle += 360; 
         }
+        cout << "error isShift 1" << endl;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 char currentChar = ' ';
@@ -141,10 +142,13 @@ bool Board::isShiftValid(int angle, int x, int y) {
                 }
                 
             }
+            cout << "error isShift 2" << endl;
         }
     } else {
         for (int i = 0; i < 4; i++) {
+            cout << "error isShift 3" << endl;
             for (int j = 0; j < 4; j++) {
+                cout << "error isShift 4" << endl;
                 int currentAngle = currentBlock->getAngle();
                 int blockX = currentBlock->getXcoord();
                 int blockY = currentBlock->getYcoord();
@@ -170,7 +174,9 @@ bool Board::isShiftValid(int angle, int x, int y) {
                         
                     }
                 }
+                cout << "error isShift 5" << endl;
             }
+            cout << "error isShift 6" << endl;
         }
     }
     return is_valid;
