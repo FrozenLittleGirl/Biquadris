@@ -54,9 +54,9 @@ void Board::print() {
 // ........................
 
 // a helper to restore the type of cell to ' '
-static void restoreType(shared_ptr<Block> block) {
-
-}
+//static void restoreType(shared_ptr<Block> block) {
+//
+//}
 
 void Board::clearBoard() {
     score = 0;
