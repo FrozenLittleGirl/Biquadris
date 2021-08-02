@@ -269,7 +269,7 @@ void Board::left(int steps) {
             }
         }
     }
-    print();
+    //print();
 }
 
 
@@ -298,7 +298,7 @@ void Board::right(int steps) {
             }
         }
     }
-    print();
+    //print();
 }
 
 
@@ -313,7 +313,7 @@ void Board::down(int steps) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    print();
+    //print();
 }
 
 
@@ -330,7 +330,7 @@ void Board::drop() {
     //cout << "error 2" << endl;
     detectRow();
     //cout << "error 3" << endl;
-    print();
+    //print();
 }
 
 void Board::clockwise(int angle) {
@@ -340,7 +340,7 @@ void Board::clockwise(int angle) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    print();
+    //print();
 }
 
 
@@ -351,7 +351,7 @@ void Board::counterclockwise(int angle) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    print();
+    //print();
 }
 
 // for level
@@ -434,7 +434,7 @@ void Board::newBlock(char c) {
     }
     //move(0,0,0);
     cout << "error lose" << lose << endl;
-    print();
+    //print();
 }
 
 
