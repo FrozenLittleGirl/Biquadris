@@ -126,7 +126,6 @@ void levelThree::changeState(bool set, string s) {
 levelFour::levelFour(int sd, bool set_sd, Board* b) : NextBlock{ sd, set_sd }, b{ b } {}
 
 Block* levelFour::generateBlock() {
-    ++count;
     Block* p;
     if (random == true) {
         char c = setChar(probSZ, probOther, sd, set_sd);
@@ -139,9 +138,6 @@ Block* levelFour::generateBlock() {
         if (current == size) {
             current = 0;
         }
-    }
-    if (b->block_created % 5 == 0 && b->clearRow == false) {
-        b->dropStar();
     }
     return p;
 }
