@@ -518,6 +518,7 @@ void Board::detectRow() {
     }
     if (count > 0) {
         clearRow = true;
+        cout << *this;
     }
     if (count > 1) {
         addAction(opponent, " ");
