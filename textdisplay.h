@@ -18,8 +18,13 @@ class TextDisplay {
         TextDisplay();
         void attachBoard(Board* board);
         void attachOpponent(Board* opponent);
+<<<<<<< HEAD
         *Board getBoard() const;
         *Board getOpponent() const;
+=======
+        Board* getBoard();
+        Board* getOpponent();
+>>>>>>> 08394ccfa4ec569e0665f64d3d0c5e80b8b7c932
         // void notify(Cell &whoNotified) override;
         friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
         //void printBoards();
