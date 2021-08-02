@@ -39,7 +39,7 @@ Block* hblock(int x, int y, char c) {
    else {
       block = new starblock{x, y, 0, false, 0, '*'};
   }
-  cout << "error generate" << endl;
+  //cout << "error generate" << endl;
   return block;
 }
 
@@ -54,15 +54,15 @@ levelZero::levelZero(string file, int sd, bool set_sd) : NextBlock{ sd, set_sd }
         ++size;
     }
     for (auto p : sequence) {
-        cout << "error " << p << endl; 
+        //cout << "error " << p << endl; 
     }
 }
 
 Block* levelZero::generateBlock() {
     char c = sequence[current];
-    cout << "error random" << endl;
+    //cout << "error random" << endl;
     auto p = hblock(0, 0, c);
-    cout << "error generateblock" << endl;
+    //cout << "error generateblock" << endl;
     ++current;
     if (current == size) {
         current = 0;
