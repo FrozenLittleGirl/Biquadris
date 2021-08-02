@@ -78,6 +78,7 @@ void Board::clearBoard() {
 
 void Board::init() {
     clearBoard();
+    td = new TextDisplay();
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
         // initialize each column
