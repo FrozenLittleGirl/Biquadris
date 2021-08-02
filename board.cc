@@ -388,9 +388,13 @@ void Board::detectRow() {
             if (col == 10) {
                 for (int i = row + 1; i >= 3; --i) {
                     for (int j = 0; j < 11; ++j) {
-                        
+                        theBoard[i - 1][j] = theBoard[i][j];
                     }
                 }
+                for (int j = 0; j < 11; ++j) {
+                    theBoard[3][j].clearCell();
+                }
+                --row;
                 ++count;
             }
         }
