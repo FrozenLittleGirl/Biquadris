@@ -104,7 +104,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
                     int blockY = currentBlock->getYcoord();
                     int currentX = currentBlock->getXcoord() + x;
                     int currentY = currentBlock->getYcoord() + y;
-                    if (currentX + j < 0 || currentY + i < 0 || currentX + j > 19 || currentY + i > 19) {
+                    if (currentX + j < 0 || currentY + i < 0 || currentX + j > 17 || currentY + i > 17) {
                         is_valid = false;
                     }
                     if (theBoard[currentY + i][currentX + j].isOccupied() == true) {
@@ -164,7 +164,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
                         this->lose = true;
                     }
                     if (blockX + j < 0 || blockY + i < 0 || 
-                    blockX + j > 18 || blockY + i > 18) {
+                    blockX + j > 17 || blockY + i > 17) {
                         is_valid = false;
                         this->lose = true;
                         
