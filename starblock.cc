@@ -7,7 +7,7 @@ using namespace std;
 
 
 starblock::starblock(int x, int y, int angle, bool isHeavy, int heavyCount, char name): 
-Block(0, 0, 0, isHeavy, heavyCount, '*') {};
+Block(0, 0, 0, false, 0, '*') {};
 
 
 
