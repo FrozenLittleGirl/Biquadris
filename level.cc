@@ -2,6 +2,14 @@
 #include "level.h"
 #include "board.h"
 #include "random.h"
+#include "iblock.h"
+#include "jblock.h"
+#include "lblock.h"
+#include "oblock.h"
+#include "sblock.h"
+#include "zblock.h"
+#include "tblock.h"
+#include "starblock.h"
 
 using namespace std;
 
