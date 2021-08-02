@@ -4,6 +4,14 @@
 #include "NextBlock.h"
 #include "Action.h"
 #include "textdisplay.h"
+#include "iblock.h"
+#include "jblock.h"
+#include "lblock.h"
+#include "oblock.h"
+#include "sblock.h"
+#include "zblock.h"
+#include "tblock.h"
+#include "starblock.h"
 #include <vector>
 #include <string>
 #include <iostream>   // Nata: don't forget to delete this once finished
