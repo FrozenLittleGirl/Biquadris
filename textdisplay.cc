@@ -18,19 +18,56 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
     out << "Level:    " << td.board->getLevel() << "      " << "Level:    " << td.opponent->getLevel() << endl;
     out << "Score:    " << td.board->getScore() << "      " << "Score:    " << td.opponent->getScore() << endl;
     out << "-----------" << "      " << "-----------" << endl;
-    for (int i = 0; i < td.NUM_ROWS; i++) {
-        cout << "-";
-        for (int j = 0; j < td.NUM_COLS; j++) {
-            out << td.board->getBoard()[i][j].getName();
+    if ( dynamic_cast<Blind*>(board->getAction()) ) {
+        for (int i = 0; i < td.NUM_ROWS; i++) {
+            cout << "-";
+            for (int j = 0; j < td.NUM_COLS; j++) {
+                if ( 3 < i && i < 9) || ( 3 < j && j < 12 ) {
+                    out << '?';
+                } else {
+                    out << td.board->getBoard()[i][j].getName();
+                }
+            }
+            cout << "-";
+            out << "     -";
+            for (int j = 0; j < td.NUM_COLS; j++) {
+                out << td.opponent->getBoard()[i][j].getName();
+            }  
+            cout << "-";
+            out << endl;
+        }        
+    } else if ( dynamic_cast<Blind*>(opponent->getAction()) ) {
+        for (int i = 0; i < td.NUM_ROWS; i++) {
+            cout << "-";
+            for (int j = 0; j < td.NUM_COLS; j++) {}
+                out << td.board->getBoard()[i][j].getName();                
+            }
+            cout << "-";
+            out << "     -";
+            for (int j = 0; j < td.NUM_COLS; j++) {
+                if ( 3 < i && i < 9) || ( 3 < j && j < 12 ) {
+                    out << '?';
+                } else {
+                    out << td.opponent->getBoard()[i][j].getName();
+                }
+            }  
+            cout << "-";
+            out << endl;
         }
-        cout << "-";
-        out << "      ";
-        cout << "-";
-        for (int j = 0; j < td.NUM_COLS; j++) {
-            out << td.opponent->getBoard()[i][j].getName();
+    } else {
+        for (int i = 0; i < td.NUM_ROWS; i++) {
+            cout << "-";
+            for (int j = 0; j < td.NUM_COLS; j++) {
+                out << td.board->getBoard()[i][j].getName();
+            }
+            cout << "-";
+            out << "     -";
+            for (int j = 0; j < td.NUM_COLS; j++) {
+                out << td.opponent->getBoard()[i][j].getName();
+            }  
+            cout << "-";
+            out << endl;
         }
-        cout << "-";
-        out << endl;
     }
     out << "-----------" << "      " << "-----------" << endl;
     out << "Next:      " << "      " << "Next:      " << endl;

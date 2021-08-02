@@ -540,6 +540,11 @@ int Board::getScore() const {
     return score;
 }
 
+SpecialAction* getAction() const {
+    return action;
+}
+
+
 vector<vector<Cell>> Board::getBoard() const {
     return theBoard;
 }
