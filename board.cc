@@ -321,9 +321,9 @@ void Board::drop() {
     delete action;
     action = nullptr;
     //*turn += 1;
-    cout << "error 2" << endl;
+    //cout << "error 2" << endl;
     detectRow();
-    cout << "error 3" << endl;
+    //cout << "error 3" << endl;
     print();
 }
 
@@ -426,7 +426,7 @@ void Board::newBlock(char c) {
             clearRow = false;
          }
     }
-    move(0,0,0);
+    //move(0,0,0);
     print();
 }
 
