@@ -145,6 +145,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
             }
             cout << "error isShift 2" << endl;
         }
+        cout << "error isShift loop 2" << endl;
     } else {
         for (int i = 0; i < 4; i++) {
             cout << "error isShift 3" << endl;
