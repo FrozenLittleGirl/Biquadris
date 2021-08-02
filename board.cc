@@ -376,6 +376,15 @@ void Board::dropStar() {
     currentBlock = tmp;
 }
 
+void Board::detectRow() {
+    int count = 0;
+    for (int row = 17; row >= 3; --row ) {
+        for (int col = 0; col < 11; ++col) {
+            if (theBoard[row][col].)
+        }
+    }
+}
+
 void Board::setRandom(bool set, string s) {
 	level->changeState(set, s);
 }
