@@ -14,7 +14,7 @@
 #include "starblock.h"
 #include <vector>
 #include <string>
-#include <iostream>   // Nata: don't forget to delete this once
+#include <iostream>   // Nata: don't forget to delete this once finished
 
 using namespace std;
 
@@ -107,8 +107,6 @@ bool Board::isShiftValid(int angle, int x, int y) {
                     int blockY = currentBlock->getYcoord();
                     int currentX = currentBlock->getXcoord() + x;
                     int currentY = currentBlock->getYcoord() + y;
-                    //cout << "currentX + j: "  << currentX + j << endl;
-                    //cout << "currentY + i: " << currentY + i << endl;
                     if (currentX + j < 0 || currentY + i < 0 || currentX + j > 10 || currentY + i > 17) {
                         return false;
                     }
@@ -153,7 +151,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
         for (int i = 0; i < 4; i++) {
             //cout << "error isShift 3" << endl;
             for (int j = 0; j < 4; j++) {
-                //cout << "error isShift 4" << endl;
+                cout << "error isShift 4" << endl;
                 int currentAngle = currentBlock->getAngle();
                 int blockX = currentBlock->getXcoord();
                 int blockY = currentBlock->getYcoord();
@@ -167,10 +165,13 @@ bool Board::isShiftValid(int angle, int x, int y) {
                 } else if (currentAngle == 270) {
                     currentChar = currentBlock->getRotate270()[i][j];
                 }
+                cout << "line 170: currentChar: " << currentChar << endl;
                 if (currentChar != ' ') {
                     if (theBoard[blockY + i][blockX + j].isOccupied() == true) {
                         return false;
                     }
+                    cout << "currentX + j: "  << currentX + j << endl;
+                    cout << "currentY + i: " << currentY + i << endl;
                     if (blockX + j < 0 || blockY + i < 0 || 
                     blockX + j > 10 || blockY + i > 17) {
                         return false;
@@ -498,25 +499,18 @@ void Board::detectRow() {
     int count = 0;
     for (int row = 17; row >= 3; --row ) {
         for (int col = 0; col < 11; ++col) {
-            cout << "error detect " << theBoard[row][col].getName() << endl;
             if (theBoard[row][col].getName() == ' ') {
                 break;
             }
             if (col == 10) {
                 for (int i = row - 1; i >= 3; --i) {
                     for (int j = 0; j < 11; ++j) {
-                        char c = theBoard[i][j].getName();
-                        bool oc = theBoard[i][j].isOccupied();
-                        theBoard[i + 1][j].clearCell();
-                        if (oc == true) {
-                            theBoard[i + 1][j].setName(c);
-                        }
+                        theBoard[i + 1][j] = theBoard[i][j];
                     }
                 }
                 for (int j = 0; j < 11; ++j) {
                     theBoard[3][j].clearCell();
                 }
-                cout << "error row" << row <<endl; 
                 ++row;
                 ++count;
             }
@@ -525,7 +519,6 @@ void Board::detectRow() {
     cout << "error detectRow" << endl;
     if (count > 0) {
         clearRow = true;
-        cout << *this;
     }
     if (count > 1) {
         addAction(opponent, " ");
