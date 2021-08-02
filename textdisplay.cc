@@ -15,12 +15,12 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
     out << "Level:    " << td.board->getLevel() << "      " << "Level:    " << td.opponent->getLevel() << endl;
     out << "Score:    " << td.board->getScore() << "      " << "Score:    " << td.opponent->getScore() << endl;
     out << "-----------" << "      " << "-----------" << endl;
-    for (int i = 0; i < NUM_ROWS; i++) {
-        for (int j = 0; j < NUM_COLS; j++) {
+    for (int i = 0; i < td.NUM_ROWS; i++) {
+        for (int j = 0; j < td.NUM_COLS; j++) {
             out << td.board->getBoard()[i][j].getName();
         }
         out << "      ";
-        for (int j = 0; j < NUM_COLS; j++) {
+        for (int j = 0; j < td.NUM_COLS; j++) {
             out << td.opponent->getBoard()[i][j].getName();
         }
         out << endl;
