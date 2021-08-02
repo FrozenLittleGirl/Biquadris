@@ -24,7 +24,7 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
-                if ( (3 < j && j < 9) && ( 3 < i && i < 12 ) ) {
+                if ( (2 <= j && j <= 8) && ( 2 <= i && i <= 11 ) ) {
                     out << '?';
                 } else {
                     out << td.board->getBoard()[i][j].getName();
@@ -47,7 +47,7 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
             cout << "-";
             out << "     -";
             for (int j = 0; j < td.NUM_COLS; j++) {
-                if ( ( 3 < j && j < 9) && ( 3 < i && i < 12 ) ) {
+                if ( (2 <= j && j <= 8) && ( 2 <= i && i <= 11 ) ) {
                     out << '?';
                 } else {
                     out << td.opponent->getBoard()[i][j].getName();
