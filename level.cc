@@ -53,9 +53,6 @@ levelZero::levelZero(string file, int sd, bool set_sd) : NextBlock{ sd, set_sd }
         sequence.emplace_back(c);
         ++size;
     }
-    for (auto p : sequence) {
-        //cout << "error " << p << endl; 
-    }
 }
 
 Block* levelZero::generateBlock() {
