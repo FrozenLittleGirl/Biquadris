@@ -21,20 +21,7 @@ using namespace std;
 
 // for test
 // .................................
-Board::Board() {
-    currentBlock = nullptr;
-    nextBlock = nullptr;
-    //for (int i = 0; i < 18; ++i) {
-    //    vector<Cell> v;
-     //   theBoard.emplace_back(v);
-    //}
-    //for (int i = 0; i < 18; ++i) {
-     //   for (int j = 0; j < 11; ++j) {
-       //     Cell c{i, j, false, ' '};
-         //   theBoard[i].emplace_back(c);
-        //}
-    //}
-}
+Board::Board() {}
 
 void Board::print() {
     cout << "....................." << endl;
