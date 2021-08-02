@@ -109,7 +109,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
                     cout << "currentX + j: "  << currentX + j << endl;
                     cout << "currentY + i: " << currentY + i << endl;
                     if (currentX + j < 0 || currentY + i < 0 || currentX + j > 17 || currentY + i > 17) {
-                        is_valid = false;
+                        return false;
                     }
                     if (theBoard[currentY + i][currentX + j].isOccupied() == true) {
                         if (currentX + j < blockX || currentY + i < blockY || 
