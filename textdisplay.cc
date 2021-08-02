@@ -10,12 +10,12 @@ TextDisplay::~TextDisplay() {
 }
 
 void TextDisplay::attachBoard(Board* board) {
-    board = new Board();
-    this->board = board;
+    this.board = new Board();
+    this.board = board;
 }
 void TextDisplay::attachOpponent(Board* opponent) {
-    opponent = new Board();
-    this->opponent = opponent;
+    this.opponent = new Board();
+    this.opponent = opponent;
 }
 
 ostream &operator<<(ostream &out, const TextDisplay &td) {
