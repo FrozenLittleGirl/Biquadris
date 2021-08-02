@@ -542,7 +542,7 @@ int Board::getScore() const {
     return score;
 }
 
-SpecialAction* getAction() const {
+SpecialAction* Board::getAction() const {
     return action;
 }
 
