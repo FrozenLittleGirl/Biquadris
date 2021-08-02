@@ -58,10 +58,10 @@ class Board {
         void setRandom(bool set, string s);
         void addLevel(int n, int seed, bool set_seed, string file);
         void newBlock(char c = 'n');
-        Block* getNextBlock();
-        int getLevel();
-        int getScore();
-        vector<vector<Cell>> getBoard();
+        Block* getNextBlock() const;
+        int getLevel() const;
+        int getScore() const;
+        vector<vector<Cell>> getBoard() const;
         void print();   // Nata: this is for temporarily testing
 
         ~Board();

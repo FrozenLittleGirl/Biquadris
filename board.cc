@@ -505,19 +505,19 @@ int Board::determineScore() {
         return score;
 }
 
-int Board::getScore() {
+int Board::getScore() const {
     return score;
 }
 
-vector<vector<Cell>> Board::getBoard() {
+vector<vector<Cell>> Board::getBoard() const {
     return theBoard;
 }
 
-Block* Board::getNextBlock() {
+Block* Board::getNextBlock() const {
     return nextBlock;
 }
 
-int Board::getLevel() {
+int Board::getLevel() const {
     return level_n;
 }
 
