@@ -484,6 +484,10 @@ void Board::addAction(Board* opponent, string s) {
 void Board::dropStar() {
     Block* tmp = currentBlock;
     currentBlock = helperBlock(0, 5, '*');
+    if (isShiftValid(0, 0, 0) == false) {
+        lose = true;
+        return;
+    }
     while (isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
