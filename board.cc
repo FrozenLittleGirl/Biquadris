@@ -166,8 +166,8 @@ bool Board::isShiftValid(int angle, int x, int y) {
                     currentChar = currentBlock->getRotate270()[i][j];
                 }
                 cout << "line 170: currentChar: " << currentChar << endl;
-                cout << "blockX + j: "  << currentX + j << endl;
-                cout << "blockY + i: " << currentY + i << endl;
+                cout << "currentX + j: "  << blockX + j << endl;
+                cout << "currentY + i: " << blockY + i << endl;
                 if (currentChar != ' ') {
                     if (theBoard[blockY + i][blockX + j].isOccupied() == true) {
                         return false;
