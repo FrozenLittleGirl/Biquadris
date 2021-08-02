@@ -47,3 +47,5 @@ void Cell::clearCell() {
     this->name = ' ';
     occupied = false;
 }
+
+
