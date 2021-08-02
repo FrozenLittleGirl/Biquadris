@@ -60,8 +60,10 @@ void Board::print() {
 
 void Board::clearBoard() {
     score = 0;
-    //delete currentBlock;   // Nata: detach is enough
-    //delete nextBlock;
+    delete currentBlock;   // Nata: detach is enough
+    currentBlock = nullptr;
+    delete nextBlock;
+    nextBlock = nullptr;
     delete action;
     action = nullptr;
     block_created = 0;
