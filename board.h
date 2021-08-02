@@ -6,7 +6,6 @@
 #include "subject.cc"
 #include "Block.h"
 #include "Cell.h"
-using namespace std;
 
 class TextDisplay;
 class SpecialAction;
@@ -15,14 +14,14 @@ class NextBlock;
 class Board, public Subject {
     const int NUM_COLS = 11;
     const int NUM_ROWS = 18;
-    vector<vector<Cell>> theBoard;
+    std::vector<std::vector<Cell>> theBoard;
     Board* opponent;
     TextDisplay *td;
     SpecialAction* acton = nullptr;
     NextBlock* level = nullptr;
     int level_n;
-    shared_ptr<Block> currentBlock;  // Nata: change the name from block to currentBlock
-    shared_ptr<Block> nextBlock;
+    std::shared_ptr<Block> currentBlock;  // Nata: change the name from block to currentBlock
+    std::shared_ptr<Block> nextBlock;
     
     protected:
     int score = 0;
@@ -51,7 +50,7 @@ class Board, public Subject {
         void setRandom(bool set, string s);
         void addLevel(int n, int seed, bool set_seed, string file);
         void newBlock(char c = 'n');
-        vector<vector<Cell>> getBoard();
+        std::vector<std::vector<Cell>> getBoard();
         void print();   // Nata: this is for temporarily testing
 
         ~Board();
