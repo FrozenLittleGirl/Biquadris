@@ -28,7 +28,7 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
     out << "-----------" << "      " << "-----------" << endl;
     out << "Next:      " << "      " << "Next:      " << endl;
     for (int i = 0; i < 5; i++) {
-        out << td.board->nextBlock->getRotateDefault()[i] << "            " << td.opponent->nextBlock->getRotateDefault()[i]; << endl;
+        out << td.board->nextBlock->getRotateDefault()[i] << "            " << td.opponent->nextBlock->getRotateDefault()[i] << endl;
     }
     return out;
 }
