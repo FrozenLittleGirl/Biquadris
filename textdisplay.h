@@ -1,11 +1,10 @@
 #ifndef _TEXTDISPLAY_H_
 #define _TEXTDISPLAY_H_
-#include "observer.h"
-#include "Nec"
+//#include "observer.h"
 
 class Board;
 
-class TextDisplay, public Observer {
+class TextDisplay {
     const int NUM_COLS = 11;
     const int NUM_ROWS = 18;
     Board *opponent;
@@ -13,13 +12,16 @@ class TextDisplay, public Observer {
     //notifyNextBlock(*block next);
     //std::vector<std::vector<char>> theGame;
     //*Block nextBlock;
-    
+
     public:
         TextDisplay();
         void attachBoard(Board* board);
         void attachOpponent(Board* opponent);
         // void notify(Cell &whoNotified) override;
-        // friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
-        void printBoards();
+         friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
+        //void printBoards();
+
         ~TextDisplay();
 };
+
+#endif
