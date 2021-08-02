@@ -66,6 +66,14 @@ class Board {
         vector<vector<Cell>> getBoard() const;
         void print();   // Nata: this is for temporarily testing
 
+        int I = 0;  // test
+        int J = 0;  // test  
+        int L = 0;  // test
+        int O = 0;  // test
+        int S = 0;  // test
+        int Z = 0;  // test
+        int T = 0;  // test
+
         ~Board();
 };
 
