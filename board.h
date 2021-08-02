@@ -28,15 +28,16 @@ class Board {
     void detectRow();
     int* turn;
 
+    int block_created = 0;
+    bool clearRow = false;
+    void dropStar();
+
     protected:
     int score = 0;
     int tmp_score = 0;          // Nata: since there are restart, we need a temporarily score to hold current game's score
-    int block_created = 0;
-    bool clearRow = false;
     bool lose = false;
     //void restore();
     void addAction(Board* opponent, string s);
-    void dropStar();
 
     public:
         Board();
@@ -60,6 +61,7 @@ class Board {
         vector<vector<Cell>> getBoard();
         void print();   // Nata: this is for temporarily testing
 
+        friend class levelFour;
         ~Board();
 };
 
