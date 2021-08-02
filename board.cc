@@ -504,7 +504,12 @@ void Board::detectRow() {
             if (col == 10) {
                 for (int i = row - 1; i >= 3; --i) {
                     for (int j = 0; j < 11; ++j) {
-                        theBoard[i + 1][j] = theBoard[i][j];
+                        char c = theBoard[i][j].getName();
+                        bool oc = theBoard[i][j].isOccupied();
+                        theBoard[i + 1][j].clearCell();
+                        if (oc == true) {
+                            theBoard[i + 1][j].setName(c);
+                        }
                     }
                 }
                 for (int j = 0; j < 11; ++j) {
@@ -518,6 +523,7 @@ void Board::detectRow() {
     cout << "error detectRow" << endl;
     if (count > 0) {
         clearRow = true;
+        cout << *this;
     }
     if (count > 1) {
         addAction(opponent, " ");
