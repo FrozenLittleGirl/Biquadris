@@ -33,7 +33,6 @@ void Board::print() {
     }
     cout << "....................." << endl;
     vector<string> v = nextBlock->getRotateDefault();
-    cout << v[0] << endl;
     cout << v[1] << endl;
     cout << v[2] << endl;
     cout << v[3] << endl;
