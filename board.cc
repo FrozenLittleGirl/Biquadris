@@ -414,10 +414,13 @@ void Board::newBlock(char c) {
     this->currentBlock = helperBlock(x, y, c);
     }
     
-    if (block_created % 5 == 0 && clearRow == false) {
-        dropStar();
-    } else if (block_created % 5 == 0) {
-        clearRow = false;
+    levelFour* four = dynamic_cast<levelFour*>(level);
+    if (four != nullptr) {
+        if (block_created % 5 == 0 && clearRow == false) {
+            dropStar();
+         } else if (block_created % 5 == 0) {
+            clearRow = false;
+         }
     }
     print();
 }
