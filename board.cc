@@ -36,6 +36,7 @@ void Board::print() {
     cout << v[0] << endl;
     cout << v[1] << endl;
     cout << v[2] << endl;
+    cout << v[3] << endl;
 }
 
 // ........................
