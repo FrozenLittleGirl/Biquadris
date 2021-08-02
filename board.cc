@@ -363,18 +363,21 @@ Block* helperBlock(int x, int y, char c) {
 void Board::newBlock(char c) {
     ++block_created;
     delete currentBlock;
-        if (c == 'n') {
-                currentBlock = nextBlock;
-                nextBlock = level->generateBlock();
-        }
-        else {
-        // Nata: careful! new block should always fit the current position
-        --block_created;
-        int x = currentBlock->getXcoord();
-        int y = currentBlock->getYcoord();
-        this->currentBlock = helperBlock(x, y, c);
-        }
-    if (block_created % 5 == 0) {
+    if (c == 'n') {
+            currentBlock = nextBlock;
+            nextBlock = level->generateBlock();
+    }
+    else {
+    // Nata: careful! new block should always fit the current position
+    --block_created;
+    int x = currentBlock->getXcoord();
+    int y = currentBlock->getYcoord();
+    this->currentBlock = helperBlock(x, y, c);
+    }
+    
+    if (block_created % 5 == 0 && clearRow == false) {
+        dropStar();
+    } else if (block_created % 5 == 0) {
         clearRow = false;
     }
     print();
