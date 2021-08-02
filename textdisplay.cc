@@ -5,17 +5,13 @@ using namespace std;
 TextDisplay::TextDisplay() {}
 
 TextDisplay::~TextDisplay() {
-    delete board;
-    delete opponent;
 }
 
 void TextDisplay::attachBoard(Board* board) {
-    this.board = new Board();
-    this.board = board;
+    this->board = board;
 }
 void TextDisplay::attachOpponent(Board* opponent) {
-    this.opponent = new Board();
-    this.opponent = opponent;
+    this->opponent = opponent;
 }
 
 ostream &operator<<(ostream &out, const TextDisplay &td) {
