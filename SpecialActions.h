@@ -3,7 +3,8 @@
 
 class SpecialAction {
 public:
-	virtual void applyAction() = 0;
+        virtual void applyAction() = 0;
+        virtual ~SpecialAction();
 };
 
 #endif
