@@ -49,15 +49,10 @@ void Board::clearBoard() {
     score = 0;
     delete td;
     td = nullptr;
-    delete currentBlock;   // Nata: detach is enough
-    currentBlock = nullptr;
-    delete nextBlock;
-    nextBlock = nullptr;
     delete action;
     action = nullptr;
     block_created = 0;
     clearRow = false;
-    newBlock();
     lose = false;
     /*for (int i = 0; i < 18; i++) {
         for (int j = 0; j < 11; j++) {
