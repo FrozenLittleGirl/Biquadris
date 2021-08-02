@@ -60,6 +60,8 @@ void Board::print() {
 
 void Board::clearBoard() {
     score = 0;
+    delete td;
+    td = nullptr;
     delete currentBlock;   // Nata: detach is enough
     currentBlock = nullptr;
     delete nextBlock;
@@ -80,6 +82,7 @@ void Board::clearBoard() {
 
 void Board::init() {
     clearBoard();
+    td = new TextDisplay();
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
         // initialize each column
@@ -546,6 +549,7 @@ Board::~Board() {
     delete action;
     delete currentBlock;
     delete nextBlock;
+    delete td;
 }
 
 
