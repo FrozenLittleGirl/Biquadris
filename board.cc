@@ -452,6 +452,9 @@ void Board::addAction(Board* opponent, string s) {
                 delete opponent->currentBlock;
                 opponent->currentBlock = helperBlock(0, 0, c);
                 // notify
+                if (opponent->isShiftValid(0, 0, 0) == false) {
+                    opponent->lose = true;
+                }
 
         }
 }
