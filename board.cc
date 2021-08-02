@@ -75,9 +75,7 @@ void Board::init() {
         // push back each row
         theBoard.push_back(tmp);
     }
-    cout << "error init1" << endl;
     td->attachBoard(this);
-    cout << "error init2" << endl;
 }
 
 bool Board::isShiftValid(int angle, int x, int y) {
