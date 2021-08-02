@@ -97,6 +97,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
     if (angle != 0 || x != 0 || y != 0) {
         int rotateAngle = currentBlock->getAngle() + angle;
         rotateAngle = rotateAngle % 360;
+    }
     if (rotateAngle < 0) {
         rotateAngle += 360; 
     }
