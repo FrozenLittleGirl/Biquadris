@@ -164,7 +164,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
                         this->lose = true;
                     }
                     if (blockX + j < 0 || blockY + i < 0 || 
-                    blockX + j > 19 || blockY + i > 19) {
+                    blockX + j > 18 || blockY + i > 18) {
                         is_valid = false;
                         this->lose = true;
                         
