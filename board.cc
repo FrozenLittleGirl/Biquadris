@@ -352,6 +352,7 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete currentBlock;
     delete nextBlock;
     level_n = n;
+    cout << "error addlevel 1" << endl;
     if (n == 0) {
             level = new levelZero{ file, seed, set_seed };
     }
@@ -367,7 +368,9 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     else {
             level = new levelFour{ seed, set_seed, this };
     }
+    cout << "error addlevel 2" << endl;
     currentBlock = level->generateBlock();
+    cout << "error addlevel 3" << endl;
     nextBlock = level->generateBlock();
 }
 
