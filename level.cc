@@ -74,6 +74,8 @@ Block* levelOne::generateBlock() {
     return p;
 }
 
+void levelOne::changeState(bool set, string s) {}
+
 // Level2
 levelTwo::levelTwo(int sd, bool set_sd) : NextBlock{ sd, set_sd } {}
 
