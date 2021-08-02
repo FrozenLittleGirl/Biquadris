@@ -423,7 +423,18 @@ void Board::newBlock(char c) {
     int y = currentBlock->getYcoord();
     this->currentBlock = helperBlock(x, y, c);
     }
-    
+
+    Iblock * iblock = dynamic_cast<Iblock*>(currentBlock);
+    if (iblock != nullptr) {
+        if (isShiftValid(0,0,0) == false) {
+            lose = true;
+        }
+    } else {
+        if (isShiftValid(0,0,1) == false) {
+            lose = true;
+        }
+    }
+
     levelFour* four = dynamic_cast<levelFour*>(level);
     if (four != nullptr) {
         if (block_created % 5 == 0 && clearRow == false) {
@@ -433,7 +444,6 @@ void Board::newBlock(char c) {
          }
     }
     //move(0,0,0);
-    cout << "error lose" << lose << endl;
     //print();
 }
 
