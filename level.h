@@ -1,6 +1,7 @@
 #ifndef _LEVEL_H_
 #define _LEVEL_H_
 #include "NextBlock.h"
+#include <string>
 #include <vector>
 
 using namespace std;
