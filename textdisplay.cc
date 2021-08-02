@@ -4,6 +4,11 @@ using namespace std;
 
 TextDisplay::TextDisplay() {}
 
+TextDisplay::~TextDisplay() {
+    delete board;
+    delete opponent;
+}
+
 void TextDisplay::attachBoard(Board* board) {
     this->board = board;
 }
