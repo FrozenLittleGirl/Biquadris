@@ -427,6 +427,7 @@ void Board::newBlock(char c) {
          }
     }
     //move(0,0,0);
+    cout << "error lose" << lose << endl;
     print();
 }
 
