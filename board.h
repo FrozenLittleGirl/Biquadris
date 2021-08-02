@@ -61,7 +61,6 @@ class Board {
         vector<vector<Cell>> getBoard();
         void print();   // Nata: this is for temporarily testing
 
-        friend class levelFour;
         ~Board();
 };
 
