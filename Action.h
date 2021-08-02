@@ -3,19 +3,19 @@
 
 #include "SpecialActions.h"
 
-class Blind : public SpecialActions {
+class Blind : public SpecialAction {
 public:
-	void applyAction() override;
+        void applyAction() override;
 };
 
-class Heavy : public SpecialActions {
+class Heavy : public SpecialAction {
 public:
-	void applyAction() override;
+        void applyAction() override;
 };
 
-class Force : public SpecialActions {
+class Force : public SpecialAction {
 public:
-	void applyAction() override;
+        void applyAction() override;
 };
 
 #endif
