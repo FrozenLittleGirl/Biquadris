@@ -52,6 +52,7 @@ class Board {
         void clockwise(int angle);
         void counterclockwise(int angle);
         bool determineLose();
+        bool canBeDropped();
         //void setLoseOrWin(bool);  // Nata: I have a determineLose above
         int determineScore();
         void attach(Board* opponent, int* n);
