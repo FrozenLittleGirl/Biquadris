@@ -498,6 +498,7 @@ void Board::detectRow() {
     int count = 0;
     for (int row = 17; row >= 3; --row ) {
         for (int col = 0; col < 11; ++col) {
+            cout << "error detect " << theBoard[row][col].getName() << end;
             if (theBoard[row][col].getName() == ' ') {
                 break;
             }
@@ -515,6 +516,7 @@ void Board::detectRow() {
                 for (int j = 0; j < 11; ++j) {
                     theBoard[3][j].clearCell();
                 }
+                cout << "error row" << row <<end; 
                 ++row;
                 ++count;
             }
