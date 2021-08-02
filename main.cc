@@ -48,12 +48,12 @@ int main(int argc, char** argv) {
     int turn = 0;
     Board player1;
     Board player2;
-    player1.attach(&player2, &turn);
-    player2.attach(&player1, &turn);
     player1.addLevel(level, seed, set_seed, file1);
     player2.addLevel(level, seed, set_seed, file2);
-    player1.newBlock();
-    player2.newBlock();
+    player1.init();
+    player2.init();
+    player1.attach(&player2, &turn);
+    player2.attach(&player1, &turn);
 
     string s1 = "left", s2 = "right", s3 = "down", s4 = "clockwise", s5 = "counterclockwise", s6 = "drop",
         s7 = "levelup", s8 = "leveldown", s9 = "norandom", s10 = "random", s11 = "sequence", s12 = "restart";
@@ -64,6 +64,19 @@ int main(int argc, char** argv) {
     ifstream f;
 
     while (true) {
+        if (player1.determineLose() == true || player2.determineLose() == true) {
+            if (player1.determineLose()) {
+                cout << "player2 wins" << endl;
+            }
+            else {
+                cout << "player1 wins" << endl;
+            }
+            int score1 = player1.determineScore();
+            int score2 = player2.determineScore();
+            cout << "the highest score is " << max(score1, score2) << endl;
+            cout << "Game is Over" << endl;
+            break;
+        }
         string cmd;
         int times = 1;
         if (read_sequence == true) {
@@ -227,11 +240,13 @@ int main(int argc, char** argv) {
             }
         }
         else if (cmd == s6) {  //drop
-            if (turn % 2 == 0) {
-                player1.drop();
-            }
-            else {
-                player2.drop();
+            for (int i = 0; i < times; ++i) {
+                if (turn % 2 == 0) {
+                    player1.drop();
+                }
+                else {
+                    player2.drop();
+                }
             }
         }
         else if (cmd == s7) {  //levelup
@@ -300,20 +315,6 @@ int main(int argc, char** argv) {
         else {
             cout << "Unrecognized command " << cmd << "!" << endl;
             continue;
-        }
-
-        if (player1.determineLose() == true || player2.determineLose() == true) {
-            if (player1.determineLose()) {
-                cout << "player2 wins" << endl;
-            }
-            else {
-                cout << "player1 wins" << endl;
-            }
-            int score1 = player1.determineScore();
-            int score2 = player2.determineScore();
-            cout << "the highest score is " << max(score1, score2) << endl;
-            cout << "Game is Over" << endl;
-            break;
         }
     }
 
