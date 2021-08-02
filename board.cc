@@ -516,7 +516,6 @@ void Board::detectRow() {
             }
         }
     }
-    cout << "error detectRow" << endl;
     if (count > 0) {
         clearRow = true;
     }
