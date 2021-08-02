@@ -1,13 +1,15 @@
-#ifndef _OBSERVER_H_
-#define _OBSERVER_H_
-#include "subject.h"
+#ifndef _SUBJECT_H_
+#define _SUBJECT_H_
+#include <vector>
 
-class Board;
+class Observer;
 
-class Observer {
+class Subject {
+    protected:
+        std::vector<Observer*> observers;
     public:
-        virtual void notify(Board &b) = 0;
-        virtual ~Observer() = default;
+        void virtual notifyObservers() = 0;
+        void attach(Observer *o);
 };
 
 #endif
