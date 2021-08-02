@@ -1,6 +1,8 @@
 #include "textdisplay.h"
 #include "board.h"
 using namespace std;
+#include "SpecialActions.h"
+#include "Action.h"
 
 TextDisplay::TextDisplay() {}
 
