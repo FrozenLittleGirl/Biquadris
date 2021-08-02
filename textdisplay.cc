@@ -11,11 +11,11 @@ void TextDisplay::attachOpponent(Board* opponent) {
     this->opponent = opponent;
 }
 
-Board* TextDisplay::getBoard() {
+*Board TextDisplay::getBoard() const {
     return board;
 }
 
-Board* TextDisplay::getOpponent() {
+*Board TextDisplay::getOpponent() const {
     return opponent;
 }
 
