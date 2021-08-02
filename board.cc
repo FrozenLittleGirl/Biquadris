@@ -106,6 +106,8 @@ bool Board::isShiftValid(int angle, int x, int y) {
                     int blockY = currentBlock->getYcoord();
                     int currentX = currentBlock->getXcoord() + x;
                     int currentY = currentBlock->getYcoord() + y;
+                    cout << "currentX + j: "  << currentX + j << endl;
+                    cout << "currentY + i: " << currentY + i << endl;
                     if (currentX + j < 0 || currentY + i < 0 || currentX + j > 17 || currentY + i > 17) {
                         is_valid = false;
                     }
