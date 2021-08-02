@@ -24,19 +24,17 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
-                if ( (2 <= j && j <= 8) && ( 7 <= i && i <= 16 ) ) {
+                if ( (2 <= j && j <= 8) && ( 6 <= i && i <= 15 ) ) {
                     out << '?';
                 } else {
                     out << td.board->getBoard()[i][j].getName();
                 }
             }
             cout << "-";
-            out << "     -";
+            out << "    -";
             for (int j = 0; j < td.NUM_COLS; j++) {
                 out << td.opponent->getBoard()[i][j].getName();
             }  
-            cout << "-";
-            out << endl;
         }        
     } else if ( dynamic_cast<Blind*>(td.opponent->getAction()) ) {
         for (int i = 0; i < td.NUM_ROWS; i++) {
@@ -45,16 +43,14 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
                 out << td.board->getBoard()[i][j].getName();                
             }
             cout << "-";
-            out << "     -";
+            out << "    -";
             for (int j = 0; j < td.NUM_COLS; j++) {
-                if ( (2 <= j && j <= 8) && ( 7 <= i && i <= 16 ) ) {
+                if ( (2 <= j && j <= 8) && ( 6 <= i && i <= 15 ) ) {
                     out << '?';
                 } else {
                     out << td.opponent->getBoard()[i][j].getName();
                 }
-            }  
-            cout << "-";
-            out << endl;
+            }
         }
     } else {
         for (int i = 0; i < td.NUM_ROWS; i++) {
@@ -63,18 +59,18 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
                 out << td.board->getBoard()[i][j].getName();
             }
             cout << "-";
-            out << "     -";
+            out << "    -";
             for (int j = 0; j < td.NUM_COLS; j++) {
                 out << td.opponent->getBoard()[i][j].getName();
-            }  
-            cout << "-";
-            out << endl;
+            }
         }
     }
+    cout << "-";
+    out << endl;
     out << "-----------" << "      " << "-----------" << endl;
     out << "Next:      " << "      " << "Next:      " << endl;
     for (int i = 2; i < 4; i++) {
-        out << td.board->getNextBlock()->getRotateDefault()[i] << "            " << td.opponent->getNextBlock()->getRotateDefault()[i] << endl;
+        out << td.board->getNextBlock()->getRotateDefault()[i] << "             " << td.opponent->getNextBlock()->getRotateDefault()[i] << endl;
     }
     return out;
 }
