@@ -33,6 +33,7 @@ void Board::print() {
     }
     cout << "....................." << endl;
     vector<string> v = nextBlock->getRotateDefault();
+    cout << nextBlock->getXcoord() << " " << nextBlock->getYcoord() << " " << nextBlock->getAngle() << endl;
     cout << v[0] << endl;
     cout << v[1] << endl;
     cout << v[2] << endl;
@@ -411,6 +412,7 @@ void Board::newBlock(char c) {
             clearRow = false;
          }
     }
+    move(0,0,0);
     print();
 }
 
