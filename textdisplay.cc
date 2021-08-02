@@ -1,5 +1,6 @@
 #include "textdisplay.h"
 #include "board.h"
+#include <iostream>  // delete this
 using namespace std;
 
 TextDisplay::TextDisplay() {}
@@ -37,5 +38,6 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
     for (int i = 2; i < 5; i++) {
         out << td.board->getNextBlock()->getRotateDefault()[i] << "            " << td.opponent->getNextBlock()->getRotateDefault()[i] << endl;
     }
+    cout << "error td display" << endl;
     return out;
 }
