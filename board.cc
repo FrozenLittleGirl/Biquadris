@@ -511,7 +511,7 @@ vector<vector<Cell>> Board::getBoard() {
     return theBoard;
 }
 
-Block* Block::getNextBlock() {
+Block* Board::getNextBlock() {
     return nextBlock;
 }
 
