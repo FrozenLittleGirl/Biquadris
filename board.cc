@@ -169,12 +169,10 @@ bool Board::isShiftValid(int angle, int x, int y) {
                 }
                 if (currentChar != ' ') {
                     if (theBoard[blockY + i][blockX + j].isOccupied() == true) {
-                        this->lose = true;
                         return false;
                     }
                     if (blockX + j < 0 || blockY + i < 0 || 
                     blockX + j > 10 || blockY + i > 17) {
-                        this->lose = true;
                         return false;
                         
                     }
