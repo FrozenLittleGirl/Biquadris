@@ -516,7 +516,7 @@ void Board::detectRow() {
                 for (int j = 0; j < 11; ++j) {
                     theBoard[3][j].clearCell();
                 }
-                cout << "error row" << row <<end; 
+                cout << "error row" << row <<endl; 
                 ++row;
                 ++count;
             }
