@@ -2,7 +2,7 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
-#include "Board.h"
+#include "board.h"
 
 using namespace std;
 
