@@ -3,26 +3,31 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include "subject.cc"
-#include "Block.h"
-#include "Cell.h"
+//#include "subject.cc"
+#include "block.h"
+#include "cell.h"
+using namespace std;
 
 class TextDisplay;
 class SpecialAction;
 class NextBlock;
 
-class Board, public Subject {
+class Board {
     const int NUM_COLS = 11;
     const int NUM_ROWS = 18;
-    std::vector<std::vector<Cell>> theBoard;
+    vector<vector<Cell>> theBoard;
     Board* opponent;
     TextDisplay *td;
-    SpecialAction* acton = nullptr;
+    SpecialAction* action = nullptr;
     NextBlock* level = nullptr;
     int level_n;
-    std::shared_ptr<Block> currentBlock;  // Nata: change the name from block to currentBlock
-    std::shared_ptr<Block> nextBlock;
-    
+    Block* currentBlock;  // Nata: change the name from block to currentBlock
+    Block* nextBlock;
+    void move(int angle, int x, int y);
+    bool isShiftValid(int angle, int x, int y);
+    void detectRow();
+    int* turn;
+
     protected:
     int score = 0;
     int tmp_score = 0;          // Nata: since there are restart, we need a temporarily score to hold current game's score
@@ -33,24 +38,26 @@ class Board, public Subject {
     void addAction(Board* opponent, string s);
     void dropStar();
 
-    public: 
+    public:
+        Board();
         friend ostream &operator<<(ostream &out, const Board &b);
         void init();
         void clearBoard();
 
         void drop();
+        void down(int steps);
         void left(int steps);
         void right(int steps);
         void clockwise(int angle);
         void counterclockwise(int angle);
         bool determineLose();
         //void setLoseOrWin(bool);  // Nata: I have a determineLose above
-        int determineScore();    
+        int determineScore();
         void attach(Board* opponent, int* n);
         void setRandom(bool set, string s);
         void addLevel(int n, int seed, bool set_seed, string file);
         void newBlock(char c = 'n');
-        std::vector<std::vector<Cell>> getBoard();
+        vector<vector<Cell>> getBoard();
         void print();   // Nata: this is for temporarily testing
 
         ~Board();
