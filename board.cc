@@ -22,8 +22,8 @@ using namespace std;
 // for test
 // .................................
 Board::Board() {
-    currentBlock = level->generateBlock();
-    nextBlock = level->generateBlock();
+    currentBlock = nullptr;
+    nextBlock = nullptr;
     for (int i = 0; i < 18; ++i) {
         vector<Cell> v;
         theBoard.emplace_back(v);
@@ -348,23 +348,25 @@ void Board::counterclockwise(int angle) {
 
 // for level
 void Board::addLevel(int n, int seed, bool set_seed, string file) {
-        delete level;
+    delete level;
     level_n = n;
-        if (n == 0) {
-                level = new levelZero{ file, seed, set_seed };
-        }
-        else if (n == 1) {
-                level = new levelOne{ seed, set_seed };
-        }
-        else if (n == 2) {
-                level = new levelTwo{ seed, set_seed };
-        }
-        else if (n == 3) {
-                level = new levelThree{ seed, set_seed };
-        }
-        else {
-                level = new levelFour{ seed, set_seed, this };
-        }
+    if (n == 0) {
+            level = new levelZero{ file, seed, set_seed };
+    }
+    else if (n == 1) {
+            level = new levelOne{ seed, set_seed };
+    }
+    else if (n == 2) {
+            level = new levelTwo{ seed, set_seed };
+    }
+    else if (n == 3) {
+            level = new levelThree{ seed, set_seed };
+    }
+    else {
+            level = new levelFour{ seed, set_seed, this };
+    }
+    currentBlock = level->generateBlock();
+    nextBlock = level->generateBlock();
 }
 
 // This is a  helper
