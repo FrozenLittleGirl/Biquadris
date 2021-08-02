@@ -41,6 +41,7 @@ class Board {
 
     public:
         Board();
+        bool canBeDropped();
         friend ostream &operator<<(ostream &out, const Board &b);
         void init();
         void clearBoard();
