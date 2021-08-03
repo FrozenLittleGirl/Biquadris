@@ -686,7 +686,7 @@ int Board::determineScore() {
 }
 
 int Board::getScore() const {
-    return score;
+    return tmp_score;
 }
 
 SpecialAction* Board::getAction() const {
