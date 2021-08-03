@@ -20,7 +20,7 @@ class Cell {
     int getX();
     int getY();
     void setColour();
-    void display();
+    void display(int x_coord, int y_coord);
     void setX(int x);
     void setY(int y);
     bool isOccupied();

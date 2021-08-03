@@ -45,11 +45,11 @@ void Cell::setColour() {
     }
 }
 
-void Cell::display() {
+void Cell::display(int x_coord, int y_coord) {
     if ( !view || !view->isGraphical() ) {
         return;
     }
-    view->fillCell(x, y, 20, colour);
+    view->fillCell(x + x_coord, y + y_coord, 20, colour);
 }
 
 int Cell::getY() {
