@@ -21,7 +21,9 @@ using namespace std;
 
 // for test
 // .................................
-Board::Board() {}
+Board::Board() {
+    td = new TextDisplay();
+}
 
 void Board::print() {
     cout << "-----------" << endl;
@@ -51,8 +53,8 @@ void Board::clearBoard() {
         score = tmp_score;
     }
     tmp_score = 0;
-    delete td;
-    td = nullptr;
+    //delete td;
+    //td = nullptr;
     delete action;
     action = nullptr;
     block_created = 0;
@@ -69,7 +71,7 @@ void Board::clearBoard() {
 void Board::init() {
     clearBoard();
     cout << "error clear" << endl;
-    td = new TextDisplay();
+    //td = new TextDisplay();
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
         // initialize each column
