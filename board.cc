@@ -584,6 +584,16 @@ int Board::getLevel() const {
     return level_n;
 }
 
+Block *Board::getCurrentBlock() {
+    return currentBlock;
+}
+
+
+void Board::setCurrentBlock(Block * newBlock) {
+    this->currentBlock = newBlock;
+}
+
+
 
 ostream &operator<<(ostream &out, const Board &b) {
     out << *(b.td) << endl;
