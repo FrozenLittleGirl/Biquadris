@@ -688,7 +688,7 @@ void Board::displayBoard() {
     }
     for (int i = 0; i < NUM_ROWS; i++) {
         for (int j = 0; j < NUM_COLS; j++) {
-            theBoard[i][j].display();
+            theBoard[i][j].display(x, y);
 }
 
 void Board::setRandom(bool set, string s) {
