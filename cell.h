@@ -4,17 +4,18 @@
 #include <vector>
 #include <string>
 
-
 class Cell {
     int x;
     int y;
     bool occupied;
     char name;
+    int colour;
     
     public:
     Cell(int x, int y, bool occupied, char c);
     int getX();
     int getY();
+    void setColour();
     void setX(int x);
     void setY(int y);
     bool isOccupied();
