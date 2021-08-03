@@ -479,34 +479,53 @@ void Board::addAction(Board* opponent, string s) {
                 char c;
                 cin >> c;
                 opponent->action = new Force;
-                Block *current = opponent->currentBlock;
+                Block *current = opponent->getCurrentBlock();
                 Block *forcedBlock = nullptr;
-                if (c == 'O') {
-                    forcedBlock = new oBlock(0, 0, 0, false, 0, 'O');
-                } else if (c == 'L') {
-                    forcedBlock = new LBlock(0, 0, 0, false, 0, 'L');
-                } else if (c == 'J') {
-                    forcedBlock = new JBlock(0, 0, 0, false, 0, 'L');
-                } else if (c == 'S') {
-                    forcedBlock = new lBlock(0, 0, 0, false, 0, 'L');
-                } else if (c == 'L') {
-                    forcedBlock = new lBlock(0, 0, 0, false, 0, 'L');
-                } else if (c == 'L') {
-                    forcedBlock = new lBlock(0, 0, 0, false, 0, 'L');
-                } else if (c == 'Z') {
-                    forcedBlock = new ZBlock(0, 0, 0, false, 0, 'L');
-                } else if (c == 'T') {
-                    forcedBlock = new TBlock(0, 0, 0, false, 0, 'L');
+                if (c != 'O' && c != 'L' && c != 'J' && c != 'S' && c != 'I'
+                && c != 'Z' && c != 'T') {
+                    return;
                 }
-                delete opponent->currentBlock;
-                opponent->currentBlock = helperBlock(0, 0, c);
-                // notify
+                forcedBlock = helperBlock(0, 0, c);
+                
+                int currentAngle = current->getAngle();
+                vector<string> currentRotation;
+                if (currentAngle == 0) {
+                    currentRotation = currentBlock->getRotateDefault();
+                    
+                } else if (currentAngle == 90) {
+                    currentRotation = currentBlock->getRotate90();
+                    
+                } else if (currentAngle == 180) {
+                    currentRotation = currentBlock->getRotate180();
+                    
+                } else if (currentAngle == 270) {
+                    currentRotation = currentBlock->getRotate270();
+                    
+                }
+                int currentX = current->getXcoord();
+                int currentY = current->getYcoord();
+                forcedBlock->setXcoord(currentX);
+                forcedBlock->setYcoord(currentY);
+                for (int i = 0; i < 4; i++) {
+                    for (int j = 0; j < 4; j++) {
+                        if (currentRotation[i][j] != ' ') {
+                            opponent->getBoard()[currentY + i][currentX + j].clearCell();
+                            
+                        }
+                        
+                    }
+                }
+                opponent->currentBlock = forcedBlock;
                 if (opponent->isShiftValid(0, 0, 0) == false) {
+                    opponent->currentBlock = current;
                     opponent->lose = true;
+                    delete forcedBlock;
+                } else {
+                    delete current;
                 }
-
         }
 }
+
 
 void Board::dropStar() {
     Block* tmp = currentBlock;
