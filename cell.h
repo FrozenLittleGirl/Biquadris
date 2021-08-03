@@ -14,13 +14,15 @@ class Cell {
     char name;
     int colour;
     int level_n = 0;
+    Display* disp;
     
     public:
     Cell(int x, int y, bool occupied, char c);
     int getX();
     int getY();
     void setColour();
-    void display(int x_coord, int y_coord);
+    void display(int x_coord, int y_coord, bool isBlind);
+    void setDisplay(Display *d);
     void setX(int x);
     void setY(int y);
     bool isOccupied();
