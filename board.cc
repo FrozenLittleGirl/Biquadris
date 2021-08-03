@@ -752,7 +752,7 @@ Board::~Board() {
     delete action;
     delete currentBlock;
     delete nextBlock;
-    delete td;
+    delete view;
 }
 
 
