@@ -63,7 +63,7 @@ class Board {
         int getLevel() const;
         int getScore() const;
         Block *getCurrentBlock();
-        void setCurrentBlock();
+        void setCurrentBlock(Block * newBlock);
         SpecialAction* getAction() const;
         vector<vector<Cell>> getBoard() const;
         void print();   // Nata: this is for temporarily testing
