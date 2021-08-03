@@ -47,11 +47,15 @@ void Board::print() {
 //}
 
 void Board::clearBoard() {
-    score = 0;
+    tmp_score = 0;
     delete td;
     td = nullptr;
     delete action;
     action = nullptr;
+    delete currentBlock;
+    delete nextBlock;
+    currentBlock = nullptr;
+    nextBlock = nullptr;
     block_created = 0;
     clearRow = false;
     lose = false;
