@@ -157,7 +157,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
         for (int i = 0; i < 4; i++) {
             //cout << "error isShift 3" << endl;
             for (int j = 0; j < 4; j++) {
-                cout << "error isShift 4" << endl;
+                //cout << "error isShift 4" << endl;
                 int currentAngle = currentBlock->getAngle();
                 int blockX = currentBlock->getXcoord();
                 int blockY = currentBlock->getYcoord();
@@ -171,9 +171,9 @@ bool Board::isShiftValid(int angle, int x, int y) {
                 } else if (currentAngle == 270) {
                     currentChar = currentBlock->getRotate270()[i][j];
                 }
-                cout << "line 170: currentChar: " << currentChar << endl;
-                cout << "currentX + j: "  << blockX + j << endl;
-                cout << "currentY + i: " << blockY + i << endl;
+                //cout << "line 170: currentChar: " << currentChar << endl;
+                //cout << "currentX + j: "  << blockX + j << endl;
+                //cout << "currentY + i: " << blockY + i << endl;
                 if (currentChar != ' ') {
                     cout << "isOccupied:" << theBoard[blockY + i][blockX + j].isOccupied() << endl;
                     if (theBoard[blockY + i][blockX + j].isOccupied() == true) {
