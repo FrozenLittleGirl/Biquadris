@@ -56,9 +56,7 @@ void Board::clearBoard() {
     delete action;
     action = nullptr;
     delete currentBlock;
-    delete nextBlock;
     currentBlock = nullptr;
-    nextBlock = nullptr;
     block_created = 0;
     clearRow = false;
     lose = false;
@@ -72,7 +70,6 @@ void Board::clearBoard() {
 
 void Board::init() {
     clearBoard();
-    cout << "error clearBoard" << endl;
     td = new TextDisplay();
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
@@ -85,9 +82,7 @@ void Board::init() {
         theBoard.push_back(tmp);
     }
     td->attachBoard(this);
-    cout << "error here" << endl;
     newBlock();
-    cout << "error here 2" << endl;
 }
 
 bool Board::isShiftValid(int angle, int x, int y) {
