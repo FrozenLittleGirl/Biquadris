@@ -72,7 +72,6 @@ void Board::clearBoard() {
 
 void Board::init() {
     clearBoard();
-    newBlock();
     td = new TextDisplay();
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
@@ -85,6 +84,7 @@ void Board::init() {
         theBoard.push_back(tmp);
     }
     td->attachBoard(this);
+    newBlock();
 }
 
 bool Board::isShiftValid(int angle, int x, int y) {
