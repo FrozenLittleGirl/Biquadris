@@ -386,7 +386,7 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     }
 }
 
-// This is a  helper
+// This is a  helper function which returns the specific block
 Block* helperBlock(int x, int y, char c) {
   Block * block;
   if (c == 'L') {
@@ -413,6 +413,35 @@ Block* helperBlock(int x, int y, char c) {
       block = new starblock{x, y, 0, false, 0, '*'};
   }
   return block;
+}
+
+// This is a helper function which determines if all block ofs the same type are cleared
+bool helperCheck(bool exist, char c, vector<vector<Cell>> & v) const {
+    if (exist == false) {
+        return false;
+    }
+    bool disappear = true;
+    if (c == '*') {
+        for (int row = 3; i < 18; ++row) {
+            if (v[row][5].getName() == '*') {
+                return false;
+            }
+        }
+        return true;
+    }
+    for (int row = 3; row < 18; ++row) {
+        if (disappear == false) {
+            break;
+        }
+        for (int col = 0; col < 11; ++col) {
+            char type = v[row][col].getName();
+            if (type != ' ' && type == c) {
+                disappear = false;
+                break;
+            }
+        }
+    }
+    return disappear;
 }
 
 // for block
@@ -544,12 +573,57 @@ void Board::dropStar() {
 
 void Board::detectRow() {
     int count = 0;
-    for (int row = 17; row >= 3; --row ) {
+    bool I = false;
+    bool J = false;
+    bool L = false;
+    bool O = false;
+    bool S = false;
+    bool Z = false;
+    bool T = false;
+    bool Star = false;
+    int I_level, J_level, L_level, O_level, S_level, Z_level, T_level, Star_level;
+    for (int row = 17; row >= 3; --row) {
         for (int col = 0; col < 11; ++col) {
             if (theBoard[row][col].getName() == ' ') {
                 break;
             }
             if (col == 10) {
+                for (int k = 0; k < 11; ++k) {
+                    char type = theBoard[row][k].getName();
+                    int current_level = theBoard[row][k].getLevel();
+                    if (type == 'I') {
+                        I = true;
+                        I_level = current_level;
+                    }
+                    else if (type == 'J') {
+                        J = true;
+                        J_level = current_level;
+                    }
+                    else if (type == 'L') {
+                        L = true;
+                        L_level = current_level;
+                    }
+                    else if (type == 'O') {
+                        O = true;
+                        O_level = current_level;
+                    }
+                    else if (type == 'S') {
+                        S = true;
+                        S_level = current_level;
+                    }
+                    else if (type == 'Z') {
+                        Z = true;
+                        Z_level = current_level;
+                    }
+                    else if (type == 'T') {
+                        T = true;
+                        T_level = current_level;
+                    }
+                    else {
+                        Star = true;
+                        Star_level = 4;
+                    }
+                }
                 for (int i = row - 1; i >= 3; --i) {
                     for (int j = 0; j < 11; ++j) {
                         theBoard[i + 1][j] = theBoard[i][j];
@@ -565,6 +639,34 @@ void Board::detectRow() {
     }
     if (count > 0) {
         clearRow = true;
+        tmp_score += (level_n + count) * (level_n + count);
+        if (helperCheck(I, 'I', theBoard)) {
+            tmp_score += (I_level + 1) * (I_level + 1);
+        }
+        if (helperCheck(J, 'J', theBoard)) {
+            tmp_score += (J_level + 1) * (J_level + 1);
+        }
+        if (helperCheck(L, 'L', theBoard)) {
+            tmp_score += (L_level + 1) * (L_level + 1);
+        }
+        if (helperCheck(O, 'O', theBoard)) {
+            tmp_score += (O_level + 1) * (O_level + 1);
+        }
+        if (helperCheck(S, 'S', theBoard)) {
+            tmp_score += (S_level + 1) * (S_level + 1);
+        }
+        if (helperCheck(Z, 'Z', theBoard)) {
+            tmp_score += (Z_level + 1) * (Z_level + 1);
+        }
+        if (helperCheck(T, 'T', theBoard)) {
+            tmp_score += (T_level + 1) * (T_level + 1);
+        }
+        if (helperCheck(Star, '*', theBoard)) {
+            tmp_score += (Star_level + 1) * (Star_level + 1);
+        }
+        if (tmp_score > score) {
+            score = tmp_score;
+        }
     }
     if (count > 1) {
         addAction(opponent, " ");
