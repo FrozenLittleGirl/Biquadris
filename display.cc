@@ -9,6 +9,10 @@ Display::Display(bool graphical) : graphical{graphical}, xw{nullptr} {
         xw = new Xwindow(1000, 800, Xwindow::Black);
         xw->fillRectangle(0, 0, 1000, 800, Xwindow::Black);
         xw->drawString(400, 40, "Biquadris", Xwindow::White);
+        xw->drawString(120, 70, "Level:", Xwindow::White);
+        xw->drawString(120, 85, "Score:", Xwindow::White);
+        xw->drawString(620, 70, "Level:", Xwindow::White);
+        xw->drawString(620, 85, "Score:", Xwindow::White);
         xw->drawString(120, 700, "Next:", Xwindow::White);
         xw->drawString(620, 700, "Next:", Xwindow::White)
     }
