@@ -3,6 +3,7 @@
 using namespace std;
 #include "SpecialActions.h"
 #include "Action.h"
+#include <iostream> // delete this
 
 TextDisplay::TextDisplay() {}
 
@@ -19,7 +20,8 @@ void TextDisplay::attachOpponent(Board* opponent) {
 ostream &operator<<(ostream &out, const TextDisplay &td) {
     out << "Level:    " << td.board->getLevel() << "      " << "Level:    " << td.opponent->getLevel() << endl;
     out << "Score:    " << td.board->getScore() << "      " << "Score:    " << td.opponent->getScore() << endl;
-    out << "-----------" << "      " << "-----------" << endl;
+    cout << "error 1" << endl;
+    out << "-------------" << "    " << "-------------" << endl;
     if ( dynamic_cast<Blind*>(td.board->getAction()) ) {
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
@@ -71,7 +73,7 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
             out << endl;
         }
     }
-    out << "-----------" << "      " << "-----------" << endl;
+    out << "-------------" << "    " << "-------------" << endl;
     out << "Next:      " << "      " << "Next:      " << endl;
     for (int i = 2; i < 4; i++) {
         out << td.board->getNextBlock()->getRotateDefault()[i] << "             " << td.opponent->getNextBlock()->getRotateDefault()[i] << endl;
