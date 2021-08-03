@@ -478,6 +478,25 @@ void Board::addAction(Board* opponent, string s) {
                 char c;
                 cin >> c;
                 opponent->action = new Force;
+                Block *current = opponent->currentBlock;
+                Block *forcedBlock = nullptr;
+                if (c == 'O') {
+                    forcedBlock = new oBlock(0, 0, 0, false, 0, 'O');
+                } else if (c == 'L') {
+                    forcedBlock = new LBlock(0, 0, 0, false, 0, 'L');
+                } else if (c == 'J') {
+                    forcedBlock = new JBlock(0, 0, 0, false, 0, 'L');
+                } else if (c == 'S') {
+                    forcedBlock = new lBlock(0, 0, 0, false, 0, 'L');
+                } else if (c == 'L') {
+                    forcedBlock = new lBlock(0, 0, 0, false, 0, 'L');
+                } else if (c == 'L') {
+                    forcedBlock = new lBlock(0, 0, 0, false, 0, 'L');
+                } else if (c == 'Z') {
+                    forcedBlock = new ZBlock(0, 0, 0, false, 0, 'L');
+                } else if (c == 'T') {
+                    forcedBlock = new TBlock(0, 0, 0, false, 0, 'L');
+                }
                 delete opponent->currentBlock;
                 opponent->currentBlock = helperBlock(0, 0, c);
                 // notify
@@ -533,15 +552,15 @@ void Board::detectRow() {
 }
 
 void Board::setRandom(bool set, string s) {
-        level->changeState(set, s);
+    level->changeState(set, s);
 }
 
 bool Board::determineLose() {
-        return lose;
+    return lose;
 }
 
 int Board::determineScore() {
-        return score;
+    return score;
 }
 
 int Board::getScore() const {
