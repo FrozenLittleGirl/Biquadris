@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "display.h"
+#include "View.h"
 #include "window.h"
 #include "SpecialActions.h"
 #include "Action.h"
@@ -10,9 +10,9 @@
 using namespace std;
 
 
-Cell::Cell(int x, int y, bool occupied, char c): 
-x{x}, y{y}, occupied{occupied}, name {c}, colour{Xwindow::White} {
-}
+Cell::Cell(int x, int y, bool occupied, char c)
+    : x{x}, y{y}, occupied{occupied}, name {c}, colour{Xwindow::White} 
+{}
 
 int Cell::getX() {
     return this->x; 
@@ -48,23 +48,23 @@ void Cell::setColour() {
     }
 }
 
-void Cell::display(int x_coord, int y_coord, bool isBlind) {
-    if ( !disp || !disp->isGraphical() ) {
+void Cell::View(int x_coord, int y_coord, bool isBlind) {
+    if ( !view || !view->isGraphical() ) {
         return;
     }
     if ( isBlind ) {
-        disp->fillCell(x + x_coord, y + y_coord, 20, Xwindow::Black);
+        view->fillCell(x + x_coord, y + y_coord, 20, Xwindow::Black);
     } else {
-        disp->fillCell(x + x_coord, y + y_coord, 20, colour);
+        view->fillCell(x + x_coord, y + y_coord, 20, colour);
     }
 }
 
 int Cell::getY() {
     return this->y; 
-}
+}   
 
-void Cell::setDisplay(Display *d) {
-    disp = d;
+void Cell::setDisplay(View *view) {
+    this->view = view;
 }
 
 void Cell::setX(int x) {

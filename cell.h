@@ -5,7 +5,7 @@
 #include <string>
 
 
-class Display;
+class View;
 
 class Cell {
     int x;
@@ -14,7 +14,7 @@ class Cell {
     char name;
     int colour;
     int level_n = 0;
-    Display* disp;
+    View* view;
     
     public:
     Cell(int x, int y, bool occupied, char c);
@@ -22,7 +22,7 @@ class Cell {
     int getY();
     void setColour();
     void display(int x_coord, int y_coord, bool isBlind);
-    void setDisplay(Display *d);
+    void setDisplay(*View view);
     void setX(int x);
     void setY(int y);
     bool isOccupied();
