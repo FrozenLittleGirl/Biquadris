@@ -10,7 +10,7 @@ class Cell {
     bool occupied;
     char name;
     int colour;
-    int level_n;
+    int level_n = 0;
     
     public:
     Cell(int x, int y, bool occupied, char c);
