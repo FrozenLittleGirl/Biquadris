@@ -17,17 +17,11 @@ void TextDisplay::attachOpponent(Board* opponent) {
 }
 
 ostream &operator<<(ostream &out, const TextDisplay &td) {
-    out << "error td.board->getLevel() ?" << endl;
-    out << td.board->getLevel() << endl;
-    out << "error td.board->getScore() ?" << endl;
-    out << "error td.opponent->getLevel() ?" << endl;
-    out << td.opponent->getLevel() << endl;
-    out << "error td.opponent->getScore() ?" << endl;
-    out << td.opponent->getScore() << endl;
     out << "Level:    " << td.board->getLevel() << "      " << "Level:    " << td.opponent->getLevel() << endl;
     out << "Score:    " << td.board->getScore() << "      " << "Score:    " << td.opponent->getScore() << endl;
     out << "-------------" << "    " << "-------------" << endl;
-    if ( !td.board->getAction() && !td.opponent->getAction() ) {
+    if ( !(td.board->getAction()) && !(td.opponent->getAction()) ) {
+        cout << "player1 and player2 actions == nullptr" << endl;
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
