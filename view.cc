@@ -1,10 +1,10 @@
-#include "display.h"
+#include "View.h"
 #include "SpecialActions.h"
 #include "Action.h"
 using namespace std;
 
 
-Display::Display(bool graphical) : graphical{graphical}, xw{nullptr} {
+View::View(bool graphical) : graphical{graphical}, xw{nullptr} {
     if (graphical) {
         xw = new Xwindow(1000, 800, Xwindow::Black);
         xw->fillRectangle(0, 0, 1000, 800, Xwindow::Black);
@@ -18,90 +18,90 @@ Display::Display(bool graphical) : graphical{graphical}, xw{nullptr} {
     }
 }
 
-Display::~Display() {
+View::~View() {
     delete xw;
 }
 
-void Display::attachBoard(Board* board) {
+void View::attachBoard(Board* board) {
     this->board = board;
 }
 
-void Display::attachOpponent(Board* opponent) {
+void View::attachOpponent(Board* opponent) {
     this->opponent = opponent;
 }
 
 
-void Display::coverString(int x, int y, int width, int colour) {
+void View::coverString(int x, int y, int width, int colour) {
     if (graphical) {
         xw->fillRectangle(x, y, width, 15, colour);
     }
 }
 
 
-void Display::fillString(int x, int y, string s, int colour) {
+void View::fillString(int x, int y, string s, int colour) {
     if (graphical) {
         xw->drawString(x, y, s, colour);
     }
 }
 
 
-void Display::fillCell(int x, int y, int width, int colour) {
+void View::fillCell(int x, int y, int width, int colour) {
     if (graphical) {
         xw->fillRectangle(x, y, width, width, colour);
     }
 }
 
 
-ostream &operator<<(ostream &out, const Display &d) {
-    out << "Level:    " << d.board->getLevel() << "      " << "Level:    " << d.opponent->getLevel() << endl;
-    out << "Score:    " << d.board->getScore() << "      " << "Score:    " << d.opponent->getScore() << endl;
+ostream &operator<<(ostream &out, const View &td) {
+    out << "Level:    " << td.board->getLevel() << "      " << "Level:    " << td.opponent->getLevel() << endl;
+    out << "Score:    " << td.board->getScore() << "      " << "Score:    " << td.opponent->getScore() << endl;
     out << "-----------" << "      " << "-----------" << endl;
-    if ( dynamic_cast<Blind*>(d.board->getAction()) ) {
-        for (int i = 0; i < d.NUM_ROWS; i++) {
+    if ( dynamic_cast<Blind*>(td.board->getAction()) ) {
+        for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
-            for (int j = 0; j < d.NUM_COLS; j++) {
+            for (int j = 0; j < td.NUM_COLS; j++) {
                 if ( (2 <= j && j <= 8) && ( 6 <= i && i <= 15 ) ) {
                     out << '?';
                 } else {
-                    out << d.board->getBoard()[i][j].getName();
+                    out << td.board->getBoard()[i][j].getName();
                 }
             }
             cout << "-";
             out << "    -";
-            for (int j = 0; j < d.NUM_COLS; j++) {
-                out << d.opponent->getBoard()[i][j].getName();
+            for (int j = 0; j < td.NUM_COLS; j++) {
+                out << td.opponent->getBoard()[i][j].getName();
             }  
             cout << "-";
             out << endl;
         }        
-    } else if ( dynamic_cast<Blind*>(d.opponent->getAction()) ) {
-        for (int i = 0; i < d.NUM_ROWS; i++) {
+    } else if ( dynamic_cast<Blind*>(td.opponent->getAction()) ) {
+        for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
-            for (int j = 0; j < d.NUM_COLS; j++) {
-                out << d.board->getBoard()[i][j].getName();                
+            for (int j = 0; j < td.NUM_COLS; j++) {
+                out << td.board->getBoard()[i][j].getName();                
             }
             cout << "-";
             out << "    -";
-            for (int j = 0; j < d.NUM_COLS; j++) {
+            for (int j = 0; j < td.NUM_COLS; j++) {
                 if ( (2 <= j && j <= 8) && ( 6 <= i && i <= 15 ) ) {
                     out << '?';
                 } else {
-                    out << d.opponent->getBoard()[i][j].getName();
+                    out << td.opponent->getBoard()[i][j].getName();
                 }
             }  
             cout << "-";
             out << endl;
         }
     } else {
-        for (int i = 0; i < d.NUM_ROWS; i++) {
+        for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
-            for (int j = 0; j < d.NUM_COLS; j++) {
-                out << d.board->getBoard()[i][j].getName();
+            for (int j = 0; j < td.NUM_COLS; j++) {
+                out << td.board->getBoard()[i][j].getName();
             }
             cout << "-";
             out << "    -";
-            for (int j = 0; j < d.NUM_COLS; j++) {
-                out << d.opponent->getBoard()[i][j].getName();
+            for (int j = 0; j < td.NUM_COLS; j++) {
+                out << td.opponent->getBoard()[i][j].getName();
             }  
             cout << "-";
             out << endl;
@@ -110,7 +110,7 @@ ostream &operator<<(ostream &out, const Display &d) {
     out << "-----------" << "      " << "-----------" << endl;
     out << "Next:      " << "      " << "Next:      " << endl;
     for (int i = 2; i < 4; i++) {
-        out << d.board->getNextBlock()->getRotateDefault()[i] << "             " << d.opponent->getNextBlock()->getRotateDefault()[i] << endl;
+        out << td.board->getNextBlock()->getRotateDefault()[i] << "             " << td.opponent->getNextBlock()->getRotateDefault()[i] << endl;
     }
     return out;
 }
