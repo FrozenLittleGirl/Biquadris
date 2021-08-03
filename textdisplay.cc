@@ -21,7 +21,6 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
     out << "Score:    " << td.board->getScore() << "      " << "Score:    " << td.opponent->getScore() << endl;
     out << "-------------" << "    " << "-------------" << endl;
     if ( !(td.board->getAction()) && !(td.opponent->getAction()) ) {
-        cout << "player1 and player2 actions == nullptr" << endl;
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
@@ -36,7 +35,6 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
             out << endl;
         }
     } else if ( td.board->getAction() && dynamic_cast<Blind*>(td.board->getAction()) ) {
-        cout << "error dynamic cast board->getAction()" << endl;
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
@@ -55,7 +53,6 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
             out << endl;
         }        
     } else if ( td.opponent->getAction() && dynamic_cast<Blind*>(td.opponent->getAction()) ) {
-        cout << "error dynamic cast opponent->getAction()" << endl;
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
@@ -74,7 +71,6 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
             out << endl;
         }
     } else {
-        cout << "made it past dynamic casts" << endl;
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
