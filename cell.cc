@@ -73,6 +73,9 @@ char Cell::getName() {
     return name;
 }
 
+int Cell::getLevel() {
+    return level_n;
+}
 
 void Cell::clearCell() {
     this->name = ' ';
