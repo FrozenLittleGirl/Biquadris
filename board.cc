@@ -70,6 +70,13 @@ void Board::init() {
         // push back each row
         theBoard.push_back(tmp);
     }
+
+    for (int i = 0; i < NUM_ROWS; i++) {
+        for (int j = 0; j < NUM_COLS; j++) {
+            theBoard[i][j].setDisplay(disp);
+        }
+    }
+
     td->attachBoard(this);
     delete currentBlock;
     delete nextBlock;
