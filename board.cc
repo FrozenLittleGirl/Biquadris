@@ -58,7 +58,7 @@ void Board::clearBoard() {
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
-    cout << "error " << currentBlock->getName() << endl;
+    cout << "error 1 " << currentBlock->getName() << endl;
     nextBlock = level->generateBlock();
     currentBlock = nullptr;
     block_created = 0;
@@ -327,7 +327,7 @@ void Board::down(int steps) {
 
 
 void Board::drop() {
-    cout << "error " << currentBlock->getName() << endl; 
+    cout << "error 2 " << currentBlock->getName() << endl; 
     while (isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
