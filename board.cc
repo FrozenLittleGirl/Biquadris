@@ -516,7 +516,7 @@ void Board::addAction(Board* opponent, string s) {
                 char c;
                 cin >> c;
                 opponent->action = new Force;
-                Block *current = opponent->getCurrentBlock();
+                Block *current = opponent->currentBlock;
                 Block *forcedBlock = nullptr;
                 if (c != 'O' && c != 'L' && c != 'J' && c != 'S' && c != 'I'
                 && c != 'Z' && c != 'T') {
@@ -734,11 +734,6 @@ Block* Board::getNextBlock() const {
 int Board::getLevel() const {
     return level_n;
 }
-
-Block *Board::getCurrentBlock() {
-    return currentBlock;
-}
-
 
 void Board::setCurrentBlock(Block * newBlock) {
     this->currentBlock = newBlock;
