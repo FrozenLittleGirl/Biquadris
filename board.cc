@@ -56,6 +56,9 @@ void Board::clearBoard() {
     delete action;
     action = nullptr;
     delete currentBlock;
+    delete nextBlock;
+    currentBlock = level->generateBlock();
+    nextBlock = level->generateBlock();
     currentBlock = nullptr;
     block_created = 0;
     clearRow = false;
@@ -82,7 +85,6 @@ void Board::init() {
         theBoard.push_back(tmp);
     }
     td->attachBoard(this);
-    newBlock();
 }
 
 bool Board::isShiftValid(int angle, int x, int y) {
@@ -365,6 +367,8 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete level;
     delete currentBlock;
     delete nextBlock;
+    currentBlock = nullptr;
+    nextBlock = nullptr;
     level_n = n;
     if (n == 0) {
             level = new levelZero{ file, seed, set_seed };
@@ -381,8 +385,6 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     else {
             level = new levelFour{ seed, set_seed, this };
     }
-    currentBlock = level->generateBlock();
-    nextBlock = level->generateBlock();
 }
 
 // This is a  helper
