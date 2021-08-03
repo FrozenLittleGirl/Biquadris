@@ -10,6 +10,7 @@ class Cell {
     bool occupied;
     char name;
     int colour;
+    int level_n;
     
     public:
     Cell(int x, int y, bool occupied, char c);
@@ -21,6 +22,7 @@ class Cell {
     bool isOccupied();
     char getName();
     void setName(char c);
+    int getLevel();
     void clearCell();
 };
 
