@@ -175,7 +175,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
                 //cout << "currentX + j: "  << blockX + j << endl;
                 //cout << "currentY + i: " << blockY + i << endl;
                 if (currentChar != ' ') {
-                    cout << "isOccupied:" << theBoard[blockY + i][blockX + j].isOccupied() << endl;
+                    //cout << "isOccupied:" << theBoard[blockY + i][blockX + j].isOccupied() << endl;
                     if (theBoard[blockY + i][blockX + j].isOccupied() == true) {
                         return false;
                     }
