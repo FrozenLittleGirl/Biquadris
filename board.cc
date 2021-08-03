@@ -47,6 +47,9 @@ void Board::print() {
 //}
 
 void Board::clearBoard() {
+    if (tmp_score > score) {
+        score = tmp_score;
+    }
     tmp_score = 0;
     delete td;
     td = nullptr;
@@ -69,6 +72,7 @@ void Board::clearBoard() {
 
 void Board::init() {
     clearBoard();
+    newBlock();
     td = new TextDisplay();
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
