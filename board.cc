@@ -3,7 +3,7 @@
 #include "level.h"
 #include "NextBlock.h"
 #include "Action.h"
-#include "textdisplay.h"
+#include "display.h"
 #include "iblock.h"
 #include "jblock.h"
 #include "lblock.h"
@@ -19,11 +19,12 @@
 using namespace std;
 
 
-// for test
-// .................................
-Board::Board() {
-    td = new TextDisplay();
+Board::Board(bool graphical, int x, int y) :
+    : x{x},
+      y{y} {
+    disp = new Display(graphical);
 }
+
 
 void Board::print() {
     cout << "-----------" << endl;
@@ -36,41 +37,29 @@ void Board::print() {
     }
     cout << "-----------" << endl;
     vector<string> v = nextBlock->getRotateDefault();
-    //cout << v[1] << endl;
     cout << v[2] << endl;
     cout << v[3] << endl;
 }
 
-// ........................
-
-// a helper to restore the type of cell to ' '
-//static void restoreType(shared_ptr<Block> block) {
-//
-//}
 
 void Board::clearBoard() {
     if (tmp_score > score) {
         score = tmp_score;
     }
     tmp_score = 0;
-    //delete td;
-    //td = nullptr;
     delete action;
     action = nullptr;
     block_created = 0;
     clearRow = false;
     lose = false;
-    /*for (int i = 0; i < 18; i++) {
-        for (int j = 0; j < 11; j++) {
-            theBoard[i][j].clearCell();
-        }
-    } */ //  Kenisha: I don't think we need this loop, we can just call theBoard.clear()
     theBoard.clear();
 }
 
 void Board::init() {
     clearBoard();
-    //td = new TextDisplay();
+    disp->coverString(x, y + 15, Xwindow::Black);
+    disp->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
+    disp->fillString(x, y, to_string(level_n), Xwindow::White);
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
         // initialize each column
@@ -215,6 +204,7 @@ void Board::move(int angle, int x, int y) {
         for (int j = 0; j < 4; j++) {
             if (currentRotation[i][j] != ' ') {
                 theBoard[currentY + i][currentX + j].clearCell();
+                theBoard[currentY + i][currentX + j].setColour();
             }
 
         }
@@ -242,6 +232,7 @@ void Board::move(int angle, int x, int y) {
             if (rotation[i][j] != ' ') {
                 theBoard[currentY + y + i][currentX + x + j].setLevel(level_n);
                 theBoard[currentY + y + i][currentX + x + j].setName(rotation[i][j]);
+                theBoard[currentY + y + i][currentX + x + j].setColour();
             }
         }
     }
@@ -280,6 +271,7 @@ void Board::left(int steps) {
         }
     }
     //print();
+    displayBoard();
 }
 
 
@@ -309,6 +301,7 @@ void Board::right(int steps) {
         }
     }
     //print();
+    displayBoard();
 }
 
 
@@ -324,6 +317,7 @@ void Board::down(int steps) {
         move(0, 0, 1);
     }
     //print();
+    displayBoard();
 }
 
 
@@ -342,6 +336,7 @@ void Board::drop() {
     detectRow();
     //cout << "error 3" << endl;
     //print();
+    displayBoard();
 }
 
 void Board::clockwise(int angle) {
@@ -352,6 +347,7 @@ void Board::clockwise(int angle) {
         move(0, 0, 1);
     }
     //print();
+    displayBoard();
 }
 
 
@@ -363,12 +359,17 @@ void Board::counterclockwise(int angle) {
         move(0, 0, 1);
     }
     //print();
+    displayBoard();
 }
 
 // for level
 void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete level;
+    if (level_n != n) {
+        disp->coverString(x, y, 12, Xwindow::Black);
+    }
     level_n = n;
+    disp->fillString(x, y, to_string(level_n), Xwindow::White);
     if (n == 0) {
             level = new levelZero{ file, seed, set_seed };
     }
@@ -571,6 +572,11 @@ void Board::dropStar() {
     currentBlock = tmp;
 }
 
+void Board::displayScore() {
+    disp->coverString(x, y + 15, Xwindow::Black);
+    disp->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
+}
+
 void Board::detectRow() {
     int count = 0;
     bool I = false;
@@ -627,10 +633,12 @@ void Board::detectRow() {
                 for (int i = row - 1; i >= 3; --i) {
                     for (int j = 0; j < 11; ++j) {
                         theBoard[i + 1][j] = theBoard[i][j];
+                        theBoard[i + 1][j].setColour();
                     }
                 }
                 for (int j = 0; j < 11; ++j) {
                     theBoard[3][j].clearCell();
+                    theBoard[3][j].setColour();
                 }
                 ++row;
                 ++count;
@@ -667,10 +675,20 @@ void Board::detectRow() {
         if (tmp_score > score) {
             score = tmp_score;
         }
+        displayScore();
     }
     if (count > 1) {
         addAction(opponent, " ");
     }
+}
+
+void Board::displayBoard() {
+    if (!view || !view->isGraphical()) {
+        return;
+    }
+    for (int i = 0; i < NUM_ROWS; i++) {
+        for (int j = 0; j < NUM_COLS; j++) {
+            theBoard[i][j].display();
 }
 
 void Board::setRandom(bool set, string s) {

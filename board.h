@@ -8,16 +8,18 @@
 #include "cell.h"
 using namespace std;
 
-class TextDisplay;
+class Display;
 class SpecialAction;
 class NextBlock;
 
 class Board {
     const int NUM_COLS = 11;
     const int NUM_ROWS = 18;
+    int x;
+    int y;
     vector<vector<Cell>> theBoard;
     Board* opponent = nullptr;
-    TextDisplay *td = nullptr;
+    Display *disp = nullptr;
     SpecialAction* action = nullptr;
     NextBlock* level = nullptr;
     int level_n;
@@ -31,6 +33,8 @@ class Board {
     int block_created = 0;
     bool clearRow = false;
     void dropStar();
+    void displayScore();
+    void displayBoard();
 
     protected:
     int score = 0;
