@@ -50,10 +50,8 @@ int main(int argc, char** argv) {
     Board player2;
     player1.addLevel(level, seed, set_seed, file1);
     player2.addLevel(level, seed, set_seed, file2);
-    cout << "error addlevel" << endl;
     player1.init();
     player2.init();
-    cout << "error init" << endl;
     player1.attach(&player2, &turn);
     player2.attach(&player1, &turn);
     cout << player1;
@@ -205,9 +203,7 @@ int main(int argc, char** argv) {
             else {
                 player2.right(times);
             }
-            cout << "error right1" << endl;
             cout << player1;
-            cout << "error right2" << endl;
         }
         else if (cmd == s3) {  //down
             if (turn % 2 == 0) {
@@ -276,21 +272,21 @@ int main(int argc, char** argv) {
             cout << player1;
         }
         else if (cmd == s9) {  //norandom
-            if (turn % 2 == 0) {
-                player1.setRandom(false, file1);
-            }
-            else {
-                player2.setRandom(false, file2);
-            }
-        }
-        else if (cmd == s10) {  //random
             string newFile;
             cin >> newFile;
             if (turn % 2 == 0) {
-                player1.setRandom(true, newFile);
+                player1.setRandom(false, newFile);
             }
             else {
-                player2.setRandom(true, newFile);
+                player2.setRandom(false, newFile);
+            }
+        }
+        else if (cmd == s10) {  //random
+            if (turn % 2 == 0) {
+                player1.setRandom(true, file1);
+            }
+            else {
+                player2.setRandom(true, file2);
             }
         }
         else if (cmd == "I" || cmd == "J" || cmd == "L" || cmd == "O" ||
@@ -316,9 +312,7 @@ int main(int argc, char** argv) {
             else {
                 player2.init();
             }
-            cout << "error restart1" << endl;
             cout << player1;
-            cout << "error restart2" << endl;
             continue;
         }
         else {
