@@ -68,6 +68,7 @@ void Board::clearBoard() {
 
 void Board::init() {
     clearBoard();
+    cout << "error clear" << endl;
     td = new TextDisplay();
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
@@ -84,6 +85,7 @@ void Board::init() {
     delete nextBlock;
     currentBlock = level->generateBlock();
     nextBlock = level->generateBlock();
+    cout << "error init end" << endl;
 }
 
 bool Board::isShiftValid(int angle, int x, int y) {
@@ -527,7 +529,6 @@ void Board::detectRow() {
     }
     if (count > 0) {
         clearRow = true;
-        cout << *this;
     }
     if (count > 1) {
         addAction(opponent, " ");
