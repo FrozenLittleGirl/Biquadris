@@ -49,13 +49,13 @@ void Cell::setColour() {
 }
 
 void Cell::display(int x_coord, int y_coord, bool isBlind) {
-    if ( !view || !view->isGraphical() ) {
+    if ( !disp || !disp->isGraphical() ) {
         return;
     }
     if ( isBlind ) {
-        view->fillCell(x + x_coord, y + y_coord, 20, Xwindow::Black);
+        disp->fillCell(x + x_coord, y + y_coord, 20, Xwindow::Black);
     } else {
-        view->fillCell(x + x_coord, y + y_coord, 20, colour);
+        disp->fillCell(x + x_coord, y + y_coord, 20, colour);
     }
 }
 
@@ -63,6 +63,9 @@ int Cell::getY() {
     return this->y; 
 }
 
+void Cell::setDisplay(Display *d) {
+    disp = d;
+}
 
 void Cell::setX(int x) {
     this->x = x;
