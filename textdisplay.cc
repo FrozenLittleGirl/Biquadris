@@ -3,7 +3,6 @@
 using namespace std;
 #include "SpecialActions.h"
 #include "Action.h"
-#include <iostream> // delete this
 
 TextDisplay::TextDisplay() {}
 
@@ -58,7 +57,6 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
             out << endl;
         }
     } else {
-        cout << "error 1" << endl;
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
