@@ -17,6 +17,10 @@ void TextDisplay::attachOpponent(Board* opponent) {
 }
 
 ostream &operator<<(ostream &out, const TextDisplay &td) {
+    out << "error td.board->getLevel() ?" << endl;
+    out << td.board->getLevel() << endl;
+    out << "error td.board->getScore() ?" << endl;
+    out << td.board->getScore() << endl;
     out << "Level:    " << td.board->getLevel() << "      " << "Level:    " << td.opponent->getLevel() << endl;
     out << "Score:    " << td.board->getScore() << "      " << "Score:    " << td.opponent->getScore() << endl;
     out << "-------------" << "    " << "-------------" << endl;
