@@ -417,16 +417,17 @@ Block* helperBlock(int x, int y, char c) {
 // for block
 void Board::newBlock(char c) {
     ++block_created;
-    delete currentBlock;
     if (c == 'n') {
-            currentBlock = nextBlock;
-            nextBlock = level->generateBlock();
+        delete currentBlock;
+        currentBlock = nextBlock;
+        nextBlock = level->generateBlock();
     }
     else {
     // Nata: careful! new block should always fit the current position
     --block_created;
     int x = currentBlock->getXcoord();
     int y = currentBlock->getYcoord();
+    delete currentBlock;
     this->currentBlock = helperBlock(x, y, c);
     }
 
