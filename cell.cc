@@ -4,6 +4,9 @@
 #include <string>
 #include "display.h"
 #include "window.h"
+#include "SpecialActions.h"
+#include "Action.h"
+
 using namespace std;
 
 
@@ -45,11 +48,15 @@ void Cell::setColour() {
     }
 }
 
-void Cell::display(int x_coord, int y_coord) {
+void Cell::display(int x_coord, int y_coord, bool isBlind) {
     if ( !view || !view->isGraphical() ) {
         return;
     }
-    view->fillCell(x + x_coord, y + y_coord, 20, colour);
+    if ( isBlind ) {
+        view->fillCell(x + x_coord, y + y_coord, 20, Xwindow::Black);
+    } else {
+        view->fillCell(x + x_coord, y + y_coord, 20, colour);
+    }
 }
 
 int Cell::getY() {
