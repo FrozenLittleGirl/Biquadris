@@ -4,6 +4,9 @@
 #include <vector>
 #include <string>
 
+
+class Display;
+
 class Cell {
     int x;
     int y;
@@ -17,6 +20,7 @@ class Cell {
     int getX();
     int getY();
     void setColour();
+    void display();
     void setX(int x);
     void setY(int y);
     bool isOccupied();

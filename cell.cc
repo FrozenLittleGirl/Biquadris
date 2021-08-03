@@ -45,6 +45,13 @@ void Cell::setColour() {
     }
 }
 
+void Cell::display() {
+    if ( !view || !view->isGraphical() ) {
+        return;
+    }
+    view->fillCell(x, y, 20, colour);
+}
+
 int Cell::getY() {
     return this->y; 
 }
