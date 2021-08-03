@@ -66,7 +66,6 @@ class Board {
         Block* getNextBlock() const;
         int getLevel() const;
         int getScore() const;
-        Block *getCurrentBlock();
         void setCurrentBlock(Block * newBlock);
         SpecialAction* getAction() const;
         vector<vector<Cell>> getBoard() const;
