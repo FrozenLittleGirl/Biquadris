@@ -58,7 +58,7 @@ void Board::clearBoard() {
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
-    cout << "error " << currentBlock->getName << endl;
+    cout << "error " << currentBlock->getName() << endl;
     nextBlock = level->generateBlock();
     currentBlock = nullptr;
     block_created = 0;
