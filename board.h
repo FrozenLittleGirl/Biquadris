@@ -8,7 +8,7 @@
 #include "cell.h"
 using namespace std;
 
-class Display;
+class View;
 class SpecialAction;
 class NextBlock;
 
@@ -19,7 +19,7 @@ class Board {
     int y;
     vector<vector<Cell>> theBoard;
     Board* opponent = nullptr;
-    Display *disp = nullptr;
+    View *view = nullptr;
     SpecialAction* action = nullptr;
     NextBlock* level = nullptr;
     int level_n;

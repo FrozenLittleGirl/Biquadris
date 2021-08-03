@@ -3,7 +3,7 @@
 #include "level.h"
 #include "NextBlock.h"
 #include "Action.h"
-#include "display.h"
+#include "view.h"
 #include "iblock.h"
 #include "jblock.h"
 #include "lblock.h"
@@ -22,7 +22,7 @@ using namespace std;
 Board::Board(bool graphical, int x, int y) :
     : x{x},
       y{y} {
-    disp = new Display(graphical);
+    view = new View(graphical);
 }
 
 
@@ -57,9 +57,9 @@ void Board::clearBoard() {
 
 void Board::init() {
     clearBoard();
-    disp->coverString(x, y + 15, Xwindow::Black);
-    disp->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
-    disp->fillString(x, y, to_string(level_n), Xwindow::White);
+    view->coverString(x, y + 15, Xwindow::Black);
+    view->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
+    view->fillString(x, y, to_string(level_n), Xwindow::White);
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
         // initialize each column
@@ -73,7 +73,7 @@ void Board::init() {
 
     for (int i = 0; i < NUM_ROWS; i++) {
         for (int j = 0; j < NUM_COLS; j++) {
-            theBoard[i][j].setDisplay(disp);
+            theBoard[i][j].setDisplay(view);
         }
     }
 
@@ -373,10 +373,10 @@ void Board::counterclockwise(int angle) {
 void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete level;
     if (level_n != n) {
-        disp->coverString(x, y, 12, Xwindow::Black);
+        view->coverString(x, y, 12, Xwindow::Black);
     }
     level_n = n;
-    disp->fillString(x, y, to_string(level_n), Xwindow::White);
+    view->fillString(x, y, to_string(level_n), Xwindow::White);
     if (n == 0) {
             level = new levelZero{ file, seed, set_seed };
     }
@@ -580,8 +580,8 @@ void Board::dropStar() {
 }
 
 void Board::displayScore() {
-    disp->coverString(x, y + 15, Xwindow::Black);
-    disp->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
+    view->coverString(x, y + 15, Xwindow::Black);
+    view->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
 }
 
 void Board::detectRow() {
