@@ -326,6 +326,7 @@ void Board::down(int steps) {
 
 
 void Board::drop() {
+    cout << "error " << currentBlock->getName() << endl; 
     while (isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
