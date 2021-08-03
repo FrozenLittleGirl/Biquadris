@@ -688,7 +688,11 @@ void Board::displayBoard() {
     }
     for (int i = 0; i < NUM_ROWS; i++) {
         for (int j = 0; j < NUM_COLS; j++) {
-            theBoard[i][j].display(x, y);
+            if ( dynamic_cast<Blind*>(action) ) {
+                theBoard[i][j].display(x, y, true);
+            } else {
+                theBoard[i][j].display(x, y, false);
+            }
 }
 
 void Board::setRandom(bool set, string s) {
