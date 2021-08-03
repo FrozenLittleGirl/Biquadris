@@ -55,10 +55,6 @@ void Board::clearBoard() {
     td = nullptr;
     delete action;
     action = nullptr;
-    delete currentBlock;
-    delete nextBlock;
-    currentBlock = level->generateBlock();
-    nextBlock = level->generateBlock();
     block_created = 0;
     clearRow = false;
     lose = false;
@@ -84,6 +80,10 @@ void Board::init() {
         theBoard.push_back(tmp);
     }
     td->attachBoard(this);
+    delete currentBlock;
+    delete nextBlock;
+    currentBlock = level->generateBlock();
+    nextBlock = level->generateBlock();
 }
 
 bool Board::isShiftValid(int angle, int x, int y) {
