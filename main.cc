@@ -46,8 +46,8 @@ int main(int argc, char** argv) {
     }
     // set up boards
     int turn = 0;
-    Board player1;
-    Board player2;
+    Board player1/*(textOnly)*/;
+    Board player2/*(textOnly)*/;
     player1.addLevel(level, seed, set_seed, file1);
     player2.addLevel(level, seed, set_seed, file2);
     cout << "error addlevel" << endl;
