@@ -20,11 +20,15 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
     out << "error td.board->getLevel() ?" << endl;
     out << td.board->getLevel() << endl;
     out << "error td.board->getScore() ?" << endl;
-    out << td.board->getScore() << endl;
+    out << "error td.opponent->getLevel() ?" << endl;
+    out << td.opponent->getLevel() << endl;
+    out << "error td.opponent->getScore() ?" << endl;
+    out << td.opponent->getScore() << endl;
     out << "Level:    " << td.board->getLevel() << "      " << "Level:    " << td.opponent->getLevel() << endl;
     out << "Score:    " << td.board->getScore() << "      " << "Score:    " << td.opponent->getScore() << endl;
     out << "-------------" << "    " << "-------------" << endl;
     if ( dynamic_cast<Blind*>(td.board->getAction()) ) {
+        cout << "error dynamic cast board->getAction()" << endl;
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
@@ -43,6 +47,7 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
             out << endl;
         }        
     } else if ( dynamic_cast<Blind*>(td.opponent->getAction()) ) {
+        cout << "error dynamic cast opponent->getAction()" << endl;
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
@@ -61,6 +66,7 @@ ostream &operator<<(ostream &out, const TextDisplay &td) {
             out << endl;
         }
     } else {
+        cout << "made it past dynamic casts" << endl;
         for (int i = 0; i < td.NUM_ROWS; i++) {
             cout << "-";
             for (int j = 0; j < td.NUM_COLS; j++) {
