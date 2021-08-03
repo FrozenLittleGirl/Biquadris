@@ -84,6 +84,7 @@ void Cell::setLevel(int level_n) {
 void Cell::clearCell() {
     this->name = ' ';
     occupied = false;
+    level_n = 0;
 }
 
 
