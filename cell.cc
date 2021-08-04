@@ -48,7 +48,7 @@ void Cell::setColour() {
     }
 }
 
-void Cell::View(int x_coord, int y_coord, bool isBlind) {
+void Cell::display(int x_coord, int y_coord, bool isBlind) {
     if ( !view || !view->isGraphical() ) {
         return;
     }
