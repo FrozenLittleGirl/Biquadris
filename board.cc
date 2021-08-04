@@ -701,6 +701,7 @@ void Board::displayBoard() {
                 theBoard[i][j].display(x, y, false);
             }
         }
+    }
 }
 
 void Board::setRandom(bool set, string s) {
