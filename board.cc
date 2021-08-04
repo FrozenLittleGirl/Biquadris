@@ -77,7 +77,7 @@ void Board::init() {
         }
     }
 
-    td->attachBoard(this);
+    view->attachBoard(this);
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
@@ -497,7 +497,7 @@ void Board::newBlock(char c) {
 void Board::attach(Board* opponent, int* n) {
         this->opponent = opponent;
         turn = n;
-        td->attachOpponent(opponent);
+        view->attachOpponent(opponent);
 }
 
 void Board::addAction(Board* opponent, string s) {
@@ -742,7 +742,7 @@ void Board::setCurrentBlock(Block * newBlock) {
 
 
 ostream &operator<<(ostream &out, const Board &b) {
-    out << *(b.td) << endl;
+    out << *(b.view) << endl;
     return out;
 }
 
