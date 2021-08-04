@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "View.h"
+#include "view.h"
 #include "window.h"
 #include "SpecialActions.h"
 #include "Action.h"
