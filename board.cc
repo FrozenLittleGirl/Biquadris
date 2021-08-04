@@ -581,7 +581,7 @@ void Board::dropStar() {
 
 void Board::displayScore() {
     view->coverString(x, y + 15, 12, Xwindow::Black);
-    view->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
+    view->fillString(x, y + 15, to_string(tmp_score), Xwindow::White);
 }
 
 void Board::detectRow() {
