@@ -81,7 +81,6 @@ void Board::init() {
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
-    ++block_created;
     nextBlock = level->generateBlock();
 }
 
@@ -334,6 +333,7 @@ void Board::drop() {
         move(0, 0, 1);
     }
     ++block_created;
+    cout << "error drop" << block_created << endl;
     newBlock();
 
     delete action;
