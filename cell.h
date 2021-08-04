@@ -13,7 +13,6 @@ class Cell {
     bool occupied;
     char name;
     int colour;
-    int level_n = 0;
     View* view;
     
     public:
@@ -28,8 +27,6 @@ class Cell {
     bool isOccupied();
     char getName();
     void setName(char c);
-    void setLevel(int level_n);
-    int getLevel();
     void clearCell();
 };
 
