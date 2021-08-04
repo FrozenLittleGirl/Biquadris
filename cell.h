@@ -22,7 +22,7 @@ class Cell {
     int getY();
     void setColour();
     void display(int x_coord, int y_coord, bool isBlind);
-    void setDisplay(*View view);
+    void setDisplay(View* view);
     void setX(int x);
     void setY(int y);
     bool isOccupied();
