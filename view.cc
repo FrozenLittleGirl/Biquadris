@@ -7,7 +7,7 @@ using namespace std;
 
 View::View(bool graphical) : graphical{graphical} {
     if (graphical) {
-        xw = new Xwindow(1000, 800, Xwindow::Black);
+        xw = new Xwindow(1000, 800);
         xw->fillRectangle(0, 0, 1000, 800, Xwindow::Black);
         xw->drawString(400, 40, "Biquadris", Xwindow::White);
         xw->drawString(120, 70, "Level:", Xwindow::White);
