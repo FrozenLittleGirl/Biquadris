@@ -391,6 +391,7 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     }
     else {
             level = new levelFour{ seed, set_seed, this };
+            block_created = 0;
     }
 }
 
