@@ -2,9 +2,10 @@
 #define _VIEW_H_
 #include <iostream>
 #include "window.h"
-#include "board.h"
 #include <string>
 using namespace std;
+
+class Board;
 
 class View {
     const int NUM_COLS = 11;
@@ -17,7 +18,6 @@ class View {
         ~View();
         void attachBoard(Board* board);
         void attachOpponent(Board* opponent);
-        // void notify(Cell &whoNotified) override;
         friend std::ostream &operator<<(std::ostream &out, const View &td);
         //void printBoards();
 };

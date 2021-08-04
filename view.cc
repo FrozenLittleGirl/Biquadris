@@ -1,6 +1,7 @@
-#include "View.h"
+#include "view.h"
 #include "SpecialActions.h"
 #include "Action.h"
+#include "board.h"
 using namespace std;
 
 
