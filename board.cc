@@ -58,7 +58,7 @@ void Board::clearBoard() {
 void Board::init() {
     clearBoard();
     view->coverString(x, y + 15, 12, Xwindow::Black);
-    view->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
+    view->fillString(x, y + 15, to_string(tmp_score), Xwindow::White);
     view->fillString(x, y, to_string(level_n), Xwindow::White);
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
@@ -81,6 +81,7 @@ void Board::init() {
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
+    ++block_created;
     nextBlock = level->generateBlock();
 }
 
@@ -333,7 +334,7 @@ void Board::drop() {
     while (isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    cout << "error 1" << endl;
+    ++block_created;
     newBlock();
 
     delete action;
@@ -372,6 +373,7 @@ void Board::counterclockwise(int angle) {
 // for level
 void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete level;
+    block_created = 0;
     if (level_n != n) {
         view->coverString(x, y, 12, Xwindow::Black);
     }
@@ -454,7 +456,6 @@ bool helperCheck(bool exist, char c, vector<vector<Cell>> & v) {
 
 // for block
 void Board::newBlock(char c) {
-    ++block_created;
     if (c == 'n') {
         delete currentBlock;
         currentBlock = nextBlock;
@@ -462,7 +463,6 @@ void Board::newBlock(char c) {
     }
     else {
     // Nata: careful! new block should always fit the current position
-    --block_created;
     int x = currentBlock->getXcoord();
     int y = currentBlock->getYcoord();
     delete currentBlock;
@@ -482,7 +482,7 @@ void Board::newBlock(char c) {
 
     levelFour* four = dynamic_cast<levelFour*>(level);
     if (four != nullptr) {
-        if (block_created % 5 == 0 && clearRow == false) {
+        if (block_created % 5 == 0 && block_created != 0 && clearRow == false) {
             dropStar();
          } else if (block_created % 5 == 0) {
             clearRow = false;
@@ -581,7 +581,7 @@ void Board::dropStar() {
 
 void Board::displayScore() {
     view->coverString(x, y + 15, 12, Xwindow::Black);
-    view->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
+    view->fillString(x, y + 15, to_string(tmp_score), Xwindow::White);
 }
 
 void Board::detectRow() {
@@ -701,6 +701,7 @@ void Board::displayBoard() {
                 theBoard[i][j].display(x, y, false);
             }
         }
+    }
 }
 
 void Board::setRandom(bool set, string s) {
