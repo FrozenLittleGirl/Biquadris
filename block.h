@@ -16,7 +16,6 @@ class Block {
     int howHeavy;       // if it is heavy, how many rows will it fall for each move
                            // otherwise the value of howHeavy is 0
     char name;             // name of the current block, (ex. 'S', 'T', 'O', and so on)
-    int level_n = 0;
 
     public:
     Block(int x, int y, int angle, bool isHeavy, int heavyCount, char name);
@@ -39,8 +38,6 @@ class Block {
     void setAngle(int angle);   // sets the current rotated angle
     void setHeavy(bool isHeavy);   // sets if the current block is heavy or not
     void setHowHeavy(int heavyCount);        // sets how heavy the block is
-    void setLevel(int level_n);
-    int getLevel();
 };
 
 
