@@ -325,10 +325,10 @@ int main(int argc, char** argv) {
         bool decide_player2 = player2.determineLose();
         if (decide_player1 == true || decide_player2 == true) {
             if (decide_player1 == true) {
-                cout << "player2 wins" << endl;
+                cout << "player1 wins" << endl;
             }
             else {
-                cout << "player1 wins" << endl;
+                cout << "player2 wins" << endl;
             }
             int score1 = player1.determineScore();
             int score2 = player2.determineScore();
