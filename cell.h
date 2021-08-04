@@ -15,6 +15,8 @@ class Cell {
     int colour;
     View* view;
     
+    int level_n = 0;
+
     public:
     Cell(int x, int y, bool occupied, char c);
     int getX();
@@ -28,6 +30,8 @@ class Cell {
     char getName();
     void setName(char c);
     void clearCell();
+    void setLevel(int level_n);
+    int getLevel();
 };
 
 #endif
