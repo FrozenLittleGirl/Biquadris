@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
     }
     // set up boards
     int turn = 0;
-    View v;
+    View v(!textOnly);
     Board player1(!textOnly, 120, 70, &v);
     Board player2(!textOnly, 620, 70, &v);
     player1.addLevel(level, seed, set_seed, file1);
