@@ -49,8 +49,6 @@ Xwindow::Xwindow(int width, int height) {
   XSetNormalHints(d, w, &hints);
 
   XSynchronize(d,True);
-
-  usleep(1000);
 }
 
 Xwindow::~Xwindow() {
@@ -68,5 +66,4 @@ void Xwindow::drawString(int x, int y, string msg, int colour) {
   XSetForeground(d, gc, colours[colour]);
   XSetForeground(d, gc, colours[Black]);
   XDrawString(d, w, DefaultGC(d, s), x, y, msg.c_str(), msg.length());
-  XFlush(d);
 }

@@ -5,7 +5,7 @@
 using namespace std;
 
 
-View::View(bool graphical) : graphical{graphical} {
+View::View(bool graphical) : graphical{graphical}, xw{nullptr} {
     if (graphical) {
         xw = new Xwindow(1000, 800);
         xw->fillRectangle(0, 0, 1000, 800, Xwindow::Black);
@@ -19,14 +19,14 @@ View::View(bool graphical) : graphical{graphical} {
     }
 }
 
+View::~View() {
+    delete xw;
+}
 
  bool View::isGraphical() const {
      return graphical;
  }
 
-View::~View() {
-    delete xw;
-}
 
 void View::attachBoard(Board* board) {
     this->board = board;
