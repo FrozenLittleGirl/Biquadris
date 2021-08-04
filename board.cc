@@ -82,7 +82,9 @@ void Board::init() {
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
+    currentBlock->setLevel(level_n);
     nextBlock = level->generateBlock();
+    nextBlock->setLevel(level_n);
 }
 
 bool Board::isShiftValid(int angle, int x, int y) {
@@ -459,13 +461,15 @@ void Board::newBlock(char c) {
         delete currentBlock;
         currentBlock = nextBlock;
         nextBlock = level->generateBlock();
+        nextBlock->setLevel(level_n);
     }
     else {
     // Nata: careful! new block should always fit the current position
     int x = currentBlock->getXcoord();
     int y = currentBlock->getYcoord();
     delete currentBlock;
-    this->currentBlock = helperBlock(x, y, c);
+    currentBlock = helperBlock(x, y, c);
+    currentBlock->setLevel(level_n);
     }
 
     Iblock * iblock = dynamic_cast<Iblock*>(currentBlock);
@@ -516,6 +520,7 @@ void Board::addAction(Board* opponent, string s) {
                 cin >> c;
                 opponent->action = new Force;
                 Block *current = opponent->currentBlock;
+                current->setLevel(level_n);
                 Block *forcedBlock = nullptr;
                 if (c != 'O' && c != 'L' && c != 'J' && c != 'S' && c != 'I'
                 && c != 'Z' && c != 'T') {
@@ -566,6 +571,7 @@ void Board::addAction(Board* opponent, string s) {
 void Board::dropStar() {
     Block* tmp = currentBlock;
     currentBlock = helperBlock(5, 0, '*');
+    currentBlock->setLevel(4);
     if (isShiftValid(0, 0, 0) == false) {
         lose = true;
         return;
