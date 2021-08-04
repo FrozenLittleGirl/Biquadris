@@ -19,10 +19,10 @@
 using namespace std;
 
 
-Board::Board(bool graphical, int x, int y) :
+Board::Board(int x, int y, View *v) :
     x{x},
-    y{y} {
-    view = new View(graphical);
+    y{y},
+    view{v}
 }
 
 

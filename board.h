@@ -44,7 +44,7 @@ class Board {
     void addAction(Board* opponent, string s);
 
     public:
-        Board(bool graphical, int x, int y);
+        Board(int x, int y, View *v);
         friend ostream &operator<<(ostream &out, const Board &b);
         void init();
         void clearBoard();
