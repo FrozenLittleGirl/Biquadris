@@ -52,6 +52,9 @@ void View::fillCell(int x, int y, int width, int colour) {
     }
 }
 
+ bool isGraphical() {
+     return graphical;
+ }
 
 ostream &operator<<(ostream &out, const View &td) {
     out << "Level:    " << td.board->getLevel() << "      " << "Level:    " << td.opponent->getLevel() << endl;
