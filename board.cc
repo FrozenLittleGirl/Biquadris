@@ -57,7 +57,7 @@ void Board::clearBoard() {
 
 void Board::init() {
     clearBoard();
-    view->coverString(x, y + 15, Xwindow::Black);
+    view->coverString(x, y + 15, 12, Xwindow::Black);
     view->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
     view->fillString(x, y, to_string(level_n), Xwindow::White);
     for (int i = 0; i < NUM_ROWS; i++) {
@@ -580,7 +580,7 @@ void Board::dropStar() {
 }
 
 void Board::displayScore() {
-    view->coverString(x, y + 15, Xwindow::Black);
+    view->coverString(x, y + 15, 12, Xwindow::Black);
     view->fillString(x, y, + 15, to_string(tmp_score), Xwindow::White);
 }
 
