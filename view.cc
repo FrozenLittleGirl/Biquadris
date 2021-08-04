@@ -15,9 +15,14 @@ View::View(bool graphical) : graphical{graphical} {
         xw->drawString(620, 70, "Level:", Xwindow::White);
         xw->drawString(620, 85, "Score:", Xwindow::White);
         xw->drawString(120, 700, "Next:", Xwindow::White);
-        xw->drawString(620, 700, "Next:", Xwindow::White)
+        xw->drawString(620, 700, "Next:", Xwindow::White);
     }
 }
+
+
+ bool View::isGraphical() const {
+     return graphical;
+ }
 
 View::~View() {
     delete xw;
@@ -51,10 +56,6 @@ void View::fillCell(int x, int y, int width, int colour) {
         xw->fillRectangle(x, y, width, width, colour);
     }
 }
-
- bool isGraphical() {
-     return graphical;
- }
 
 ostream &operator<<(ostream &out, const View &td) {
     out << "Level:    " << td.board->getLevel() << "      " << "Level:    " << td.opponent->getLevel() << endl;
