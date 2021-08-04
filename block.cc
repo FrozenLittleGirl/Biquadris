@@ -72,10 +72,3 @@ void Block::setHowHeavy(int heavyCount) {
     this->howHeavy = heavyCount;
 }
 
-void Block::setLevel(int level_n) {
-    this->level_n = level_n;
-}
-
-int Block::getLevel() {
-    return level_n;
-}
