@@ -424,13 +424,13 @@ Block* helperBlock(int x, int y, char c) {
 }
 
 // This is a helper function which determines if all block ofs the same type are cleared
-bool helperCheck(bool exist, char c, vector<vector<Cell>> & v) const {
+bool helperCheck(bool exist, char c, vector<vector<Cell>> & v) {
     if (exist == false) {
         return false;
     }
     bool disappear = true;
     if (c == '*') {
-        for (int row = 3; i < 18; ++row) {
+        for (int row = 3; row < 18; ++row) {
             if (v[row][5].getName() == '*') {
                 return false;
             }
