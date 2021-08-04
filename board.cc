@@ -19,10 +19,10 @@
 using namespace std;
 
 
-Board::Board(int x, int y, View *v) :
+Board::Board(bool graphical, int x, int y) :
     x{x},
-    y{y},
-    view{v}
+    y{y} {
+    view = new View(graphical);
 }
 
 
@@ -330,7 +330,6 @@ void Board::down(int steps) {
 
 
 void Board::drop() {
-    cout << "error 2 " << currentBlock->getName() << endl; 
     while (isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
