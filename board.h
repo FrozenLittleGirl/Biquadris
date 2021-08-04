@@ -22,7 +22,7 @@ class Board {
     View *view = nullptr;
     SpecialAction* action = nullptr;
     NextBlock* level = nullptr;
-    int level_n;
+    int level_n = 0;
     Block* currentBlock = nullptr;  // Nata: change the name from block to currentBlock
     Block* nextBlock = nullptr;
     void move(int angle, int x, int y);
