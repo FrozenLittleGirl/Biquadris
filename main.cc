@@ -323,7 +323,6 @@ int main(int argc, char** argv) {
         }
         bool decide_player1 = player1.determineLose();
         bool decide_player2 = player2.determineLose();
-        cout << "error here" << endl;
         if (decide_player1 == true || decide_player2 == true) {
             if (decide_player1 == true) {
                 cout << "player1 wins" << endl;
