@@ -20,8 +20,8 @@ using namespace std;
 
 
 Board::Board(bool graphical, int x, int y) :
-    : x{x},
-      y{y} {
+    x{x},
+    y{y} {
     view = new View(graphical);
 }
 
