@@ -46,8 +46,8 @@ int main(int argc, char** argv) {
     }
     // set up boards
     int turn = 0;
-    Board player1(textOnly, 120, 70);
-    Board player2(textOnly, 620, 70);
+    Board player1(!textOnly, 120, 70);
+    Board player2(!textOnly, 620, 70);
     player1.addLevel(level, seed, set_seed, file1);
     player2.addLevel(level, seed, set_seed, file2);
     player1.init();
