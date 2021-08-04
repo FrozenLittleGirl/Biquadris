@@ -334,7 +334,7 @@ void Board::drop() {
     while (isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    cout << "error 1" << endl;
+    ++block_created;
     newBlock();
 
     delete action;
@@ -456,7 +456,6 @@ bool helperCheck(bool exist, char c, vector<vector<Cell>> & v) {
 
 // for block
 void Board::newBlock(char c) {
-    ++block_created;
     if (c == 'n') {
         delete currentBlock;
         currentBlock = nextBlock;
@@ -464,7 +463,6 @@ void Board::newBlock(char c) {
     }
     else {
     // Nata: careful! new block should always fit the current position
-    --block_created;
     int x = currentBlock->getXcoord();
     int y = currentBlock->getYcoord();
     delete currentBlock;
@@ -484,7 +482,7 @@ void Board::newBlock(char c) {
 
     levelFour* four = dynamic_cast<levelFour*>(level);
     if (four != nullptr) {
-        if (block_created % 5 == 0 && clearRow == false) {
+        if (block_created % 5 == 0 && block_created != 0 && clearRow == false) {
             dropStar();
          } else if (block_created % 5 == 0) {
             clearRow = false;
