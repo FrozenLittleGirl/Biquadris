@@ -462,6 +462,7 @@ void Board::newBlock(char c) {
     }
     else {
     // Nata: careful! new block should always fit the current position
+    ++block_created;
     int x = currentBlock->getXcoord();
     int y = currentBlock->getYcoord();
     delete currentBlock;
