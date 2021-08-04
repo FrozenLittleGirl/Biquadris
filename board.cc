@@ -78,7 +78,7 @@ void Board::init() {
     }
 
     view->attachBoard(this);
-    int n_left = v_block.size();
+    v_blocks.clear();
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
