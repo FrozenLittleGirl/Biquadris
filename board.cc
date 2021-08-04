@@ -584,7 +584,7 @@ void Board::displayScore() {
 
 void Board::detectRow() {
     int count = 0;
-    bool I = false;
+    /*bool I = false;
     bool J = false;
     bool L = false;
     bool O = false;
@@ -592,14 +592,14 @@ void Board::detectRow() {
     bool Z = false;
     bool T = false;
     bool Star = false;
-    int I_level, J_level, L_level, O_level, S_level, Z_level, T_level, Star_level;
+    int I_level, J_level, L_level, O_level, S_level, Z_level, T_level, Star_level;*/
     for (int row = 17; row >= 3; --row) {
         for (int col = 0; col < 11; ++col) {
             if (theBoard[row][col].getName() == ' ') {
                 break;
             }
             if (col == 10) {
-                for (int k = 0; k < 11; ++k) {
+                /*for (int k = 0; k < 11; ++k) {
                     char type = theBoard[row][k].getName();
                     int current_level = theBoard[row][k].getLevel();
                     if (type == 'I') {
@@ -634,16 +634,14 @@ void Board::detectRow() {
                         Star = true;
                         Star_level = 4;
                     }
-                }
+                }*/
                 for (int i = row - 1; i >= 3; --i) {
                     for (int j = 0; j < 11; ++j) {
                         theBoard[i + 1][j] = theBoard[i][j];
-                        theBoard[i + 1][j].setColour();
                     }
                 }
                 for (int j = 0; j < 11; ++j) {
                     theBoard[3][j].clearCell();
-                    theBoard[3][j].setColour();
                 }
                 ++row;
                 ++count;
@@ -653,7 +651,7 @@ void Board::detectRow() {
     if (count > 0) {
         clearRow = true;
         tmp_score += (level_n + count) * (level_n + count);
-        if (helperCheck(I, 'I', theBoard)) {
+        /*if (helperCheck(I, 'I', theBoard)) {
             tmp_score += (I_level + 1) * (I_level + 1);
         }
         if (helperCheck(J, 'J', theBoard)) {
@@ -676,11 +674,10 @@ void Board::detectRow() {
         }
         if (helperCheck(Star, '*', theBoard)) {
             tmp_score += (Star_level + 1) * (Star_level + 1);
-        }
+        }*/
         if (tmp_score > score) {
             score = tmp_score;
         }
-        displayScore();
     }
     if (count > 1) {
         addAction(opponent, " ");
