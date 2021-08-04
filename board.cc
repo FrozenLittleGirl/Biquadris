@@ -333,7 +333,6 @@ void Board::drop() {
         move(0, 0, 1);
     }
     ++block_created;
-    cout << "error drop" << block_created << endl;
     newBlock();
 
     delete action;
