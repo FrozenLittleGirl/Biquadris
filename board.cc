@@ -81,6 +81,7 @@ void Board::init() {
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
+    ++block_created;
     nextBlock = level->generateBlock();
 }
 
@@ -372,6 +373,7 @@ void Board::counterclockwise(int angle) {
 // for level
 void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete level;
+    block_created = 0;
     if (level_n != n) {
         view->coverString(x, y, 12, Xwindow::Black);
     }
@@ -391,7 +393,6 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     }
     else {
             level = new levelFour{ seed, set_seed, this };
-            block_created = 0;
     }
 }
 
