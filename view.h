@@ -12,8 +12,8 @@ class View {
     const int NUM_ROWS = 18;
     Board *opponent;
     Board *board;
-    Xwindow *xw = nullptr;
     bool graphical;
+    Xwindow *xw = nullptr;
 
     public:
         View(bool graphical);

@@ -5,7 +5,7 @@
 using namespace std;
 
 
-View::View(bool graphical) : graphical{graphical}, xw{nullptr} {
+View::View(bool graphical) : graphical{graphical} {
     if (graphical) {
         xw = new Xwindow(1000, 800, Xwindow::Black);
         xw->fillRectangle(0, 0, 1000, 800, Xwindow::Black);
