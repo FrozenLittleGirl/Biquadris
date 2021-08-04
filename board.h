@@ -31,6 +31,7 @@ class Board {
     int* turn;
 
     int block_created = 0;
+    vector<Block*> v_blocks;
     bool clearRow = false;
     void dropStar();
     void displayScore();
