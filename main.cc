@@ -321,22 +321,22 @@ int main(int argc, char** argv) {
             cout << "Unrecognized command " << cmd << "!" << endl;
             continue;
         }
-        /*bool decide_player1 = player1.canBeDropped();
-        bool decide_player2 = player2.canBeDropped();
+        bool decide_player1 = player1.determineLose();
+        bool decide_player2 = player2.determineLose();
         cout << "error here" << endl;
-        if (decide_player1 == false || decide_player2 == false) {
-            if (decide_player1 == false) {
-                cout << "player2 wins" << endl;
+        if (decide_player1 == true || decide_player2 == true) {
+            if (decide_player1 == true) {
+                cout << "player1 wins" << endl;
             }
             else {
-                cout << "player1 wins" << endl;
+                cout << "player2 wins" << endl;
             }
             int score1 = player1.determineScore();
             int score2 = player2.determineScore();
             cout << "the highest score is " << max(score1, score2) << endl;
             cout << "Game is Over" << endl;
             break;
-        }*/
+        }
     }
 
     return 0;
