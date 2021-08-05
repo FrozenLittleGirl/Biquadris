@@ -48,8 +48,8 @@ int main(int argc, char** argv) {
     // set up boards
     int turn = 1;
     View v(!textOnly);
-    Board player1(120, 70, &v);
-    Board player2(620, 70, &v);
+    Board player1(120, 90, &v);
+    Board player2(620, 90, &v);
     player1.addLevel(level, seed, set_seed, file1);
     player2.addLevel(level, seed, set_seed, file2);
     player1.init();
