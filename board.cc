@@ -24,7 +24,7 @@ Board::Board(int x, int y, View *v) :
     y{y},
     view{v},
     graphicx{x},
-    graphicy{y + 20} {
+    graphicy{y} {
         view->attachBoard(this);
     }
 
@@ -81,19 +81,20 @@ void Board::init() {
         for (int j = 0; j < NUM_COLS; j++) {
             cell_x += 2;
             theBoard[i][j].setDisplay(view);
+            theBoard[i][j].setColour();
             theBoard[i][j].setGraphics(cell_x, cell_y);
             cell_x -= 2;
-            cell_x += 36;
+            cell_x += 30;
         }
         cell_x = 0;
         cell_y -= 2;
-        cell_y += 36;
+        cell_y += 30;
     }
-
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
     nextBlock = level->generateBlock();
+    displayBoard();
 }
 
 bool Board::isShiftValid(int angle, int x, int y) {
@@ -384,10 +385,8 @@ void Board::counterclockwise(int angle) {
 void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete level;
     block_created = 0;
-    if (level_n != n) {
-        view->coverString(x + 50, y, 12, Xwindow::White);
-    }
     level_n = n;
+    view->coverString(x + 50, y, 20, Xwindow::White);
     view->fillString(x + 50, y, to_string(level_n), Xwindow::Black);
     if (n == 0) {
             level = new levelZero{ file, seed, set_seed };
@@ -704,9 +703,9 @@ void Board::displayBoard() {
     for (int i = 0; i < NUM_ROWS; i++) {
         for (int j = 0; j < NUM_COLS; j++) {
             if ( dynamic_cast<Blind*>(action) ) {
-                theBoard[i][j].display(graphicx, graphicy, true);
+                theBoard[i][j].display(x - 5, y + 10, true);
             } else {
-                theBoard[i][j].display(graphicx, graphicy, false);
+                theBoard[i][j].display(x - 5, y + 10, false);
             }
         }
     }
