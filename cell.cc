@@ -42,6 +42,10 @@ void Cell::setColour() {
     if (name == 'T') {
         colour = Xwindow::Orange;
     }
+    // colour to display NextBlock
+    if (name == 'N') {
+        colour = Xwindow::White;
+    }
 }
 
 void Cell::display(int x_coord, int y_coord, bool isBlind) {
