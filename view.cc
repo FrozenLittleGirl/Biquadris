@@ -12,10 +12,10 @@ View::View(bool graphical) : graphical{graphical}, xw{nullptr} {
         xw->drawString(400, 40, "Biquadris", Xwindow::Black);
         xw->drawString(120, 70, "Level:", Xwindow::Black);
         xw->drawString(120, 85, "Score:", Xwindow::Black);
-        xw->drawString(620, 70, "Level:", Xwindow::Black);
-        xw->drawString(620, 85, "Score:", Xwindow::Black);
+        xw->drawString(600, 70, "Level:", Xwindow::Black);
+        xw->drawString(600, 85, "Score:", Xwindow::Black);
         xw->drawString(120, 650, "Next:", Xwindow::Black);
-        xw->drawString(620, 650, "Next:", Xwindow::Black);
+        xw->drawString(600, 650, "Next:", Xwindow::Black);
     }
 }
 
