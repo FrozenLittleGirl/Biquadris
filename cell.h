@@ -25,6 +25,7 @@ class Cell {
     void setDisplay(View* view);
     void setX(int x);
     void setY(int y);
+    void setCoords(int x, int y);
     bool isOccupied();
     char getName();
     void setName(char c);

@@ -77,6 +77,11 @@ void Cell::setY(int y) {
     this->y = y;
 }
 
+void Cell::setCoords(int x, int y) {
+    this->x = x;
+    this->y = y;
+}
+
 bool Cell::isOccupied() {
     return occupied;
 }
