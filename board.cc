@@ -57,9 +57,9 @@ void Board::clearBoard() {
 
 void Board::init() {
     clearBoard();
-    view->coverString(x, y + 15, 12, Xwindow::Black);
-    view->fillString(x, y + 15, to_string(tmp_score), Xwindow::White);
-    view->fillString(x, y, to_string(level_n), Xwindow::White);
+    view->coverString(x + 50, y + 15, 12, Xwindow::White);
+    view->fillString(x + 50, y + 15, to_string(tmp_score), Xwindow::Black);
+    view->fillString(x + 50, y, to_string(level_n), Xwindow::Black);
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
         // initialize each column
@@ -374,10 +374,10 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete level;
     block_created = 0;
     if (level_n != n) {
-        view->coverString(x, y, 12, Xwindow::Black);
+        view->coverString(x + 50, y, 12, Xwindow::White);
     }
     level_n = n;
-    view->fillString(x, y, to_string(level_n), Xwindow::White);
+    view->fillString(x + 50, y, to_string(level_n), Xwindow::Black);
     if (n == 0) {
             level = new levelZero{ file, seed, set_seed };
     }
@@ -579,8 +579,8 @@ void Board::dropStar() {
 }
 
 void Board::displayScore() {
-    view->coverString(x, y + 15, 12, Xwindow::Black);
-    view->fillString(x, y + 15, to_string(tmp_score), Xwindow::White);
+    view->coverString(x + 50, y + 15, 12, Xwindow::White);
+    view->fillString(x + 50, y + 15, to_string(tmp_score), Xwindow::Black);
 }
 
 void Board::detectRow() {
@@ -689,9 +689,10 @@ void Board::detectRow() {
 }
 
 void Board::displayBoard() {
-    if (!view || !view->isGraphical()) {
+    if (!view->isGraphical()) {
         return;
     }
+    
     for (int i = 0; i < NUM_ROWS; i++) {
         for (int j = 0; j < NUM_COLS; j++) {
             if ( dynamic_cast<Blind*>(action) ) {
