@@ -4,7 +4,7 @@
 class SpecialAction {
 public:
         virtual void applyAction() = 0;
-        virtual ~SpecialAction();
+        virtual ~SpecialAction() {};
 };
 
 #endif
