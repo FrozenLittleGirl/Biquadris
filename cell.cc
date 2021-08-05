@@ -14,13 +14,9 @@ Cell::Cell(int x, int y, bool occupied, char c)
     : x{x}, y{y}, occupied{occupied}, name {c}, colour{Xwindow::White} 
 {}
 
-int Cell::getX() {
-    return this->x; 
-}
-
 void Cell::setColour() {
     if (name == ' ') {
-        colour = Xwindow::White;
+        colour = Xwindow::Black;
     }
     if (name == '*') {
         colour = Xwindow::Brown;
@@ -58,6 +54,12 @@ void Cell::display(int x_coord, int y_coord, bool isBlind) {
         view->fillCell(x + x_coord, y + y_coord, 20, colour);
     }
 }
+
+
+int Cell::getX() {
+    return this->x; 
+}
+
 
 int Cell::getY() {
     return this->y; 
