@@ -29,6 +29,8 @@ class Board {
     bool isShiftValid(int angle, int x, int y);
     void detectRow();
     int* turn;
+    int graphicx;
+    int graphicy;
 
     int block_created = 0;
     bool clearRow = false;

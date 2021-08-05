@@ -22,7 +22,9 @@ using namespace std;
 Board::Board(int x, int y, View *v) :
     x{x},
     y{y},
-    view{v}
+    view{v},
+    graphicx{x},
+    graphicy{y + 20} 
 {}
 
 // for test
@@ -692,9 +694,9 @@ void Board::displayBoard() {
     for (int i = 0; i < NUM_ROWS; i++) {
         for (int j = 0; j < NUM_COLS; j++) {
             if ( dynamic_cast<Blind*>(action) ) {
-                theBoard[i][j].display(x, y, true);
+                theBoard[i][j].display(graphicx, graphicy, true);
             } else {
-                theBoard[i][j].display(x, y, false);
+                theBoard[i][j].display(graphicx, graphicy, false);
             }
         }
     }
