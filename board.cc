@@ -77,9 +77,7 @@ void Board::init() {
         }
     }
 
-    if (view == nullptr) {
-        view->attachBoard(this);
-    }
+    view->attachBoard(this);
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
