@@ -25,7 +25,7 @@ Board::Board(int x, int y, View *v) :
     view{v}
 {}
 
-
+// for test
 void Board::print() {
     cout << "-----------" << endl;
     for (int i = 0; i < 18; ++i) {
@@ -77,7 +77,9 @@ void Board::init() {
         }
     }
 
-    view->attachBoard(this);
+    if (view == nullptr) {
+        view->attachBoard(this);
+    }
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
