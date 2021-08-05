@@ -97,20 +97,18 @@ char Cell::getName() {
     return name;
 }
 
-int Cell::getLevel() {
-    return level_n;
-}
-
-void Cell::setLevel(int level_n) {
-    this->level_n = level_n;
-}
-
 void Cell::clearCell() {
     this->name = ' ';
     occupied = false;
     level_n = 0;
 }
 
+void Cell::setLevel(int level_n) {
+    this->level_n = level_n;
+}
 
+int Cell::getLevel() {
+    return level_n;
+}
 
 

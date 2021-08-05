@@ -71,3 +71,4 @@ void Block::setHeavy(bool isHeavy) {
 void Block::setHowHeavy(int heavyCount) {
     this->howHeavy = heavyCount;
 }
+
