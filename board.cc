@@ -91,7 +91,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
         int rotateAngle = currentBlock->getAngle() + angle;
         rotateAngle = rotateAngle % 360;
         if (rotateAngle < 0) {
-            rotateAngle += 360; 
+            rotateAngle += 360;
         }
         //cout << "error isShift 1" << endl;
         for (int i = 0; i < 4; i++) {
@@ -116,7 +116,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
                         return false;
                     }
                     if (theBoard[currentY + i][currentX + j].isOccupied() == true) {
-                        if (currentX + j < blockX || currentY + i < blockY || 
+                        if (currentX + j < blockX || currentY + i < blockY ||
                         currentX + j > blockX + 3 || currentY + i > blockY + 3) {
                             return false;
                         }
@@ -127,27 +127,27 @@ bool Board::isShiftValid(int angle, int x, int y) {
                         } else if (currentAngle == 90) {
                             if (currentBlock->getRotate90()[y + i][x + j] == ' ') {
                                 return false;
-                                
+
                             }
-                            
+
                         } else if (currentAngle == 180) {
                             if (currentBlock->getRotate180()[y + i][x + j] == ' ') {
                                 return false;
-                                
+
                             }
-                            
+
                         } else if (currentAngle == 270) {
                             if (currentBlock->getRotate270()[y + i][x + j] == ' ') {
                                 return false;
-                                
+
                             }
-                            
+
                         }
-                        
+
                     }
-                    
+
                 }
-                
+
             }
             //cout << "error isShift 2" << endl;
         }
@@ -178,10 +178,10 @@ bool Board::isShiftValid(int angle, int x, int y) {
                     if (theBoard[blockY + i][blockX + j].isOccupied() == true) {
                         return false;
                     }
-                    if (blockX + j < 0 || blockY + i < 0 || 
+                    if (blockX + j < 0 || blockY + i < 0 ||
                     blockX + j > 10 || blockY + i > 17) {
                         return false;
-                        
+
                     }
                 }
                 //cout << "error isShift 5" << endl;
@@ -521,21 +521,21 @@ void Board::addAction(Board* opponent, string s) {
                     return;
                 }
                 forcedBlock = helperBlock(0, 0, c);
-                
+
                 int currentAngle = current->getAngle();
                 vector<string> currentRotation;
                 if (currentAngle == 0) {
                     currentRotation = currentBlock->getRotateDefault();
-                    
+
                 } else if (currentAngle == 90) {
                     currentRotation = currentBlock->getRotate90();
-                    
+
                 } else if (currentAngle == 180) {
                     currentRotation = currentBlock->getRotate180();
-                    
+
                 } else if (currentAngle == 270) {
                     currentRotation = currentBlock->getRotate270();
-                    
+
                 }
                 int currentX = current->getXcoord();
                 int currentY = current->getYcoord();
@@ -545,9 +545,9 @@ void Board::addAction(Board* opponent, string s) {
                     for (int j = 0; j < 4; j++) {
                         if (currentRotation[i][j] != ' ') {
                             opponent->getBoard()[currentY + i][currentX + j].clearCell();
-                            
+
                         }
-                        
+
                     }
                 }
                 opponent->currentBlock = forcedBlock;
