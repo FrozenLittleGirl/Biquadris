@@ -739,7 +739,9 @@ void Board::setCurrentBlock(Block * newBlock) {
     this->currentBlock = newBlock;
 }
 
-
+int Board::currentLevel() {
+    return level_n;
+}
 
 ostream &operator<<(ostream &out, const Board &b) {
     out << *(b.view) << endl;
