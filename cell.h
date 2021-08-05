@@ -10,6 +10,8 @@ class View;
 class Cell {
     int x;
     int y;
+    int graphicx;
+    int graphicy;
     bool occupied;
     char name;
     int colour;
@@ -26,7 +28,7 @@ class Cell {
     void setDisplay(View* view);
     void setX(int x);
     void setY(int y);
-    void setCoords(int x, int y);
+    void setGraphics(int x, int y);
     bool isOccupied();
     char getName();
     void setName(char c);

@@ -49,9 +49,9 @@ void Cell::display(int x_coord, int y_coord, bool isBlind) {
         return;
     }
     if ( isBlind ) {
-        view->fillCell(x + x_coord, y + y_coord, 20, Xwindow::Black);
+        view->fillCell(x + x_coord, y + y_coord, 30, Xwindow::Black);
     } else {
-        view->fillCell(x + x_coord, y + y_coord, 20, colour);
+        view->fillCell(x + x_coord, y + y_coord, 30, colour);
     }
 }
 
@@ -77,9 +77,9 @@ void Cell::setY(int y) {
     this->y = y;
 }
 
-void Cell::setCoords(int x, int y) {
-    this->x = x;
-    this->y = y;
+void Cell::setGraphics(int x, int y) {
+    this->graphicx = x;
+    this->graphicy = y;
 }
 
 bool Cell::isOccupied() {
