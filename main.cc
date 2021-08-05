@@ -250,6 +250,11 @@ int main(int argc, char** argv) {
             cout << player1;
         }
         else if (cmd == s7) {  //levelup
+            if (turn % 2 == 0) {
+                level = player1.currentLevel();
+            } else {
+                level = player2.currentLevel();
+            }
             if (level + times <= 4) {
                 level += times;
                 if (turn % 2 == 0) {
@@ -262,6 +267,11 @@ int main(int argc, char** argv) {
             cout << player1;
         }
         else if (cmd == s8) {  //leveldown
+            if (turn % 2 == 0) {
+                level = player1.currentLevel();
+            } else {
+                level = player2.currentLevel();
+            }
             if (level - times >= 0) {
                 level -= times;
                 if (turn % 2 == 0) {
