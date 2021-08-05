@@ -24,8 +24,9 @@ Board::Board(int x, int y, View *v) :
     y{y},
     view{v},
     graphicx{x},
-    graphicy{y + 20} 
-{}
+    graphicy{y + 20} {
+        view->attachBoard(this);
+    }
 
 // for test
 void Board::print() {
@@ -78,8 +79,6 @@ void Board::init() {
             theBoard[i][j].setDisplay(view);
         }
     }
-
-    view->attachBoard(this);
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
