@@ -11,7 +11,7 @@ using namespace std;
 
 
 Cell::Cell(int x, int y, bool occupied, char c)
-    : x{x}, y{y}, occupied{occupied}, name {c}, colour{Xwindow::White} 
+    : x{x}, y{y}, occupied{occupied}, name {c}, colour{Xwindow::Black} 
 {}
 
 void Cell::setColour() {
