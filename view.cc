@@ -7,15 +7,15 @@ using namespace std;
 
 View::View(bool graphical) : graphical{graphical}, xw{nullptr} {
     if (graphical) {
-        xw = new Xwindow(1000, 800);
-        xw->fillRectangle(0, 0, 1000, 800, Xwindow::Black);
-        xw->drawString(400, 40, "Biquadris", Xwindow::White);
-        xw->drawString(120, 70, "Level:", Xwindow::White);
-        xw->drawString(120, 85, "Score:", Xwindow::White);
-        xw->drawString(620, 70, "Level:", Xwindow::White);
-        xw->drawString(620, 85, "Score:", Xwindow::White);
-        xw->drawString(120, 700, "Next:", Xwindow::White);
-        xw->drawString(620, 700, "Next:", Xwindow::White);
+        xw = new Xwindow(1000, 750);
+        xw->fillRectangle(0, 0, 1000, 750, Xwindow::White);
+        xw->drawString(400, 40, "Biquadris", Xwindow::Black);
+        xw->drawString(120, 70, "Level:", Xwindow::Black);
+        xw->drawString(120, 85, "Score:", Xwindow::Black);
+        xw->drawString(620, 70, "Level:", Xwindow::Black);
+        xw->drawString(620, 85, "Score:", Xwindow::Black);
+        xw->drawString(120, 650, "Next:", Xwindow::Black);
+        xw->drawString(620, 650, "Next:", Xwindow::Black);
     }
 }
 
