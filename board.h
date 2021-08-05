@@ -71,6 +71,7 @@ class Board {
         void setCurrentBlock(Block * newBlock);
         SpecialAction* getAction() const;
         vector<vector<Cell>> getBoard() const;
+        int currentLevel();
         void print();   // Nata: this is for temporarily testing
 
         ~Board();
