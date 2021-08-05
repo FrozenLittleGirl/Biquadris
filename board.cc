@@ -73,7 +73,7 @@ void Board::init() {
         // push back each row
         theBoard.push_back(tmp);
     }
-    
+
     int cell_x = 0;
     int cell_y = 0;
     for (int i = 0; i < NUM_ROWS; i++) {
@@ -81,7 +81,7 @@ void Board::init() {
         for (int j = 0; j < NUM_COLS; j++) {
             cell_x += 2;
             theBoard[i][j].setDisplay(view);
-            theBoard[i][j].setGraphic(cellx, celly);
+            theBoard[i][j].setGraphics(cellx, celly);
             cell_x -= 2;
             cell_x += 36;
         }
