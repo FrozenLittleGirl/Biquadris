@@ -81,7 +81,7 @@ void Board::init() {
         for (int j = 0; j < NUM_COLS; j++) {
             cell_x += 2;
             theBoard[i][j].setDisplay(view);
-            theBoard[i][j].setGraphics(cellx, celly);
+            theBoard[i][j].setGraphics(cell_x, cell_y);
             cell_x -= 2;
             cell_x += 36;
         }
