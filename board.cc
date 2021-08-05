@@ -73,6 +73,7 @@ void Board::init() {
         // push back each row
         theBoard.push_back(tmp);
     }
+    
     int cell_x = 0;
     int cell_y = 0;
     for (int i = 0; i < NUM_ROWS; i++) {
@@ -88,6 +89,7 @@ void Board::init() {
         cell_y -= 2;
         cell_y += 36;
     }
+
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
