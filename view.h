@@ -24,7 +24,6 @@ class View {
         void fillString(int x, int y, string s, int colour);
         void fillCell(int x, int y, int width, int colour);
         bool isGraphical() const;
-        friend std::ostream &operator<<(std::ostream &out, const View &td);
 };
 
 #endif
