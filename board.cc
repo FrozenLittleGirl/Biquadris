@@ -173,7 +173,6 @@ void Board::displayNextBlock(char type) {
         nextBlockGrid[0][2].setName('T');
         nextBlockGrid[1][1].setName('T');
     }
-    cout << "error: set types" << endl;
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 4; j++) {
             nextBlockGrid[i][j].setColour();
@@ -435,7 +434,6 @@ void Board::drop() {
     }
     ++block_created;
     newBlock();
-
     delete action;
     action = nullptr;
     //*turn += 1;
@@ -558,15 +556,16 @@ void Board::newBlock(char c) {
         delete currentBlock;
         currentBlock = nextBlock;
         nextBlock = level->generateBlock();
+        displayNextBlock(nextBlock->getName());
     }
     else {
     // Nata: careful! new block should always fit the current position
-    int x = currentBlock->getXcoord();
-    int y = currentBlock->getYcoord();
-    delete currentBlock;
-    currentBlock = helperBlock(x, y, c);
+        int x = currentBlock->getXcoord();
+        int y = currentBlock->getYcoord();
+        delete currentBlock;
+        currentBlock = helperBlock(x, y, c);
     }
-    displayNextBlock(nextBlock->getName());
+
     Iblock * iblock = dynamic_cast<Iblock*>(currentBlock);
     if (iblock != nullptr) {
         if (isShiftValid(0,0,0) == false) {
@@ -679,12 +678,12 @@ void Board::dropStar() {
 }
 
 void Board::displayScore() {
-    view->coverString(x + 50, y + 15, 40, Xwindow::White);
+    view->coverString(x + 47, y + 5, 12, Xwindow::White);
     view->fillString(x + 50, y + 15, to_string(tmp_score), Xwindow::Black);
 }
 
 void Board::displayLevel() {
-    view->coverString(x + 50, y, 40, Xwindow::White);
+    view->coverString(x + 47, y - 10, 12, Xwindow::White);
     view->fillString(x + 50, y, to_string(level_n), Xwindow::Black);
 }
 
