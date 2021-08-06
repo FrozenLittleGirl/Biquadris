@@ -39,7 +39,7 @@ void View::attachOpponent(Board* opponent) {
 
 void View::coverString(int x, int y, int width, int colour) {
     if (graphical) {
-        xw->fillRectangle(x, y, width, 15, colour);
+        xw->fillRectangle(x, y, width, width, colour);
     }
 }
 
