@@ -9,6 +9,7 @@
 using namespace std;
 
 class View;
+class TextDisplay;
 class SpecialAction;
 class NextBlock;
 
@@ -21,6 +22,7 @@ class Board {
     vector<vector<Cell>> nextBlockGrid;
     Board* opponent = nullptr;
     View *view = nullptr;
+    TextDisplay *td = nullptr;
     SpecialAction* action = nullptr;
     NextBlock* level = nullptr;
     int level_n = 0;

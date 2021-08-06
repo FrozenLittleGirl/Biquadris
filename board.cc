@@ -4,6 +4,7 @@
 #include "NextBlock.h"
 #include "Action.h"
 #include "view.h"
+#include "textdisplay.h"
 #include "iblock.h"
 #include "jblock.h"
 #include "lblock.h"
@@ -25,7 +26,8 @@ Board::Board(int x, int y, View *v) :
     view{v},
     graphicx{x},
     graphicy{y} {
-        view->attachBoard(this);
+        td = new TextDisplay();
+        td->attachBoard(this);
     }
 
 // for test
@@ -593,7 +595,7 @@ void Board::newBlock(char c) {
 void Board::attach(Board* opponent, int* n) {
         this->opponent = opponent;
         turn = n;
-        view->attachOpponent(opponent);
+        td->attachOpponent(opponent);
 }
 
 void Board::addAction(Board* opponent, string s) {
@@ -677,12 +679,12 @@ void Board::dropStar() {
 }
 
 void Board::displayScore() {
-    view->coverString(x + 50, y + 15, 6, Xwindow::White);
+    view->coverString(x + 50, y + 15, 40, Xwindow::White);
     view->fillString(x + 50, y + 15, to_string(tmp_score), Xwindow::Black);
 }
 
 void Board::displayLevel() {
-    view->coverString(x + 50, y, 6, Xwindow::White);
+    view->coverString(x + 50, y, 40, Xwindow::White);
     view->fillString(x + 50, y, to_string(level_n), Xwindow::Black);
 }
 
@@ -864,7 +866,7 @@ int Board::currentLevel() {
 }
 
 ostream &operator<<(ostream &out, const Board &b) {
-    out << *(b.view) << endl;
+    out << *(b.td) << endl;
     return out;
 }
 
