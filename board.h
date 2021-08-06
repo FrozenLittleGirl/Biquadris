@@ -18,6 +18,7 @@ class Board {
     int x;
     int y;
     vector<vector<Cell>> theBoard;
+    vector<vector<Cell>> nextBlockGrid;
     Board* opponent = nullptr;
     View *view = nullptr;
     SpecialAction* action = nullptr;
@@ -36,7 +37,11 @@ class Board {
     bool clearRow = false;
     void dropStar();
     void displayScore();
+    void displayLevel();
     void displayBoard();
+    void displayCell(int r, int c, vector<vector<Cell>> grid);
+    void setNextBlockGraphics();
+    void displayNextBlock(char type);
 
     protected:
     int score = 0;

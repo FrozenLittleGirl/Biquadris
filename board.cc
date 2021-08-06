@@ -60,9 +60,8 @@ void Board::clearBoard() {
 
 void Board::init() {
     clearBoard();
-    view->coverString(x + 50, y + 15, 12, Xwindow::White);
-    view->fillString(x + 50, y + 15, to_string(tmp_score), Xwindow::Black);
-    view->fillString(x + 50, y, to_string(level_n), Xwindow::Black);
+    displayScore();
+    displayLevel();
     for (int i = 0; i < NUM_ROWS; i++) {
         vector<Cell> tmp;
         // initialize each column
@@ -95,6 +94,90 @@ void Board::init() {
     currentBlock = level->generateBlock();
     nextBlock = level->generateBlock();
     displayBoard();
+    setNextBlockGraphics();
+    displayNextBlock(nextBlock->getName());
+}
+
+void Board::setNextBlockGraphics() {
+    // set vector<Cell> for NextBlock to display graphics
+    for (int i = 0; i < 2; i++) {
+        vector<Cell> tmp;
+        for (int j = 0; j < 4; j++) {
+            Cell cur{i, j, false, 'N'};
+            tmp.push_back(cur);
+        }
+        nextBlockGrid.push_back(tmp);
+    }
+    int cell_x = 0;
+    int cell_y = 0;
+    for (int i = 0; i < 2; i++) {
+        cell_y += 2;
+        for (int j = 0; j < 4; j++) {
+            cell_x += 2;
+            nextBlockGrid[i][j].setDisplay(view);
+            nextBlockGrid[i][j].setColour();
+            nextBlockGrid[i][j].setGraphics(cell_x + 230, cell_y + 550);
+            cell_x -= 2;
+            cell_x += 30;
+        }
+        cell_x = 0;
+        cell_y -= 2;
+        cell_y += 30;
+    }
+}
+
+
+void Board::displayNextBlock(char type) {
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 4; j++) {
+            nextBlockGrid[i][j].setName('N');
+        }
+    }
+    if (type == 'I') {
+        nextBlockGrid[1][0].setName('I');
+        nextBlockGrid[1][1].setName('I');
+        nextBlockGrid[1][2].setName('I');
+        nextBlockGrid[1][3].setName('I');
+    }
+    if (type == 'J') {
+    }
+    if (type == 'L') {
+        nextBlockGrid[0][2].setName('L');
+        nextBlockGrid[1][0].setName('L');
+        nextBlockGrid[1][1].setName('L');
+        nextBlockGrid[1][2].setName('L');
+    }
+    if (type == 'O') {
+        nextBlockGrid[0][0].setName('O');
+        nextBlockGrid[0][1].setName('O');
+        nextBlockGrid[1][0].setName('O');
+        nextBlockGrid[1][1].setName('O');
+    }
+    if (type == 'S') {
+        nextBlockGrid[0][1].setName('S');
+        nextBlockGrid[0][2].setName('S');
+        nextBlockGrid[1][0].setName('S');
+        nextBlockGrid[1][1].setName('S');
+    }
+    if (type == 'Z') {
+        nextBlockGrid[0][0].setName('Z');
+        nextBlockGrid[0][1].setName('Z');
+        nextBlockGrid[1][1].setName('Z');
+        nextBlockGrid[1][2].setName('Z');
+    }
+    if (type == 'T') {
+        nextBlockGrid[0][0].setName('T');
+        nextBlockGrid[0][1].setName('T');
+        nextBlockGrid[0][2].setName('T');
+        nextBlockGrid[1][1].setName('T');
+    }
+    cout << "error: set types" << endl;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 4; j++) {
+            nextBlockGrid[i][j].setColour();
+            displayCell(i, j, nextBlockGrid);
+        }
+    }
 }
 
 bool Board::isShiftValid(int angle, int x, int y) {
@@ -226,7 +309,8 @@ void Board::move(int angle, int x, int y) {
                 theBoard[currentY + i][currentX + j].clearCell();
                 theBoard[currentY + i][currentX + j].setColour();
             }
-
+            theBoard[currentY + y + i][currentX + x + j].setColour();
+            displayCell(currentY + i, currentX + j, theBoard);
         }
     }
     int rotateAngle = currentAngle + angle;
@@ -254,6 +338,8 @@ void Board::move(int angle, int x, int y) {
                 theBoard[currentY + y + i][currentX + x + j].setName(rotation[i][j]);
                 theBoard[currentY + y + i][currentX + x + j].setColour();
             }
+            theBoard[currentY + y + i][currentX + x + j].setColour();
+            displayCell(currentY + y + i, currentX + x + j, theBoard);
         }
     }
 
@@ -291,7 +377,7 @@ void Board::left(int steps) {
         }
     }
     //print();
-    displayBoard();
+    //displayboard();
 }
 
 
@@ -321,7 +407,7 @@ void Board::right(int steps) {
         }
     }
     //print();
-    displayBoard();
+    //displayboard();
 }
 
 
@@ -337,7 +423,7 @@ void Board::down(int steps) {
         move(0, 0, 1);
     }
     //print();
-    displayBoard();
+    //displayboard();
 }
 
 
@@ -355,7 +441,7 @@ void Board::drop() {
     detectRow();
     //cout << "error 3" << endl;
     //print();
-    displayBoard();
+    //displayboard();
 }
 
 void Board::clockwise(int angle) {
@@ -366,7 +452,7 @@ void Board::clockwise(int angle) {
         move(0, 0, 1);
     }
     //print();
-    displayBoard();
+    //displayboard();
 }
 
 
@@ -378,7 +464,7 @@ void Board::counterclockwise(int angle) {
         move(0, 0, 1);
     }
     //print();
-    displayBoard();
+    //displayboard();
 }
 
 // for level
@@ -386,8 +472,9 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     delete level;
     block_created = 0;
     level_n = n;
-    view->coverString(x + 50, y, 20, Xwindow::White);
-    view->fillString(x + 50, y, to_string(level_n), Xwindow::Black);
+    displayLevel();
+  //  view->coverString(x + 50, y, 6, Xwindow::White);
+  //  view->fillString(x + 50, y, to_string(level_n), Xwindow::Black);
     if (n == 0) {
             level = new levelZero{ file, seed, set_seed };
     }
@@ -477,7 +564,7 @@ void Board::newBlock(char c) {
     delete currentBlock;
     currentBlock = helperBlock(x, y, c);
     }
-
+    displayNextBlock(nextBlock->getName());
     Iblock * iblock = dynamic_cast<Iblock*>(currentBlock);
     if (iblock != nullptr) {
         if (isShiftValid(0,0,0) == false) {
@@ -517,6 +604,7 @@ void Board::addAction(Board* opponent, string s) {
         if (in == "blind") {
                 opponent->action = new Blind;
                 opponent->action->applyAction();
+                displayBoard();
         }
         else if (in == "heavy") {
                 opponent->action = new Heavy;
@@ -589,9 +677,15 @@ void Board::dropStar() {
 }
 
 void Board::displayScore() {
-    view->coverString(x + 50, y + 15, 12, Xwindow::White);
+    view->coverString(x + 50, y + 15, 6, Xwindow::White);
     view->fillString(x + 50, y + 15, to_string(tmp_score), Xwindow::Black);
 }
+
+void Board::displayLevel() {
+    view->coverString(x + 50, y, 6, Xwindow::White);
+    view->fillString(x + 50, y, to_string(level_n), Xwindow::Black);
+}
+
 
 void Board::detectRow() {
     int count = 0;
@@ -649,10 +743,14 @@ void Board::detectRow() {
                 for (int i = row - 1; i >= 3; --i) {
                     for (int j = 0; j < 11; ++j) {
                         theBoard[i + 1][j] = theBoard[i][j];
+                        theBoard[i + 1][j].setColour();
+                     //   displayCell(i + 1, j);
                     }
                 }
                 for (int j = 0; j < 11; ++j) {
                     theBoard[3][j].clearCell();
+                    theBoard[3][j].setColour();
+                 //   displayCell(3, j);
                 }
                 ++row;
                 ++count;
@@ -690,10 +788,23 @@ void Board::detectRow() {
             score = tmp_score;
         }
     }
+
+    displayScore();
+
     if (count > 1) {
         addAction(opponent, " ");
     }
 }
+
+
+void Board::displayCell(int r, int c, vector<vector<Cell>> grid) {
+    if ( dynamic_cast<Blind*>(action) ) {
+                grid[r][c].display(x - 5, y + 22, true);
+            } else {
+                grid[r][c].display(x - 5, y + 22, false);
+            }
+}
+
 
 void Board::displayBoard() {
     if (!view->isGraphical()) {
@@ -703,9 +814,9 @@ void Board::displayBoard() {
     for (int i = 0; i < NUM_ROWS; i++) {
         for (int j = 0; j < NUM_COLS; j++) {
             if ( dynamic_cast<Blind*>(action) ) {
-                theBoard[i][j].display(x - 5, y + 10, true);
+                theBoard[i][j].display(x - 5, y + 22, true);
             } else {
-                theBoard[i][j].display(x - 5, y + 10, false);
+                theBoard[i][j].display(x - 5, y + 22, false);
             }
         }
     }
