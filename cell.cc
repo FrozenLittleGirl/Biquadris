@@ -63,7 +63,7 @@ void Cell::display(int x_coord, int y_coord, bool isBlind) {
 }
 
 
-View* getDisplay() {
+View* Cell::getDisplay() {
     return view;
 }
 
