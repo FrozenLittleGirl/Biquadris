@@ -50,6 +50,8 @@ void Cell::setColour() {
 
 void Cell::display(int x_coord, int y_coord, bool isBlind) {
     cout << "entered Cell::display" << endl;
+    cout << "view: " << view << endl;
+    cout << "isGraphical: " << view->isGraphical() << endl;
     if ( !view || !view->isGraphical() ) {
         cout << "error setDisplay for cell" << endl;
         return; 
