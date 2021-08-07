@@ -26,7 +26,7 @@ Board::Board(int x, int y, View *v) :
     view{v},
     graphicx{x},
     graphicy{y} {
-        td = new TextDisplay();
+        td = new TextDisplay;
         td->attachBoard(this);
     }
 
@@ -91,6 +91,7 @@ void Board::init() {
         cell_y -= 2;
         cell_y += 30;
     }
+
     delete currentBlock;
     delete nextBlock;
     currentBlock = level->generateBlock();
@@ -306,12 +307,15 @@ void Board::move(int angle, int x, int y) {
     int currentY = currentBlock->getYcoord();
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            if (currentRotation[i][j] != ' ') {
+            if (currentRotation[i][j] != ' ' && currentY + i < 18 && currentX + j < 11) {
                 theBoard[currentY + i][currentX + j].clearCell();
                 theBoard[currentY + i][currentX + j].setColour();
             }
-            theBoard[currentY + y + i][currentX + x + j].setColour();
-            displayCell(currentY + i, currentX + j, theBoard);
+            if (currentY + i < 18 && currentX + j < 11) {
+                theBoard[currentY + i][currentX + j].setColour();
+                theBoard[currentY + i][currentX + j].setDisplay(view);
+                displayCell(currentY + i, currentX + j, theBoard);
+            }
         }
     }
     int rotateAngle = currentAngle + angle;
@@ -334,16 +338,18 @@ void Board::move(int angle, int x, int y) {
     currentBlock->setAngle(rotateAngle);
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            if (rotation[i][j] != ' ') {
+            if (rotation[i][j] != ' ' && currentY + y + i < 18 && currentX + x + j < 11) {
                 theBoard[currentY + y + i][currentX + x + j].setLevel(level_n);
                 theBoard[currentY + y + i][currentX + x + j].setName(rotation[i][j]);
                 theBoard[currentY + y + i][currentX + x + j].setColour();
             }
-            theBoard[currentY + y + i][currentX + x + j].setColour();
-            displayCell(currentY + y + i, currentX + x + j, theBoard);
+            if (currentY + y + i < 18 && currentX + x + j < 11) {
+                theBoard[currentY + y + i][currentX + x + j].setColour();
+                theBoard[currentY + y + i][currentX + x + j].setDisplay(view);
+                displayCell(currentY + y + i, currentX + x + j, theBoard);
+            }
         }
     }
-
 }
 
 
@@ -800,10 +806,10 @@ void Board::detectRow() {
 
 void Board::displayCell(int r, int c, vector<vector<Cell>> grid) {
     if ( dynamic_cast<Blind*>(action) ) {
-                grid[r][c].display(x - 5, y + 22, true);
-            } else {
-                grid[r][c].display(x - 5, y + 22, false);
-            }
+        grid[r][c].display(x - 5, y + 22, true);
+    } else {
+        grid[r][c].display(x - 5, y + 22, false);
+    }
 }
 
 
@@ -875,4 +881,5 @@ Board::~Board() {
     delete action;
     delete currentBlock;
     delete nextBlock;
+    delete td;
 }
