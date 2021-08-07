@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
         }
     }
     // set up boards
-    int turn = 1;
+    int turn = 0;
     View *v = new View(!textOnly);
     Board player1(120, 70, v);
     Board player2(600, 70, v);
