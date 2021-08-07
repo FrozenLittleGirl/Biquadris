@@ -78,8 +78,8 @@ int Cell::getY() {
     return this->y; 
 }   
 
-void Cell::setDisplay(View *view) {
-    this->view = view;
+void Cell::setDisplay(View *v) {
+    this->view = v;
 }
 
 void Cell::setX(int x) {
