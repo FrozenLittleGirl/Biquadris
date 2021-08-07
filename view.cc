@@ -52,6 +52,7 @@ void View::fillString(int x, int y, string s, int colour) {
 
 
 void View::fillCell(int x, int y, int width, int colour) {
+    cout << "x: " << x << "y: " << y << "width: " << width << endl;
     if (graphical) {
         xw->fillRectangle(x, y, width, width, colour);
     }
