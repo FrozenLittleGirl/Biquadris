@@ -15,7 +15,7 @@ class Cell {
     bool occupied;
     char name;
     int colour;
-    View* view;
+    View* view = nullptr;
     
     int level_n = 0;
 
