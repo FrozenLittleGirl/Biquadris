@@ -53,8 +53,9 @@ void Cell::display(int x_coord, int y_coord, bool isBlind) {
         return;
     }
     if ( isBlind ) {
-        view->fillCell(graphicx + x_coord, graphicy + y_coord, 27, Xwindow::Black);
+        view->fillCell(graphicx + x_coord, graphicy + y_coord, 27, Xwindow::White);
     } else {
+        cout << "entered Cell::display" << endl;
         view->fillCell(graphicx + x_coord, graphicy + y_coord, 27, colour);
     }
 }
