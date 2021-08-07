@@ -49,6 +49,7 @@ void Cell::setColour() {
 }
 
 void Cell::display(int x_coord, int y_coord, bool isBlind) {
+    cout << "entered Cell::display" << endl;
     if ( !view || !view->isGraphical() ) {
         cout << "error setDisplay for cell" << endl;
         return; 
@@ -57,7 +58,6 @@ void Cell::display(int x_coord, int y_coord, bool isBlind) {
     if ( isBlind ) {
         view->fillCell(graphicx + x_coord, graphicy + y_coord, 27, Xwindow::White);
     } else {
-        cout << "entered Cell::display" << endl;
         view->fillCell(graphicx + x_coord, graphicy + y_coord, 27, colour);
     }
 }
