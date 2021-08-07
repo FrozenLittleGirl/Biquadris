@@ -26,7 +26,6 @@ class Cell {
     void setColour();
     void display(int x_coord, int y_coord, bool isBlind);
     void setDisplay(View* v);
-    View* getDisplay();
     void setX(int x);
     void setY(int y);
     void setGraphics(int x, int y);
