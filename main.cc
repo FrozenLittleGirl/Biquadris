@@ -192,7 +192,6 @@ int main(int argc, char** argv) {
             else {
                 player2.left(times);
             }
-            cout << player1;
         }
         else if (cmd == s2) {  //right
             if (turn % 2 == 0) {
@@ -201,7 +200,6 @@ int main(int argc, char** argv) {
             else {
                 player2.right(times);
             }
-            cout << player1;
         }
         else if (cmd == s3) {  //down
             if (turn % 2 == 0) {
@@ -210,7 +208,6 @@ int main(int argc, char** argv) {
             else {
                 player2.down(times);
             }
-            cout << player1;
         }
         else if (cmd == s4) {  //clockwise
             for (int i = 0; i < times; ++i) {
@@ -221,7 +218,6 @@ int main(int argc, char** argv) {
                     player2.clockwise(90);
                 }
             }
-            cout << player1;
         }
         else if (cmd == s5) {  //counterclockwise
             for (int i = 0; i < times; ++i) {
@@ -232,7 +228,6 @@ int main(int argc, char** argv) {
                     player2.counterclockwise(90);
                 }
             }
-            cout << player1;
         }
         else if (cmd == s6) {  //drop
             for (int i = 0; i < times; ++i) {
@@ -243,7 +238,6 @@ int main(int argc, char** argv) {
                     player2.drop();
                 }
             }
-            cout << player1;
         }
         else if (cmd == s7) {  //levelup
             if (turn % 2 == 0) {
@@ -260,7 +254,6 @@ int main(int argc, char** argv) {
                     player2.addLevel(level, seed, false, file2);
                 }
             }
-            cout << player1;
         }
         else if (cmd == s8) {  //leveldown
             if (turn % 2 == 0) {
@@ -277,7 +270,6 @@ int main(int argc, char** argv) {
                     player2.addLevel(level, seed, false, file2);
                 }
             }
-            cout << player1;
         }
         else if (cmd == s9) {  //norandom
             string newFile;
@@ -305,7 +297,6 @@ int main(int argc, char** argv) {
             else {
                 player2.newBlock(cmd[0]);
             }
-            cout << player1;
         }
         else if (cmd == s11) {  //sequence
             read_sequence = true;
@@ -320,13 +311,14 @@ int main(int argc, char** argv) {
             else {
                 player2.init();
             }
-            cout << player1;
-            continue;
         }
         else {
             cout << "Unrecognized command " << cmd << "!" << endl;
             continue;
         }
+
+        cout << player1;
+
         bool decide_player1 = player1.determineLose();
         bool decide_player2 = player2.determineLose();
         if (decide_player1 == true || decide_player2 == true) {
