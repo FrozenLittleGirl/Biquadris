@@ -89,10 +89,6 @@ int main(int argc, char** argv) {
             cin >> cmd;
             if (cin.fail()) break;
         }
-        if (cmd == "+") {  // delete this
-            ++turn;
-            continue;
-        }
         if (cmd[0] >= '0' && cmd[0] <= '9') {
             string num;
             int count = 0;
