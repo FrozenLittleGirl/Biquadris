@@ -335,13 +335,6 @@ void Board::move(int angle, int x, int y) {
     }
 }
 
-
-bool Board::canBeDropped() {
-    return isShiftValid(0, 0, 0);
-}
-
-
-
 void Board::left(int steps) {
     for (int i = 0; i < steps; i++) {
         if (isShiftValid(0, -1, 0) == false) {
@@ -425,10 +418,8 @@ void Board::drop() {
     newBlock();
     delete action;
     action = nullptr;
-    //*turn += 1;
-    //cout << "error 2" << endl;
+    *turn += 1;
     detectRow();
-    //cout << "error 3" << endl;
     //print();
     //displayboard();
 }
