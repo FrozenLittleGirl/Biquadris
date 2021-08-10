@@ -45,7 +45,7 @@ class Board {
     void setNextBlockGraphics();
     void displayNextBlock(char type);
 
-    protected:
+    //protected:           // Nata: don't need this
     int score = 0;
     int tmp_score = 0;          // Nata: since there are restart, we need a temporarily score to hold current game's score
     bool lose = false;
