@@ -17,7 +17,7 @@ class Board {
     const int NUM_ROWS = 18;
     int x;
     int y;
-    std::std::vector<std::std::vector<Cell>> theBoard;
+    std::vector<std::vector<Cell>> theBoard;
     std::vector<std::vector<Cell>> nextBlockGrid;
     Board* opponent = nullptr;
     View *view = nullptr;
