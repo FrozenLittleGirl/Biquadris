@@ -18,8 +18,6 @@ class View {
     public:
         View(bool graphical);
         ~View();
-        void attachBoard(Board* board);
-        void attachOpponent(Board* opponent);
         void coverString(int x, int y, int width, int colour);
         void fillString(int x, int y, string s, int colour);
         void fillCell(int x, int y, int width, int colour);

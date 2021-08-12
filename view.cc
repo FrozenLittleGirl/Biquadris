@@ -28,15 +28,8 @@ View::~View() {
  }
 
 
-void View::attachBoard(Board* board) {
-    this->board = board;
-}
-
-void View::attachOpponent(Board* opponent) {
-    this->opponent = opponent;
-}
-
-
+// used to cover a string so that I can call View::filString to overwrite 
+// the previous string
 void View::coverString(int x, int y, int width, int colour) {
     if (graphical) {
         xw->fillRectangle(x, y, width, width, colour);
