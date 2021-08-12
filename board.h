@@ -51,7 +51,7 @@ class Board {
 
     public:
         Board(int x, int y, View *v);
-        friend ostream &operator<<(ostream &out, const Board &b);
+        friend std::ostream &operator<<(std::ostream &out, const Board &b);
         void init();  // initialize/restart the board
         void clearBoard();  // empty the board
 
