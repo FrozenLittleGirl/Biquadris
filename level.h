@@ -15,6 +15,8 @@ class levelZero : public NextBlock {
 public:
         levelZero(string file, int sd, bool set_sd);
         Block* generateBlock() override;
+
+        // really does nothing
         void changeState(bool set, string s) override;
 };
 
@@ -24,6 +26,8 @@ class levelOne : public NextBlock {
 public:
         levelOne(int sd, bool set_sd);
         Block* generateBlock() override;
+
+        // really does nothing
         void changeState(bool set, string s) override;
 };
 
@@ -32,6 +36,8 @@ class levelTwo : public NextBlock {
 public:
         levelTwo(int sd, bool set_sd);
         Block* generateBlock() override;
+
+        // really does nothing
         void changeState(bool set, string s) override;
 };
 
