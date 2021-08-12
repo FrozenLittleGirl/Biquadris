@@ -3,7 +3,6 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-//#include "subject.cc"
 #include "block.h"
 #include "cell.h"
 using namespace std;
@@ -26,18 +25,18 @@ class Board {
     SpecialAction* action = nullptr;
     NextBlock* level = nullptr;
     int level_n = 0;
-    Block* currentBlock = nullptr;  // Nata: change the name from block to currentBlock
+    Block* currentBlock = nullptr;
     Block* nextBlock = nullptr;
-    void move(int angle, int x, int y);
-    bool isShiftValid(int angle, int x, int y);
-    void detectRow();
+    void move(int angle, int x, int y);  // rotate "angle" degree, move x step horizontally, move y vertically
+    bool isShiftValid(int angle, int x, int y);  // determine if rotate/left/right/down is valid
+    void detectRow();  // detect if any row of cells is filled
     int* turn;
     int graphicx;
     int graphicy;
 
     int block_created = 0;
     bool clearRow = false;
-    void dropStar();
+    void dropStar();  // drop the starblock
     void displayScore();
     void displayLevel();
     void displayBoard();
@@ -45,37 +44,35 @@ class Board {
     void setNextBlockGraphics();
     void displayNextBlock(char type);
 
-    //protected:           // Nata: don't need this
     int score = 0;
-    int tmp_score = 0;          // Nata: since there are restart, we need a temporarily score to hold current game's score
+    int tmp_score = 0;
     bool lose = false;
-    //void restore();
-    void addAction(Board* opponent, string s);
+    void addAction(Board* opponent, string s);  // add a special action to the opponent
 
     public:
         Board(int x, int y, View *v);
         friend ostream &operator<<(ostream &out, const Board &b);
-        void init();
-        void clearBoard();
+        void init();  // initialize/restart the board
+        void clearBoard();  // empty the board
 
-        void drop();
-        void down(int steps);
-        void left(int steps);
-        void right(int steps);
-        void clockwise(int angle);
-        void counterclockwise(int angle);
-        bool determineLose();
-        int determineScore();
-        void attach(Board* opponent, int* n);
-        void setRandom(bool set, string s);
-        void addLevel(int n, int seed, bool set_seed, string file);
-        void newBlock(char c = 'n');
-        Block* getNextBlock() const;
-        int getLevel() const;
-        int getScore() const;
-        void setCurrentBlock(Block * newBlock);
-        SpecialAction* getAction() const;
-        vector<vector<Cell>> getBoard() const;
+        void drop();  // drop block
+        void down(int steps);  // move block steps downward
+        void left(int steps);  // move block steps leftward
+        void right(int steps);  // move block steps rightward
+        void clockwise(int angle);  // rotate block angle degrees
+        void counterclockwise(int angle);  // rotate block -angle degrees
+        bool determineLose();  // determine if the board loses
+        int determineScore();  // return score
+        void attach(Board* opponent, int* n);  // attach opponent and turn to the board
+        void setRandom(bool set, string s);  // set randomness to level 3 or 4
+        void addLevel(int n, int seed, bool set_seed, string file);  // attach a new level to the board
+        void newBlock(char c = 'n');  // generate a new block
+        Block* getNextBlock() const;  // get next block
+        int getLevel() const;  // return current level
+        int getScore() const;  // return current score
+        void setCurrentBlock(Block * newBlock);  // set currentblock
+        SpecialAction* getAction() const;  // return current special action
+        vector<vector<Cell>> getBoard() const;  // return a copy of the cells of the board
         int currentLevel();
 
         ~Board();
