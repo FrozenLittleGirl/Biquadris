@@ -3,8 +3,6 @@
 #include <string>
 #include "block.h"
 
-using namespace std;
-
 class NextBlock {
 protected:
         int sd;
@@ -15,7 +13,7 @@ public:
         // generate a new block
         virtual Block* generateBlock() = 0;
         // convert level 3 or 4 to random/nonrandom based on bool set
-        virtual void changeState(bool set, string s) = 0;
+        virtual void changeState(bool set, std::string s) = 0;
         virtual ~NextBlock();
 };
 
