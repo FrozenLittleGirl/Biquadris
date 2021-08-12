@@ -3,9 +3,9 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+#include <string>
 #include "block.h"
 #include "cell.h"
-using namespace std;
 
 class View;
 class TextDisplay;
@@ -17,8 +17,8 @@ class Board {
     const int NUM_ROWS = 18;
     int x;
     int y;
-    vector<vector<Cell>> theBoard;
-    vector<vector<Cell>> nextBlockGrid;
+    std::std::vector<std::std::vector<Cell>> theBoard;
+    std::vector<std::vector<Cell>> nextBlockGrid;
     Board* opponent = nullptr;
     View *view = nullptr;
     TextDisplay *td = nullptr;
@@ -40,14 +40,14 @@ class Board {
     void displayScore();
     void displayLevel();
     void displayBoard();
-    void displayCell(int r, int c, vector<vector<Cell>> grid);
+    void displayCell(int r, int c, std::vector<std::vector<Cell>> grid);
     void setNextBlockGraphics();
     void displayNextBlock(char type);
 
     int score = 0;
     int tmp_score = 0;
     bool lose = false;
-    void addAction(Board* opponent, string s);  // add a special action to the opponent
+    void addAction(Board* opponent, std::string s);  // add a special action to the opponent
 
     public:
         Board(int x, int y, View *v);
@@ -64,15 +64,15 @@ class Board {
         bool determineLose();  // determine if the board loses
         int determineScore();  // return score
         void attach(Board* opponent, int* n);  // attach opponent and turn to the board
-        void setRandom(bool set, string s);  // set randomness to level 3 or 4
-        void addLevel(int n, int seed, bool set_seed, string file);  // attach a new level to the board
+        void setRandom(bool set, std::string s);  // set randomness to level 3 or 4
+        void addLevel(int n, int seed, bool set_seed, std::string file);  // attach a new level to the board
         void newBlock(char c = 'n');  // generate a new block
         Block* getNextBlock() const;  // get next block
         int getLevel() const;  // return current level
         int getScore() const;  // return current score
         void setCurrentBlock(Block * newBlock);  // set currentblock
         SpecialAction* getAction() const;  // return current special action
-        vector<vector<Cell>> getBoard() const;  // return a copy of the cells of the board
+        std::vector<std::vector<Cell>> getBoard() const;  // return a copy of the cells of the board
         int currentLevel();
 
         ~Board();
