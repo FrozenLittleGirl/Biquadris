@@ -15,7 +15,6 @@
 #include "starblock.h"
 #include <vector>
 #include <string>
-#include <iostream>   // Nata: don't forget to delete this once finished
 
 using namespace std;
 
@@ -166,15 +165,12 @@ void Board::displayNextBlock(char type) {
 }
 
 bool Board::isShiftValid(int angle, int x, int y) {
-    //bool is_valid = true;
-    //cout << "error ////////////////////" << endl;
     if (angle != 0 || x != 0 || y != 0) {
         int rotateAngle = currentBlock->getAngle() + angle;
         rotateAngle = rotateAngle % 360;
         if (rotateAngle < 0) {
             rotateAngle += 360;
         }
-        //cout << "error isShift 1" << endl;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 char currentChar = ' ';
@@ -230,14 +226,10 @@ bool Board::isShiftValid(int angle, int x, int y) {
                 }
 
             }
-            //cout << "error isShift 2" << endl;
         }
-        //cout << "error isShift loop 2" << endl;
     } else {
         for (int i = 0; i < 4; i++) {
-            //cout << "error isShift 3" << endl;
             for (int j = 0; j < 4; j++) {
-                //cout << "error isShift 4" << endl;
                 int currentAngle = currentBlock->getAngle();
                 int blockX = currentBlock->getXcoord();
                 int blockY = currentBlock->getYcoord();
@@ -251,11 +243,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
                 } else if (currentAngle == 270) {
                     currentChar = currentBlock->getRotate270()[i][j];
                 }
-                //cout << "line 170: currentChar: " << currentChar << endl;
-                //cout << "currentX + j: "  << blockX + j << endl;
-                //cout << "currentY + i: " << blockY + i << endl;
                 if (currentChar != ' ') {
-                    //cout << "isOccupied:" << theBoard[blockY + i][blockX + j].isOccupied() << endl;
                     if (theBoard[blockY + i][blockX + j].isOccupied() == true) {
                         return false;
                     }
@@ -265,9 +253,7 @@ bool Board::isShiftValid(int angle, int x, int y) {
 
                     }
                 }
-                //cout << "error isShift 5" << endl;
             }
-            //cout << "error isShift 6" << endl;
         }
     }
     return true;
@@ -359,8 +345,6 @@ void Board::left(int steps) {
             }
         }
     }
-    //print();
-    //displayboard();
 }
 
 
@@ -389,8 +373,6 @@ void Board::right(int steps) {
             }
         }
     }
-    //print();
-    //displayboard();
 }
 
 
@@ -405,8 +387,6 @@ void Board::down(int steps) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    //print();
-    //displayboard();
 }
 
 
@@ -420,8 +400,6 @@ void Board::drop() {
     action = nullptr;
     *turn += 1;
     detectRow();
-    //print();
-    //displayboard();
 }
 
 void Board::clockwise(int angle) {
@@ -431,8 +409,6 @@ void Board::clockwise(int angle) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    //print();
-    //displayboard();
 }
 
 
@@ -443,8 +419,6 @@ void Board::counterclockwise(int angle) {
     if (level_n >= 3 && isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
-    //print();
-    //displayboard();
 }
 
 // for level
@@ -453,8 +427,6 @@ void Board::addLevel(int n, int seed, bool set_seed, string file) {
     block_created = 0;
     level_n = n;
     displayLevel();
-  //  view->coverString(x + 50, y, 6, Xwindow::White);
-  //  view->fillString(x + 50, y, to_string(level_n), Xwindow::Black);
     if (n == 0) {
             level = new levelZero{ file, seed, set_seed };
     }
@@ -565,8 +537,6 @@ void Board::newBlock(char c) {
             clearRow = false;
          }
     }
-    //move(0,0,0);
-    //print();
 }
 
 
@@ -725,13 +695,11 @@ void Board::detectRow() {
                     for (int j = 0; j < 11; ++j) {
                         theBoard[i + 1][j] = theBoard[i][j];
                         theBoard[i + 1][j].setColour();
-                     //   displayCell(i + 1, j);
                     }
                 }
                 for (int j = 0; j < 11; ++j) {
                     theBoard[3][j].clearCell();
                     theBoard[3][j].setColour();
-                 //   displayCell(3, j);
                 }
                 ++row;
                 ++count;
