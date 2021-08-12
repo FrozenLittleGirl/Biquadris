@@ -1,6 +1,5 @@
 #ifndef _TEXTDISPLAY_H_
 #define _TEXTDISPLAY_H_
-//#include "observer.h"
 #include <iostream>
 
 class Board;

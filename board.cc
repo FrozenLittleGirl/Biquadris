@@ -473,7 +473,7 @@ Block* helperBlock(int x, int y, char c) {
   return block;
 }
 
-// This is a helper function which determines if all block ofs the same type are cleared
+// This is a helper function which determines if all block of the same type are cleared
 bool helperCheck(bool exist, char c, vector<vector<Cell>> & v) {
     if (exist == false) {
         return false;
@@ -511,7 +511,6 @@ void Board::newBlock(char c) {
         displayNextBlock(nextBlock->getName());
     }
     else {
-    // Nata: careful! new block should always fit the current position
         int x = currentBlock->getXcoord();
         int y = currentBlock->getYcoord();
         delete currentBlock;
@@ -540,7 +539,7 @@ void Board::newBlock(char c) {
 }
 
 
-// opponent
+// to attach the opponent to the textdisplay, so we can print both boards
 void Board::attach(Board* opponent, int* n) {
         this->opponent = opponent;
         turn = n;
