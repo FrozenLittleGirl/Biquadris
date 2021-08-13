@@ -125,6 +125,10 @@ void Board::displayNextBlock(char type) {
         nextBlockGrid[1][3].setName('I');
     }
     if (type == 'J') {
+        nextBlockGrid[0][0].setName('J');
+        nextBlockGrid[1][0].setName('J');
+        nextBlockGrid[1][1].setName('J');
+        nextBlockGrid[1][2].setName('J');
     }
     if (type == 'L') {
         nextBlockGrid[0][2].setName('L');
