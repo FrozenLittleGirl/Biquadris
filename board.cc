@@ -654,7 +654,7 @@ void Board::detectRow() {
     bool determineClear = false;
     int startRow;
     int I_level, J_level, L_level, O_level, S_level, Z_level, T_level, Star_level;
-    for (int row = 17; row >= 4; --row) {
+    for (int row = 17; row >= 3; --row) {
         for (int col = 0; col < 11; ++col) {
             if (theBoard[row][col].getName() == ' ') {
                 break;
@@ -700,12 +700,12 @@ void Board::detectRow() {
                         Star_level = 4;
                     }
                 }
-                for (int i = row - 1; i >= 4; --i) {
+                for (int i = row - 1; i >= 3; --i) {
                     for (int j = 0; j < 11; ++j) {
                         bool occupied = theBoard[i][j].getOccupied();
                         char name = theBoard[i][j].getName();
-                        theBoard[i + 1][j].setOccupied(occupied);
                         theBoard[i + 1][j].setName(name);
+                        theBoard[i + 1][j].setOccupied(occupied);
                         theBoard[i + 1][j].setColour();
                     }
                 }
