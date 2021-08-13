@@ -35,6 +35,8 @@ class Cell {
     void clearCell();
     void setLevel(int level_n);
     int getLevel();
+    int getColour();
+    bool getOccupied();
 };
 
 #endif
