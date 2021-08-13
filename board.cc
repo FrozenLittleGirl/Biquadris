@@ -698,13 +698,8 @@ void Board::detectRow() {
                 }
                 for (int i = row - 1; i >= 3; --i) {
                     for (int j = 0; j < 11; ++j) {
-                        bool occupied = theBoard[i][j].getOccupied();
-                        char name = theBoard[i][j].getName();
-                        theBoard[i + 1][j].setOccupied(occupied);
-                        theBoard[i + 1][j].setName(name);
+                        theBoard[i + 1][j] = theBoard[i][j];
                         theBoard[i + 1][j].setColour();
-                        //theBoard[i + 1][j] = theBoard[i][j];
-                        //theBoard[i + 1][j].setColour();
                     }
                 }
                 for (int j = 0; j < 11; ++j) {
@@ -749,7 +744,7 @@ void Board::detectRow() {
     }
 
     if (determineClear) {
-        
+
     }
 
     displayScore();
@@ -773,7 +768,7 @@ void Board::displayBoard() {
     if (!view->isGraphical()) {
         return;
     }
-    
+
     for (int i = 0; i < NUM_ROWS; i++) {
         for (int j = 0; j < NUM_COLS; j++) {
             if ( dynamic_cast<Blind*>(action) ) {
