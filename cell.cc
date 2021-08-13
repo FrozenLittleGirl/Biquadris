@@ -114,4 +114,12 @@ int Cell::getLevel() {
     return level_n;
 }
 
+bool Cell::getOccupied() {
+    return occupied;
+}
+
+void Cell::setOccupied(bool set) {
+    this->occupied = set;
+}
+
 
