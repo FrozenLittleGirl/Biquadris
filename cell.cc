@@ -52,7 +52,6 @@ void Cell::display(int x_coord, int y_coord, bool isBlind) {
     if ( !view || !view->isGraphical() ) {
         return; 
     }
-    cout << "isBlind: " << isBlind << endl;
     if ( isBlind && (2 <= y && y <= 8) && (6 <= x && x <= 15) ) {
         view->fillCell(graphicx + x_coord, graphicy + y_coord, 27, Xwindow::White);
     } else {
