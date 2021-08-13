@@ -743,6 +743,10 @@ void Board::detectRow() {
         }
     }
 
+    if (determineClear) {
+        
+    }
+
     displayScore();
 
     if (count > 1) {
