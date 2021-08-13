@@ -115,4 +115,16 @@ int Cell::getLevel() {
     return level_n;
 }
 
+int Cell::getColour() {
+    return colour;
+}
+
+bool Cell::getOccupied {
+    return occupied;
+}
+
+void Cell::setOccupied(bool set) {
+    this->occupied = set;
+}
+
 
