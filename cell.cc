@@ -115,7 +115,7 @@ int Cell::getLevel() {
     return level_n;
 }
 
-bool Cell::getOccupied {
+bool Cell::getOccupied() {
     return occupied;
 }
 
