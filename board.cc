@@ -694,11 +694,17 @@ void Board::detectRow() {
                     for (int j = 0; j < 11; ++j) {
                         theBoard[i + 1][j] = theBoard[i][j];
                         theBoard[i + 1][j].setColour();
+                        theBoard[i + 1][j].setDisplay(view);
+                        cout << "type:" << theBoard[i + 1][j].getName() << endl; // remove
+                        displayCell(i + 1, j, theBoard); 
                     }
                 }
                 for (int j = 0; j < 11; ++j) {
                     theBoard[3][j].clearCell();
                     theBoard[3][j].setColour();
+                    theBoard[3][j].setDisplay(view);
+                    cout << "type:" << theBoard[3][j].getName() << endl; //remove
+                    displayCell(3, j, theBoard);
                 }
                 ++row;
                 ++count;
