@@ -395,13 +395,31 @@ void Board::down(int steps) {
 
 
 void Board::drop() {
+    if (dynamic_cast<Blind*>(action)) {
+        displayBoard();
+    }
+    
     while (isShiftValid(0, 0, 1) == true) {
         move(0, 0, 1);
     }
     ++block_created;
     newBlock();
+    bool flag = false;
+    if (dynamic_cast<Blind*>(action)) {
+        flag = true;
+    }
+
     delete action;
     action = nullptr;
+
+    if (flag) {
+        for (int i = 6; i < 16; i++) {
+            for (int j = 2; j < 9; j++) {
+                displayCell(i, j, theBoard);
+            }
+        }
+    }
+
     *turn += 1;
     detectRow();
 }
@@ -558,7 +576,6 @@ void Board::addAction(Board* opponent, string s) {
         if (in == "blind") {
                 opponent->action = new Blind;
                 opponent->action->applyAction();
-                displayBoard();
         }
         else if (in == "heavy") {
                 opponent->action = new Heavy;
