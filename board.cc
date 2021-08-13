@@ -647,6 +647,8 @@ void Board::detectRow() {
     bool Z = false;
     bool T = false;
     bool Star = false;
+    bool determineClear = false;
+    int startRow;
     int I_level, J_level, L_level, O_level, S_level, Z_level, T_level, Star_level;
     for (int row = 17; row >= 3; --row) {
         for (int col = 0; col < 11; ++col) {
@@ -654,6 +656,10 @@ void Board::detectRow() {
                 break;
             }
             if (col == 10) {
+                if (determineClear == false) {
+                    determineClear = true;
+                    startRow = row;
+                }
                 for (int k = 0; k < 11; ++k) {
                     char type = theBoard[row][k].getName();
                     int current_level = theBoard[row][k].getLevel();
