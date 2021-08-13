@@ -698,7 +698,10 @@ void Board::detectRow() {
                 }
                 for (int i = row - 1; i >= 3; --i) {
                     for (int j = 0; j < 11; ++j) {
-                        theBoard[i + 1][j] = theBoard[i][j];
+                        bool occupied = theBoard[i][j].getOccupied();
+                        char name = theBoard[i][j].getName();
+                        theBoard[i + 1][j].setOccupied(occupied);
+                        theBoard[i + 1][j].setName(name);
                         theBoard[i + 1][j].setColour();
                     }
                 }
